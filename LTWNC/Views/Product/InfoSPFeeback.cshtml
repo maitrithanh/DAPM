@@ -1,0 +1,23 @@
+﻿@model LTWNC.Models.SANPHAM
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<style>
+    .info {
+        display: flex;
+        background: transparent;
+    }
+
+    .ten {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        margin-left: 6px;
+    }
+</style>
+<div class="info">
+
+    <img src="@Url.Content(Model.HINHSP)" style="width:100px; height:100px" />
+
+    <p class="ten"> @Model.TENSP</p>
+</div>
+

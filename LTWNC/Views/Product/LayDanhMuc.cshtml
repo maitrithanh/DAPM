@@ -1,0 +1,19 @@
+﻿@using PagedList.Mvc
+@*@using LTWNC.Models
+@model PagedList.PagedList<DANHMUC>*@
+@model IEnumerable<LTWNC.Models.DANHMUC>
+@foreach (var item in Model)
+{
+    string a = Convert.ToString(item.IDDANHMUC);
+    a = a.Replace(" ", "");
+    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+
+        <label class="custom-control-label" for="price-all">
+            <a href="@Url.Action("SPTheoDanhMuc", "Product", new { id=a})" class="danhmuc">
+                @item.TENDANHMUC
+            </a>
+        </label>
+        <span class="badge border font-weight-normal">@Html.Action("DemSPInDM","Product",new { id = item.IDDANHMUC})</span>
+       
+    </div>
+}

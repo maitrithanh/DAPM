@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "EBook - Liên hệ";
+    Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+}
+
+<!-- Contact Start -->
+<div class="container-fluid pt-5">
+    <div class="text-center mb-4">
+        <h2 class="section-title px-5"><span class="px-2">Hỏi chúng tôi với bất kỳ câu hỏi nào</span></h2>
+    </div>
+    <div class="row px-xl-5">
+        <div class="col-lg-7 mb-5">
+            @using (Html.BeginForm("Contact", "Home"))
+            {
+                @Html.ValidationSummary(true)
+                <div class="contact-form">
+                    <div id="success"></div>
+                    <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                        <div class="control-group">
+                            <input type="text" class="form-control" id="name" name="TenKH" placeholder="Tên của bạn"
+                                   required="required" data-validation-required-message="Please enter your name" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+
+                            <input type="email" class="form-control" id="email" name="Email" placeholder="Email của bạn"
+                                   required="required" data-validation-required-message="Please enter your email" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+
+                            <textarea class="form-control" rows="6" id="message" name="Content" placeholder="Nội dung"
+                                      required="required" data-validation-required-message="Please enter your message"></textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton">
+                                Gửi tin nhắn
+                            </button>
+                        </div>
+                        @if (ViewData["Error"] != null)
+                        {
+                            <div class="red">
+                                <p><strong>Error:</strong> @ViewData["Error"].ToString()</p>
+                            </div>
+                        }
+                        @if (TempData["Success"] != null)
+                        {
+                            <div class="green">
+                                <p><strong>Success:</strong> @TempData["Success"].ToString()</p>
+                            </div>
+                        }
+                    </form>
+                </div>
+            }
+            
+        </div>
+        <div class="col-lg-5 mb-5">
+            <div class="d-flex flex-column mb-3">
+                <h5 class="font-weight-semi-bold mb-3">Trụ sở</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>828 Sư Vạn Hạnh, P13, Q10, TPHCM, Việt Nam</p>
+                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>ebook@contact.com</p>
+                <p class="mb-2"><i class="fa fa-phone-alt text-primary mr-3"></i>012 345 6789</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->

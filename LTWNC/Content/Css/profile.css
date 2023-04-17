@@ -1,0 +1,54 @@
+﻿body {
+    background-color: #eee;
+}
+
+.sum {
+    margin: 100px;
+}
+
+.choose {
+    margin-left: 20px;
+}
+
+.lc div {
+    margin-bottom: 30px;
+}
+
+.tk {
+    margin-left: 24px;
+}
+
+.tk {
+    margin-left: 15px;
+}
+
+.info {
+    background-color: white;
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.ttlienhe {
+    font-size: 20px;
+}
+
+.email {
+    display: block;
+    width: 84%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.375rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}

@@ -1,0 +1,230 @@
+﻿@*@model IEnumerable<LTWNC.Models.SANPHAM>*@
+@using PagedList.Mvc
+@using LTWNC.Models
+@model PagedList.PagedList<SANPHAM>
+
+@{
+    ViewBag.Title = "EBook - Shop";
+    Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+    int i = 0, j = 0;
+}
+<link rel="stylesheet" href="~/Content/PagedList.css" />
+<!-- Shop Start -->
+<div class="container-fluid pt-5" style="margin-top:-50px">
+    <div class="row px-xl-5">
+        <!-- Shop Sidebar Start -->
+        <div class="col-lg-3 col-md-12">
+            <!-- Lọc theo giá Start -->
+            <div class="border-bottom mb-4 pb-4">
+                <form>
+                    @using (Html.BeginForm("Shop", "Product"))
+                    {
+                        <div class="row">
+                            <div class="col-8"><h5 class="font-weight-semi-bold mb-4">Lọc theo giá</h5></div>
+                            <div class="col-4"><button class="loc" type="submit">Lọc</button></div>
+                            <input style="display:none;" type="text" id="domain" name="min" value="" />
+                            <input style="display:none;" type="text" id="domain1" name="max" value="" />
+                        </div>
+                    }
+                    
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+
+                        <input type="checkbox" onclick="setDomain()" class="custom-control-input" id="price-all">
+                        <label class="custom-control-label" for="price-all">0đ - 200.000đ</label>
+                        <span class="badge border font-weight-normal">@Html.Action("DemSPInGia", "Product", new { min = 0, max = 200000 })</span>
+
+
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" onclick="setDomain1()" class="custom-control-input" id="price-1">
+                        <label class="custom-control-label" for="price-1">200.000đ - 500.000đ</label>
+                        <span class="badge border font-weight-normal">@Html.Action("DemSPInGia", "Product", new { min = 200000, max = 500000 })</span>
+                    </div>
+
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" onclick="setDomain2()" class="custom-control-input" id="price-2">
+                        <label class="custom-control-label" for="price-2">500.000đ - 1.000.000đ</label>
+                        <span class="badge border font-weight-normal">@Html.Action("DemSPInGia", "Product", new { max = 1000000, min = 500000 })</span>
+                    </div>
+
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" onclick="setDomain3()" class="custom-control-input" id="price-3">
+                        <label class="custom-control-label" for="price-3">1.000.000đ - 5.000.000đ</label>
+                        <span class="badge border font-weight-normal">@Html.Action("DemSPInGia", "Product", new { min = 1000000, max = 5000000 })</span>
+                    </div>
+
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" onclick="setDomain4()" class="custom-control-input" id="price-4">
+                        <label class="custom-control-label" for="price-4">5.000.000đ - 10.000.000</label>
+                        <span class="badge border font-weight-normal">@Html.Action("DemSPInGia", "Product", new { max = 10000000, min = 5000000 })</span>
+
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" onclick="setDomain5()" class="custom-control-input" id="price-5">
+                        <label class="custom-control-label" for="price-5">Trên 10.000.000</label>
+                        @foreach (var item in Model)
+                        {
+
+                            int dongia = Convert.ToInt32(item.DONGIA);
+                            j++;
+
+                            if (dongia >= 1000000)
+                            {
+                                i++;
+
+                            }
+                            if (j == Model.Count())
+                            {
+                                <span class="badge border font-weight-normal">@i</span>
+                                i = 0;
+                                j = 0;
+                            }
+                        }
+                    </div>
+                </form>
+
+            </div>
+            <!-- Price End -->
+            <!-- Lọc theo loại Start -->
+            <div class="border-bottom mb-4 pb-4">
+                <h5 class="font-weight-semi-bold mb-4">Lọc theo loại</h5>
+                <form>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" checked id="color-all">
+                        <label class="custom-control-label" for="price-all">Tất cả</label>
+                        <span class="badge border font-weight-normal">1000</span>
+                    </div>
+                    @Html.Action("LayDanhMuc", "Product")
+                </form>
+            </div>
+            <!-- type End -->
+        </div>
+        <!-- Shop Sidebar End -->
+        <!-- Shop Product Start -->
+        <div class="col-lg-9 col-md-12">
+            <div class="row pb-3">
+                <div class="col-12 pb-1">
+                    <div class="d-flex align-items-center justify-content-between mb-4" style="float:right;">
+                        <form action="">
+                            <div class="input-group">
+                                @*Tìm kiếm theo tên*@
+                                @using (Html.BeginForm("Shop", "Product", FormMethod.Get))
+                                {
+
+                                    <input type="text" class="form-control" id="SearchString" name="SearchString" placeholder="Tìm theo tên">
+                                    <div class="input-group-append">
+                                        <button type="submit" style="border:none">
+                                            <span class="input-group-text bg-transparent text-primary">
+                                                <i class="fa fa-search"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                }
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="card product-item border-0 mb-4" style="width:350px; height:501px">
+                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                <img class="img-fluid w-100" src="@Url.Content(item.HINHSP)" alt="@Html.DisplayFor(modelItem => item.TENSP)" />
+                            </div>
+                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                @*Tên sách*@
+                                <h6 class="text-truncate mb-3">@item.TENSP</h6>
+                                <div class="d-flex justify-content-center">
+                                    @*Giá sách*@
+                                    <h6>@Convert.ToDecimal(item.DONGIA).ToString("N0")đ</h6>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex justify-content-between bg-light border">
+                                @*Chi tiết sách*@
+                                <a href="@Url.Action("ProductDetail", "Product", new { id=item.IDSP})" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
+                                @*Thêm giỏ hàng*@
+                                <a href="@Url.Action("ShoppingCart", "Cart", new { id=item.IDSP})" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+            <br />
+            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+            <div class="MenuTrang">
+                @Html.PagedListPager(Model, page => Url.Action("Shop", new { page }))
+            </div>
+        </div>
+        <!-- Shop Product End -->
+    </div>
+</div>
+<!-- Shop End -->
+<style>
+    .matvien {
+        border: none;
+        outline: none;
+    }
+
+    .matvien, .danhmuc {
+        color: #6F6F6F;
+    }
+
+        .danhmuc, .danhmuc:hover {
+            text-decoration: none;
+        }
+
+    .MenuTrang li {
+        display: inline;
+    }
+
+    .loc {
+        border: none;
+        padding: 6px 24px;
+        border-radius: 8px;
+        background-color: #D19C97;
+        float: right;
+        color: white;
+    }
+
+        .loc:hover {
+            background-color: #f4bbb5;
+        }
+</style>
+<script>
+    function setDomain() {
+        let domain = 0;
+        let domain1 = 200000;
+        document.getElementById('domain').value = domain;
+        document.getElementById('domain1').value = domain1;
+    }
+    function setDomain1() {
+        let domain = 200000;
+        let domain1 = 500000;
+        document.getElementById('domain').value = domain;
+        document.getElementById('domain1').value = domain1;
+    }
+    function setDomain2() {
+        let domain = 500000;
+        let domain1 = 1000000;
+        document.getElementById('domain').value = domain;
+        document.getElementById('domain1').value = domain1;
+    }
+    function setDomain3() {
+        let domain = 1000000;
+        let domain1 = 5000000;
+        document.getElementById('domain').value = domain;
+        document.getElementById('domain1').value = domain1;
+    }
+    function setDomain4() {
+        let domain = 5000000;
+        let domain1 = 10000000;
+        document.getElementById('domain').value = domain;
+        document.getElementById('domain1').value = domain1;
+    }
+    function setDomain5() {
+        let domain = 10000000;
+        document.getElementById('domain').value = domain;
+    }
+</script>

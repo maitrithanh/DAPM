@@ -1,0 +1,30 @@
+﻿@model LTWNC.Models.CTDH
+<style>
+</style>
+
+
+<tr>
+    <td>
+        @Html.Action("InfoSPFeeback", "Product", new { id = Model.IDSP })
+
+    </td>
+
+    <td style="padding-top: 58px;">
+        @Model.SOLUONG
+    </td>
+    <td style="padding-top: 58px;">
+
+        @Convert.ToDecimal(Model.THANHTIEN).ToString("N0")đ
+    </td>
+    <td style="padding-top: 51px;">
+
+
+        <span class="btn btn-primary">
+            <a href="@Url.Action("ProductDetail", "Product", new { id = Model.IDSP })" class="">
+                <i class="fa-solid fa-pen-to-square"></i>
+                Mua lại
+            </a>
+        </span>
+    </td>
+</tr>
+

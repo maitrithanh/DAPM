@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2ff305cce7f3441a9382130ab49811d8" Name="Diagram1">
+        <EntityTypeShape EntityType="LTWNCModel.CHUCVU" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTWNCModel.CONTACT" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTWNCModel.CTDH" Width="1.5" PointX="7.5" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTWNCModel.CTGIAOHANG" Width="1.5" PointX="7.5" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTWNCModel.DANHMUC" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTWNCModel.DONHANG" Width="1.5" PointX="5.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTWNCModel.FEEDBACK" Width="1.5" PointX="10.5" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTWNCModel.KHACHHANG" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTWNCModel.KHAOSAT" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTWNCModel.KHUYENMAI" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTWNCModel.LOAIKHACHHANG" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTWNCModel.NHANVIEN" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTWNCModel.SANPHAM" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTWNCModel.TAIKHOAN" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
+        <AssociationConnector Association="LTWNCModel.FK_NHANVIEN_CHUCVU" ManuallyRouted="false" />
+        <AssociationConnector Association="LTWNCModel.FK__CTDH__IDDH__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="LTWNCModel.FK__CTDH__IDSP__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="LTWNCModel.FK_CTGIAOHANG_DONHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="LTWNCModel.FK_SANPHAM_DANHMUC" ManuallyRouted="false" />
+        <AssociationConnector Association="LTWNCModel.FK__DONHANG__IDKH__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="LTWNCModel.FK_FEEDBACK_KHACHHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="LTWNCModel.FK_FEEDBACK_SANPHAM" ManuallyRouted="false" />
+        <AssociationConnector Association="LTWNCModel.FK_KHACHHANG_LOAIKHACHHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="LTWNCModel.FK_SANPHAM_NHANVIEN" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
