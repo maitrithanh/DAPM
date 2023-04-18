@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <title>@ViewBag.Title | EBook</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/headers/">
     <link href="~/Images/LOGO.png" rel="icon">
 
@@ -14,15 +14,38 @@
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
     <!-- Libraries Stylesheet -->
     <link href="~/Content/Css/carousel/css-carousel/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="~/Content/Css/style.min.css" rel="stylesheet">
+    <link href="~/Content/Css/Home.css" rel="stylesheet">
 
 </head>
 <body>
+
+
+    <style>
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0;
+        }
+
+        .dropdown-menu li a {
+            color: #424242;
+            text-decoration: none;
+        }
+
+        a button {
+            border: none;
+            background-color: #D19C97;
+        }
+        a button:hover {
+            color: #FFFFFF;
+        }
+    </style>
     <!-- Topbar Start -->
     <div class="container-fluid">
         <div class="row align-items-center py-3 px-xl-5">
@@ -108,9 +131,30 @@
                         </div>
 
                         @*Login Register*@
-                        <div class="navbar-nav ml-auto py-0">
-                            <a href="/Home/Login" class="nav-item nav-link">Đăng nhập</a>
-                            <a href="/Home/Register" class="nav-item nav-link">Đăng ký</a>
+                        @*<div class="navbar-nav ml-auto py-0">
+                        <a href="/Home/Login" class="nav-item nav-link">Đăng nhập</a>
+                        <a href="/Home/Register" class="nav-item nav-link">Đăng ký</a>
+                        </div>*@
+                        <div class="nav-item dropdown">
+                            @{LTWNC.Models.KHACHHANG acc = Session["TaiKhoan"] as LTWNC.Models.KHACHHANG; }
+
+                            @if (Session["TaiKhoan"] == null || acc.IDKH == 0)
+                            {
+                                <a href="/Home/Login"><button style=""> Đăng Nhập </button></a>
+                            }
+                            else
+                            {
+                                LTWNC.Models.KHACHHANG taikhoan = Session["TaiKhoan"] as LTWNC.Models.KHACHHANG;
+
+                                <a class="nav-link  dropdown-toggle" href="#">
+                                    <i class="fa-solid fa-user"></i> @taikhoan.HOTENKH
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-item"><span style="color:black;">@Html.ActionLink("Tài khoản của tôi", "Edit", "Profile")</span></li>
+                                    <li class="dropdown-item">@Html.ActionLink("Đăng xuất", "Logout", "Home")</li>
+                                </ul>
+                            }
+
                         </div>
 
                     </div>
@@ -195,7 +239,7 @@
                         <h5 class="font-weight-bold text-dark mb-4">Đăng ký nhận tin mới</h5>
                         <form action="">
                             <div class="form-group">
-                                <input type="text" class="form-control border-0 py-4" placeholder="Họ và tên" required="required" />
+                                <input type="text" class="form-control border-0 py-4" placeholder="Họ và tên" name="" required="required" />
                             </div>
                             <div class="form-group">
                                 <input type="email" class="form-control border-0 py-4" placeholder="Email"

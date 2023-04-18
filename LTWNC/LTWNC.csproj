@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LTWNC</RootNamespace>
     <AssemblyName>LTWNC</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -70,9 +70,9 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -137,67 +137,69 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManagementController.cs" />
+    <Compile Include="Controllers\NotiController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CHUCVU.cs">
-      <DependentUpon>LTWNC.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CONTACT.cs">
-      <DependentUpon>LTWNC.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CTDH.cs">
-      <DependentUpon>LTWNC.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CTGIAOHANG.cs">
-      <DependentUpon>LTWNC.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DANHMUC.cs">
-      <DependentUpon>LTWNC.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DONHANG.cs">
-      <DependentUpon>LTWNC.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FEEDBACK.cs">
-      <DependentUpon>LTWNC.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\KHACHHANG.cs">
-      <DependentUpon>LTWNC.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\KHAOSAT.cs">
-      <DependentUpon>LTWNC.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\KHUYENMAI.cs">
-      <DependentUpon>LTWNC.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LOAIKHACHHANG.cs">
-      <DependentUpon>LTWNC.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LTWNC.Context.cs">
+    <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LTWNC.Context.tt</DependentUpon>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LTWNC.cs">
+    <Compile Include="Models\Model1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LTWNC.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LTWNC.Designer.cs">
+    <Compile Include="Models\Model1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LTWNC.edmx</DependentUpon>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\NHANVIEN.cs">
-      <DependentUpon>LTWNC.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SANPHAM.cs">
-      <DependentUpon>LTWNC.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TAIKHOAN.cs">
-      <DependentUpon>LTWNC.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -228,14 +230,29 @@
     <Content Include="Content\Css\carousel\css-carousel\owl.video.play.png" />
     <Content Include="Content\Css\carousel\jq-carousef\owl.carousel.min.js" />
     <Content Include="Content\Css\feedback.css" />
+    <Content Include="Content\Css\Home.css" />
     <Content Include="Content\Css\profile.css" />
     <Content Include="Content\Css\purchaseOrder.css" />
     <Content Include="Content\Css\style.min.css" />
+    <Content Include="Content\Css\user.css" />
+    <Content Include="Content\globalStyles.css" />
+    <Content Include="Content\Images\avatar.jpg" />
+    <Content Include="Content\Images\avatar.png" />
+    <Content Include="Content\Images\email.png" />
     <Content Include="Content\Images\gian.jpg" />
     <Content Include="Content\Images\gio-nam-tham-thi.jpg" />
+    <Content Include="Content\Images\id-card.png" />
+    <Content Include="Content\Images\key.png" />
+    <Content Include="Content\Images\LOGO.png" />
     <Content Include="Content\Images\me-con-su-tu.jpg" />
     <Content Include="Content\Images\nguoi-phu-nu-uy-luc-nhat-o-day-la-ban.jpg" />
     <Content Include="Content\Images\nhu-doa-hoa-suong.jpg" />
+    <Content Include="Content\Images\No_Image_Available.jpg" />
+    <Content Include="Content\Images\phone-call.png" />
+    <Content Include="Content\Images\placeholder.png" />
+    <Content Include="Content\Images\user.png" />
+    <Content Include="Content\management-form.css" />
+    <Content Include="Content\ManagementLayout.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -265,15 +282,15 @@
     <Content Include="Images\that-lac-coi-nguoi-tb-2022.jpg" />
     <Content Include="Images\triethoc.png" />
     <Content Include="Images\tthcm.png" />
-    <Content Include="Models\LTWNC.Context.tt">
+    <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LTWNC.edmx</DependentUpon>
-      <LastGenOutput>LTWNC.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\LTWNC.tt">
+    <Content Include="Models\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LTWNC.edmx</DependentUpon>
-      <LastGenOutput>LTWNC.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -285,13 +302,14 @@
     <Content Include="Scripts\JavaScript\easing\easing.js" />
     <Content Include="Scripts\JavaScript\easing\easing.min.js" />
     <Content Include="Scripts\JavaScript\jquery.min.js" />
+    <Content Include="Scripts\JavaScript\main.js" />
     <Content Include="Scripts\JavaScript\owlcarousel\LICENSE" />
-    <EntityDeploy Include="Models\LTWNC.edmx">
+    <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LTWNC.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\LTWNC.edmx.diagram">
-      <DependentUpon>LTWNC.edmx</DependentUpon>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\JavaScript\Home.js" />
@@ -348,6 +366,10 @@
     <Content Include="Views\Product\InfoSPFeeback.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Profile\Edit.cshtml" />
+    <Content Include="Views\Shared\_LayoutManagement.cshtml" />
+    <Content Include="Views\Management\Index.cshtml" />
+    <Content Include="Views\Noti\NotificationPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

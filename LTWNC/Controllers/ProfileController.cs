@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,7 +9,7 @@ namespace LTWNC.Controllers
 {
     public class ProfileController : Controller
     {
-        LTWNCEntities1 database = new LTWNCEntities1();
+        LTWNCEntities database = new LTWNCEntities();
         // GET: Profile
         public ActionResult Index()
         {
@@ -57,6 +58,39 @@ namespace LTWNC.Controllers
                 database.Entry(dh).State = System.Data.Entity.EntityState.Modified;
                 database.SaveChanges();
                 return RedirectToAction("PurchaseOrder");
+            }
+            catch (Exception e)
+            {
+                return Content(Convert.ToString(e));
+            }
+        }
+
+
+        [HttpGet]
+        public ActionResult Edit()
+        {
+            string id = Convert.ToString(Session["MaUser"]);
+            var taikhoan = database.KHACHHANGs.Where(s => s.MAKH == id).FirstOrDefault();
+            Session["IDKH"] = taikhoan.IDKH;
+            return View(taikhoan);
+        }
+        [HttpPost]
+        public ActionResult Edit(string id, KHACHHANG kh, HttpPostedFileBase UploadImage)
+        {
+            try
+            {
+                database.Configuration.ValidateOnSaveEnabled = false;
+                database.Entry(kh).State = System.Data.Entity.EntityState.Modified;
+                if (UploadImage != null)
+                {
+                    string filename = Path.GetFileNameWithoutExtension(UploadImage.FileName);
+                    string extent = Path.GetExtension(UploadImage.FileName);
+                    filename = filename + extent;
+                    kh.AVATARKH = "~/Content/Images/" + filename;
+                    UploadImage.SaveAs(Path.Combine(Server.MapPath("~/Content/Images/"), filename));
+                }
+                database.SaveChanges();
+                return RedirectToAction("Edit");
             }
             catch (Exception e)
             {

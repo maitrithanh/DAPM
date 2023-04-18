@@ -17,6 +17,7 @@ namespace LTWNC.Models
         public int IDGH { get; set; }
         public Nullable<int> IDDH { get; set; }
         public string VITRIGIAO { get; set; }
+        public Nullable<System.DateTime> NGAYCAPNHAT { get; set; }
     
         public virtual DONHANG DONHANG { get; set; }
     }

@@ -1,0 +1,15 @@
+﻿@using LTWNC.Models
+
+@model IEnumerable<DONHANG>
+
+@foreach (var noti in Model)
+{
+    <div style="padding: 14px; border-bottom: 1px solid rgba(128,128,128,0.1);">
+        <img src="~/Content/Images/orderalert.png" alt="Alert" style="width: 44px;" />
+        <span style="margin: 0;">
+            Đơn hàng mới: #@noti.IDDH - <span style="margin: 0; color: gray; font-size: 14px; font-style: italic;">@noti.NGAYDAT.Value.ToShortDateString()</span>
+        </span>
+        <br />
+    </div>
+}
+

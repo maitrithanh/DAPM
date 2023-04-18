@@ -1,0 +1,64 @@
+﻿.formRegister, .formLogin {
+    max-width: 900px;
+    margin: 1rem auto;
+    border-radius: 5px;
+    width: 70%;
+    padding: 7rem;
+    text-align: center;
+    background-color: white
+}
+.formRegister > h2, .formLogin > h2{
+    font-size: 30px;
+    padding-bottom: 30px;
+}
+.formRegister .box input, .formLogin .box input{
+    width: 100%;
+    padding: 20px;
+    font-size: 20px;
+    color: #333;
+    margin: .6rem 0;
+    border: .1rem solid rgba(0,0,0,.3);
+    text-transform: none;
+    border-radius: 5px;
+}
+
+.formRegister .box input[type=text],
+.formRegister .box input[type=password],
+.formRegister .box input[type=email]{
+    padding-left: 40px;
+}
+
+.box{
+    position: relative;
+}
+.box .fa-user, .box .fa-lock ,.box .fa-envelope,.box .fa-phone{
+    position: absolute; 
+    padding-right: 50px;
+    padding: 9px 8px;
+    left: 0;
+    top: 8px;
+    padding: 24px 8px;
+    font-size: 20px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+
+/*.btn {
+    margin-top: 1rem;
+    display: inline-block;
+    padding: .9rem 3rem;
+    font-size: 20px;
+    color: #fff;
+    background: #4285f4;
+    cursor: pointer;
+    border: none;
+    border-radius: 40px;
+}
+.btn:hover{
+    background: #0057c7;
+}*/
+
+
+

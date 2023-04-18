@@ -9,7 +9,7 @@ namespace LTWNC.Controllers
 {
     public class ProductController : Controller
     {
-        LTWNCEntities1 database = new LTWNCEntities1();
+        LTWNCEntities database = new LTWNCEntities();
         // GET: Product
         public ActionResult Shop(int? page,string SearchString = "", double min = double.MinValue, double max= double.MaxValue )
         {

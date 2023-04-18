@@ -1,0 +1,220 @@
+﻿@model IEnumerable<LTWNC.Models.DONHANG>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Current = "ThongKe";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
+<style>
+    .row {
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 0;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        margin-right: calc(-.5 * var(--bs-gutter-x));
+        margin-left: calc(-.5 * var(--bs-gutter-x));
+    }
+
+    .icon-card {
+        display: flex;
+        align-items: center;
+        background: #fff;
+        padding: 30px 20px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0px 10px 20px rgb(200 208 216 / 30%);
+        border-radius: 10px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-lg-3 col-sm-6">
+        <div class="icon-card mb-30">
+            <div class="icon purple">
+                <i class="glyphicon glyphicon-shopping-cart	"></i>
+            </div>
+            <div class="content">
+                <h6 class="mb-10">Đơn Hàng</h6>
+                <h3 class="text-bold mb-10">@Convert.ToInt32(Session["SoDonHang"]).ToString("N0")</h3>
+                <p class="text-sm text-success">
+                    <i class="glyphicon glyphicon-upload"></i> +100%
+                    <span class="text-gray">(30 ngày)</span>
+                </p>
+            </div>
+        </div>
+        <!-- End Icon Cart -->
+    </div>
+    <!-- End Col -->
+    <div class="col-lg-3 col-sm-6">
+        <div class="icon-card mb-30">
+            <div class="icon success">
+                <i class="glyphicon glyphicon-credit-card"></i>
+            </div>
+            <div class="content">
+                <h6 class="mb-10">Doanh Thu</h6>
+                <h3 class="text-bold mb-10">
+                    @Convert.ToDecimal(Session["DoanhThu"]).ToString("N0")₫
+                </h3>
+                <p class="text-sm text-success">
+                    <i class="glyphicon glyphicon-upload"></i> +100%
+                    <span class="text-gray">(30 ngày)</span>
+                </p>
+            </div>
+        </div>
+        <!-- End Icon Cart -->
+    </div>
+    <!-- End Col -->
+    <div class="col-lg-3 col-sm-6">
+        <div class="icon-card mb-30">
+            <div class="icon primary">
+                <i class="glyphicon glyphicon-user"></i>
+            </div>
+            <div class="content">
+                <h6 class="mb-10">Khách Hàng</h6>
+                <h3 class="text-bold mb-10">
+                    @Convert.ToInt32(Session["SoKhachHang"]).ToString("N0")
+                </h3>
+                <p class="text-sm text-success">
+                    <i class="glyphicon glyphicon-upload"></i> +100%
+                    <span class="text-gray">(30 ngày)</span>
+                </p>
+            </div>
+        </div>
+        <!-- End Icon Cart -->
+    </div>
+    <!-- End Col -->
+    <div class="col-lg-3 col-sm-6">
+        <div class="icon-card mb-30">
+            <div class="icon orange">
+                <i class="glyphicon glyphicon-signal"></i>
+            </div>
+            <div class="content">
+                <h6 class="mb-10">Số Tài Khoản</h6>
+                <h3 class="text-bold mb-10">@Convert.ToInt32(Session["SoAccount"]).ToString()</h3>
+                <p class="text-sm text-success">
+                    <i class="glyphicon glyphicon-upload"></i> +100%
+                    <span class="text-gray">(30 ngày)</span>
+                </p>
+            </div>
+        </div>
+        <!-- End Icon Cart -->
+    </div>
+    <!-- End Col -->
+</div>
+<!--Chart-->
+<div class="icon-card" style="padding: 10px; margin-bottom: 40px;">
+    <canvas id="myChart" style="width:100%;max-width:100%"></canvas>
+</div>
+
+<div style="margin-bottom: 15px; display: block;" class="icon-card">
+    <table class="table table-striped" id="example" style="width: 100%; max-width: 100%">
+        <thead>
+            <tr class="text-green">
+                <th>
+                    Ngày Tạo
+                </th>
+                <th>
+                    Tên Người Nhận
+                </th>
+                <th>
+                    Phương Thức Thanh Toán
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Trạng Thái</th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NGAYDAT)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.TENNGUOINHAN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PHUONGTHUCTHANHTOAN)
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    @if (item.TRANGTHAIDH == 1)
+                    {
+                        <div style="text-align: center; border-radius: 15px;" class="bg-primary">
+                            <p style="color: #fff; padding: 5px;">Đang Chuẩn Bị</p>
+                        </div>
+                    }
+                    else if (item.TRANGTHAIDH == 2)
+                    {
+                        <div style="text-align: center; border-radius: 15px;" class="bg-warning">
+                            <p style="color: #fff; padding: 5px;">Đang Giao</p>
+                        </div>
+                    }
+                    else if (item.TRANGTHAIDH == 3)
+                    {
+                        <div style="background: #55A845; text-align: center; border-radius: 15px; ">
+                            <p style="color: #fff; padding: 5px;">Đã Giao</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div style="background: red; text-align: center; border-radius: 15px; ">
+                            <p style="color: #fff; padding: 5px;">Đã Huỷ</p>
+                        </div>
+                    }
+                </td>
+            </tr>
+        }
+        <tfoot>
+            <tr class="text-green">
+                <th>
+                    Ngày Tạo
+                </th>
+                <th>
+                    Tên Người Nhận
+                </th>
+                <th>
+                    Phương Thức Thanh Toán
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Trạng Thái</th>
+            </tr>
+        </tfoot>
+    </table>
+
+</div>
+<script>
+    var xValues = ["Đơn Hàng", "Khách Hàng", "Tài Khoản"];
+    var yValues = [@Convert.ToInt32(Session["SoDonHang"]), @Convert.ToInt32(Session["SoKhachHang"]), @Convert.ToInt32(Session["SoAccount"])];
+    var barColors = ["#9b51e0", "#4a6cf7", "#f2994a"];
+
+    new Chart("myChart", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: "Thống Kê"
+            }
+        }
+    });
+</script>
+

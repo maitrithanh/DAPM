@@ -1,0 +1,25 @@
+﻿body {
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.active {
+    background-color: #4285f4 !important;
+}
+
+.notiBox {
+    display: none;
+}
+
+.showNoti {
+    cursor: pointer;
+}
+
+.showNoti:hover .notiBox {
+    display: block !important;
+    cursor: pointer;
+}
+
+

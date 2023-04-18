@@ -1,0 +1,168 @@
+﻿@model LTWNC.Models.KHACHHANG
+@{
+    ViewBag.Title = @Html.DisplayFor(model => model.HOTENKH);
+    Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+}
+<link rel="stylesheet" href="~/Content/css/profile.css" />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<script src="~/Scripts/JavaScript/main.js" language="JavaScript" type="text/javascript"></script>
+
+<style>
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: white;
+    }
+
+    ::-webkit-file-upload-button {
+        background: #0d6efd;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 12px;
+        margin: 10px;
+        cursor: pointer;
+    }
+    .dropdown-toggle {
+        color: #C17A74;
+    }
+    .dropdown-toggle:hover {
+        color: #EB5757;
+    }
+</style>
+<div class="row sum" style="margin:100px">
+    <div class="ds col-sm-3 lc">
+
+        <div class="choose">
+            <div style="margin-top:22px;">
+                @if (Model.AVATARKH == null)
+                {
+                    <i class="ti-user" style="border:1px solid gray; border-radius:50%;padding: 20px;margin-right: 5px;"></i>
+                }
+                else
+                {
+                    <img src="@Url.Content(Model.AVATARKH)" style="border-radius:50%;margin-right: 5px;width:60px;height:60px;margin-top:-15px" />
+                }
+                <span>@Html.DisplayFor(model => model.HOTENKH)</span> <br />
+
+            </div>
+            <i class="ti-info-alt" style="color:#007bff; margin-right:5px;"></i>Tài khoản của tôi
+
+            <div class="tk"><a href="/Profile/EditProfile" style="color:gray;">Hồ sơ</a></div>
+
+            <div class="tk" style="margin-top:-21px;margin-right:5px;"><a href="#" style="color:gray;">Đổi mật khẩu</a> </div>
+
+            <div>
+                <i class="ti-clipboard" style="color:#007bff;margin-right:5px;"></i><a href="/Profile/PurchaseOrder" style="color:black;">Đơn hàng</a>
+            </div>
+
+            <div>
+                <i class="ti-bell" style="color: #ee4d2d;margin-right:5px;"></i><a href="#" style="color:black;">Thông báo</a>
+            </div>
+        </div>
+    </div>
+    <div class="info col-sm-9" style="background-color:white; padding:20px;box-shadow: 10px 8px 50px #aaa;border-radius:8px;">
+        <h3>Hồ sơ của bạn</h3>
+        <h7>Quản lý thông tin hồ sơ để bảo mật tài khoản</h7>
+
+        @using (Html.BeginForm("Edit", "Profile", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.IDKH)
+                <div class="form-group row p-0" style="background-color:aliceblue; margin:20px -20px;">
+                    <div class="col-2" style="display:flex; align-items:center;padding:0 21px">
+                        <span class="ttlienhe">Ảnh đại diện</span>
+                    </div>
+                    <div class="col-10" style="padding:12px;outline:none;">
+                        <div class="input-form col-10" style="padding:0 25px">
+                            @if (Model.AVATARKH != null)
+                            {
+                                <img src="@Url.Content(Model.AVATARKH)" class="img-create" alt="" id="previewImg" style="border-radius:8px;" width="200" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/Images/avatar.png" class="img-create" alt="" id="previewImg" height="100" width="100" />
+                            }
+
+                            <input type="file" style="display: inline; width: 50%;margin-left:90px" name="UploadImage" onchange="ChangeImage(this, document.getElementById('previewImg'))" />
+                        </div>
+                        <div class="form-group col-sm-6" style="display:none">
+                            <span class="ttlienhe">Họ và tên</span>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.AVATARKH, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.AVATARKH, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display:none">
+                    <div class="form-group col-sm-6">
+                        <span class="ttlienhe">Họ và tên</span>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.IDKH, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.IDKH, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <span class="ttlienhe">Họ và tên</span>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.MAKH, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MAKH, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <span class="ttlienhe">Họ và tên</span>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.HOTENKH, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.HOTENKH, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <span class="ttlienhe">Số điện thoại</span>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <span class="ttlienhe">Địa chỉ</span>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DIACHI, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DIACHI, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <span class="ttlienhe">Email</span>
+                        <div class="col-md-10 email">
+                            @Html.HiddenFor(model => model.EMAIL)
+                            @Model.EMAIL
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Cập nhật" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+@Scripts.Render("~/bundles/jquery")

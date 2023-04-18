@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using System.Web;
 using System.Web.Mvc;
 using LTWNC.Models;
@@ -9,7 +10,7 @@ namespace LTWNC.Controllers
 {
     public class HomeController : Controller
     {
-        LTWNCEntities1 database = new LTWNCEntities1();
+        LTWNCEntities database = new LTWNCEntities();
         public ActionResult Index()
         {
             return View();
@@ -26,69 +27,98 @@ namespace LTWNC.Controllers
             database.SaveChanges();
             return View();
         }
+
+
+
         [HttpGet]
         public ActionResult Register()
         {
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Register(TAIKHOAN _tk)
+        public ActionResult Register(TAIKHOAN user, KHACHHANG kh)
         {
             if (ModelState.IsValid)
             {
-                var check = database.TAIKHOANs.FirstOrDefault(s => s.ID == _tk.ID);
-                if (check == null)
+                if (string.IsNullOrEmpty(user.USERNAME))
+                    ModelState.AddModelError(string.Empty, "Tên đăng nhập không được để trống");
+                if (string.IsNullOrEmpty(user.MATKHAU))
+                    ModelState.AddModelError(string.Empty, "Mật khẩu không được để trống");
+                if (string.IsNullOrEmpty(kh.EMAIL))
+                    ModelState.AddModelError(string.Empty, "Email không được để trống");
+                if (string.IsNullOrEmpty(kh.HOTENKH))
+                    ModelState.AddModelError(string.Empty, "Họ tên không được để trống");
+                if (string.IsNullOrEmpty(kh.SDT))
+                    ModelState.AddModelError(string.Empty, "Số điện thoại không được để trống");
+                //Kiểm tra xem có người nào đã đăng kí với tên đăng nhập này hay chưa
+                var khachhang = database.TAIKHOANs.FirstOrDefault(k => k.USERNAME == user.USERNAME);
+                if (khachhang != null)
+                    ModelState.AddModelError(string.Empty, "Đã có người đăng kí tên này");
+                if (ModelState.IsValid)
                 {
-
-                    database.Configuration.ValidateOnSaveEnabled = true;
-                    database.TAIKHOANs.Add(_tk);
+                    database.TAIKHOANs.Add(user);
                     database.SaveChanges();
-                    return RedirectToAction("Login");
+                    kh.MAKH = Convert.ToString(user.ID);
+                    database.KHACHHANGs.Add(kh);
+                    database.SaveChanges();
                 }
                 else
                 {
-                    ViewBag.error = "Tài khoản email đã tồn tại ! Vui lòng sử dụng tài khoản email khác";
                     return View();
                 }
-
             }
-            return View();
+            return RedirectToAction("Login");
         }
+
         [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(string USERNAME, string MATKHAU)
+        public ActionResult Login(TAIKHOAN user)
         {
+
             if (ModelState.IsValid)
             {
-                var data = database.TAIKHOANs.Where(s => s.USERNAME.Equals(USERNAME) && s.MATKHAU.Equals(MATKHAU)).ToList();
-                if (data.Count() > 0)
+                if (string.IsNullOrEmpty(user.USERNAME))
+                    ModelState.AddModelError(string.Empty, "Tên đăng nhập không được để trống");
+                if (string.IsNullOrEmpty(user.MATKHAU))
+                    ModelState.AddModelError(string.Empty, "Mật khẩu không được để trống");
+                if (ModelState.IsValid)
                 {
-                    // add session :
-                    Session["ID"] = data.FirstOrDefault().ID + " " + data.FirstOrDefault().ID;
-                    Session["USERNAME"] = data.FirstOrDefault().USERNAME;
-                    Session["MATKHAU"] = data.FirstOrDefault().MATKHAU;
-                    Session["VAITRO"] = data.FirstOrDefault().VAITRO;
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    ViewBag.Error = "Login Failed";
-                    return RedirectToAction("Register");
-                }
+                    var taikhoan = database.TAIKHOANs.FirstOrDefault(k => k.USERNAME == user.USERNAME && k.MATKHAU == user.MATKHAU);
+                    if (taikhoan != null)
+                    {
+                        var IDUSER = Convert.ToString(taikhoan.ID);
+                        var khachhang = database.KHACHHANGs.FirstOrDefault(kh => kh.MAKH == IDUSER);
+                        var nhanvien = database.NHANVIENs.FirstOrDefault(kh => kh.IDNV == IDUSER);
+                        var userLogin = database.TAIKHOANs.FirstOrDefault(kh => kh.ID == taikhoan.ID);
+                        ViewBag.ThongBao = "Đăng nhập thành công";
+                        Session["TaiKhoan"] = khachhang;
+                        Session["User"] = userLogin;
+                        Session["MaUser"] = taikhoan.ID;
+                        Session["NhanVien"] = nhanvien;
+                        if (taikhoan.VAITRO != "ADMIN")
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Management");
+                        }
+                    }
 
+                    else
+                        ViewBag.ThongBao = "Tên đăng nhập hoặc mật khẩu không đúng";
+                }
             }
             return View();
         }
-        public ActionResult Logout()
+        public ActionResult LogOut()
         {
             Session.Clear();
-            return RedirectToAction("Login");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

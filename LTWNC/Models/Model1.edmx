@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LTWNCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LTWNCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CHUCVU">
           <Key>
             <PropertyRef Name="IDCV" />
@@ -12,6 +12,15 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDCV" Type="nchar" MaxLength="20" Nullable="false" />
           <Property Name="TENCV" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CONTACT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenKH" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="CTDH">
           <Key>
@@ -31,6 +40,7 @@
           <Property Name="IDGH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDDH" Type="int" />
           <Property Name="VITRIGIAO" Type="nvarchar" MaxLength="50" />
+          <Property Name="NGAYCAPNHAT" Type="date" />
         </EntityType>
         <EntityType Name="DANHMUC">
           <Key>
@@ -262,6 +272,7 @@
         </Association>
         <EntityContainer Name="LTWNCModelStoreContainer">
           <EntitySet Name="CHUCVU" EntityType="Self.CHUCVU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONTACT" EntityType="Self.CONTACT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CTDH" EntityType="Self.CTDH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CTGIAOHANG" EntityType="Self.CTGIAOHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DANHMUC" EntityType="Self.DANHMUC" Schema="dbo" store:Type="Tables" />
@@ -315,8 +326,7 @@
             <End Role="SANPHAM" EntitySet="SANPHAM" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LTWNCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -328,6 +338,15 @@
           <Property Name="IDCV" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="TENCV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="NHANVIENs" Relationship="Self.FK_NHANVIEN_CHUCVU" FromRole="CHUCVU" ToRole="NHANVIEN" />
+        </EntityType>
+        <EntityType Name="CONTACT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenKH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CTDH">
           <Key>
@@ -350,6 +369,7 @@
           <Property Name="IDDH" Type="Int32" />
           <Property Name="VITRIGIAO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DONHANG" Relationship="Self.FK_CTGIAOHANG_DONHANG" FromRole="CTGIAOHANG" ToRole="DONHANG" />
+          <Property Name="NGAYCAPNHAT" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="DANHMUC">
           <Key>
@@ -597,6 +617,7 @@
         </Association>
         <EntityContainer Name="LTWNCEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CHUCVUs" EntityType="Self.CHUCVU" />
+          <EntitySet Name="CONTACTs" EntityType="Self.CONTACT" />
           <EntitySet Name="CTDHs" EntityType="Self.CTDH" />
           <EntitySet Name="CTGIAOHANGs" EntityType="Self.CTGIAOHANG" />
           <EntitySet Name="DANHMUCs" EntityType="Self.DANHMUC" />
@@ -665,6 +686,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CONTACTs">
+            <EntityTypeMapping TypeName="LTWNCModel.CONTACT">
+              <MappingFragment StoreEntitySet="CONTACT">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TenKH" ColumnName="TenKH" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CTDHs">
             <EntityTypeMapping TypeName="LTWNCModel.CTDH">
               <MappingFragment StoreEntitySet="CTDH">
@@ -679,6 +710,7 @@
           <EntitySetMapping Name="CTGIAOHANGs">
             <EntityTypeMapping TypeName="LTWNCModel.CTGIAOHANG">
               <MappingFragment StoreEntitySet="CTGIAOHANG">
+                <ScalarProperty Name="NGAYCAPNHAT" ColumnName="NGAYCAPNHAT" />
                 <ScalarProperty Name="IDGH" ColumnName="IDGH" />
                 <ScalarProperty Name="IDDH" ColumnName="IDDH" />
                 <ScalarProperty Name="VITRIGIAO" ColumnName="VITRIGIAO" />

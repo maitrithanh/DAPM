@@ -1,33 +1,78 @@
-﻿@model LTWNC.Models.TAIKHOAN
+﻿@*@model LTWNC.Models.TAIKHOAN*@
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "Đăng Nhập";
     Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
 }
 
-<div class="row justify-content-md-center">
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                @using (Html.BeginForm("Login", "Home", FormMethod.Post))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="form-group">
-                        @Html.LabelFor(s => s.USERNAME)
-                        @Html.TextBoxFor(s => s.USERNAME, "", new { @class = "form-control", @placeholder = "UserName" })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(s => s.MATKHAU)
-                        @Html.PasswordFor(m => m.MATKHAU, new { @class = "form-control", @placeholder = "MATKHAU" })
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" name="submit" class="btn btn-primary" value="Login" />
-                        <input type="submit" name="submit" class="btn btn-primary" value="Register ?" />
-                    </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<link rel="stylesheet" href="~/Content/css/user.css" />
 
-                }
-            </div>
+<div class="formLogin">
+    <h2 style="text-align: center">ĐĂNG NHẬP</h2>
+    <h3 style="color: red;">@ViewBag.ThongBao</h3>
+    @using (Html.BeginForm("Login", "Home"))
+    {
+        @Html.ValidationSummary(true)
+        <div class="box input-box">
+            <input type="text" class="form-control input-form" id="username" name="USERNAME" required placeholder="Nhập vào tài khoản ">
+            <img src="~/Content/Images/id-card.png" class="img-icon" alt="" width="46" />
         </div>
-        <footer>
-        </footer>
-    </div>
+        <div class="box input-box">
+            <input type="password" class="form-control input-form" id="pwd" name="MATKHAU" required placeholder="Nhập vào mật khẩu">
+            <img src="~/Content/Images/key.png" class="img-icon" alt="" width="46" />
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-top: 1rem; display: inline-block; padding: .9rem 3rem;">ĐĂNG NHẬP</button>
+        <p>Bạn không có tài khoản? <a style="color: #4285f4; text-decoration: underline; " href="/Home/Register" id="register-btn">Đăng ký</a></p>
+    }
 </div>
+
+<style>
+    .formLogin .box input[type=text],
+    .formLogin .box input[type=password] {
+        padding-left: 40px;
+
+    }
+    .formLogin {
+        
+        background-color: #EDF1FF;
+    }
+    .formLogin .box input {
+        padding: 35px;
+    }
+    .box {
+        position: relative;
+    }
+
+    .box .fa-user, .box .fa-lock {
+        position: absolute;
+        padding-right: 50px;
+        padding: 9px 8px;
+        left: 0;
+        top: 8px;
+        padding: 24px 8px;
+        font-size: 20px;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+    }
+    p {
+        padding-top: 10px;
+    }
+    .input-form {
+        background: rgba(128,128,128,0.1);
+        border: none !important;
+    }
+
+    .input-box {
+        display: flex;
+
+    }
+
+    .img-icon {
+        position: absolute;
+        left: 0;
+        top: 8px;
+        padding: 24px 8px;
+        text-align: center;
+    }
+</style>

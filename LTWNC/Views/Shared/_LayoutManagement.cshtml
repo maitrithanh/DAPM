@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/ManagementLayout.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/globalStyles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+</head>
+<body>
+    <div class="p-0 m-0">
+        <div class="nav-left bg-dark" style=" position: fixed;">
+            <a href="@Url.Action("TrangChu", "TrangChu")">
+                <img src="~/Content/Images/LOGO.png" alt="logo" width="100" style="display: flex; margin: 0 auto;" />
+            </a>
+            <ul class="list-menu">
+                <li class="@(ViewBag.Current == "ThongKe" ? "active" : "")">
+                    <a href="@Url.Action("Index", "Management")">
+                        <i class="fa-solid fa-chart-line"></i> Thống Kê
+                    </a>
+                </li>
+                <li class="@(ViewBag.Current == "QuanLySanPham" ? "active" : "")">
+                    <a href="@Url.Action("ProductsManagement", "Management")">
+                        <i class="fa-solid fa-boxes-stacked"></i> Quản Lý Sản Phẩm
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/Management/QuanLyDonHang"><i class="fa-solid fa-box"></i> Quản Lý Đơn Hàng</a>
+                <li class="@(ViewBag.Current == "QuanLyThanhVien" ? "active" : "")">
+                    <a href="@Url.Action("ThanhVien", "Management")">
+                        <i class="fa-solid fa-user"></i> Quản Lý Thành Viên
+                    </a>
+                </li>
+
+                <li class="@(ViewBag.Current == "QuanLyDanhMuc" ? "active" : "")">
+                    <a href="@Url.Action("Index", "Categories")">
+                        <i class="fa-solid fa-box"></i> Quản Lý Danh Mục
+                    </a>
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-power-off"></i> @Html.ActionLink("Đăng xuất", "Logout", "Home")
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-right">
+            <div class="nav-content mb-3" style="background: #fff">
+                <div class="nav" style="line-height: 44px; padding: 0 8px; display: block;">
+                    <div class="d-flex bd-highlight">
+                        <div class="p-2 flex-grow-1 bd-highlight">@Convert.ToString(ViewBag.Title)</div>
+                        <div class="p-2 bd-highlight showNoti">
+                            <i class="fa-solid fa-bell" style="color: #4285f4 !important; font-size: 18px;"></i>
+                            @if (Session["DonHangMoi"] != null)
+                            {
+                                <span style="background-color: red; border-radius: 9999px; width: 10px !important; height: 10px; margin-left: 10px; top: 18px; display: flex; position: absolute; }"></span>
+                            }
+                            <span style="background-color: red; border-radius: 9999px; width: 10px !important; height: 10px; margin-left: 10px; top: 18px; display: flex; position: absolute; }"></span>
+                            <div class="notiBox" style="background: #fff; width: 300px; height: 316px; overflow: auto; position: absolute; right: 100px; border-radius: 8px; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; z-index: 2; ">
+                                @Html.Action("NotificationPartial", "Noti")
+                            </div>
+
+                        </div>
+
+                        <div class="p-2 bd-highlight">
+                            <div style="background: rgb(128, 128, 128, 0.2);border-radius: 14px; display: flex;">
+                                @{LTWNC.Models.KHACHHANG user = Session["TaiKhoan"] as LTWNC.Models.KHACHHANG;}
+                                @{ LTWNC.Models.NHANVIEN nv = Session["NhanVien"] as LTWNC.Models.NHANVIEN;}
+                                @if (user == null || nv == null)
+                                {
+                                    <img src="~/Content/Images/avatar.jpg" alt="avatar" style="border-radius: 9999px; width: 45px; padding: 5px;" />
+                                }
+                                else
+                                {
+                                    if (user.AVATARKH != null)
+                                    {
+                                        <img src="@Url.Content(user.AVATARKH)" alt="avatar" style="border-radius: 9999px; width: 45px; padding: 5px;" />
+                                    }
+                                    else if (nv.AVATARNV != null)
+                                    {
+                                        <img src="@Url.Content(nv.AVATARNV)" alt="avatar" style="border-radius: 9999px; width: 45px; padding: 5px;" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/Images/avatar.jpg" alt="avatar" style="border-radius: 9999px; width: 45px; padding: 5px;" />
+                                    }
+                                }
+                                <p style="margin: 0; padding-right: 6px">
+                                    @if (user == null)
+                                    {
+                                        @nv.HOTENNV
+                                    }
+                                    else
+                                    {
+                                        @user.HOTENKH
+                                    }
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="content">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
