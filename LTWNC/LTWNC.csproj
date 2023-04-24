@@ -371,6 +371,7 @@
     <Content Include="Views\Product\ProductDetail.cshtml" />
     <Content Include="Views\Product\LaySPTT.cshtml" />
     <Content Include="Views\Product\LaySPTTqt.cshtml" />
+    <Content Include="Views\Shared\_LayoutBase.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
