@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LTWNC.Models;
 using PagedList;
+using PagedList.Mvc;
 namespace LTWNC.Controllers
 {
     public class ProductController : Controller
@@ -27,7 +31,7 @@ namespace LTWNC.Controllers
             }
 
         }
-        [HttpGet]
+       
         public ActionResult LayDanhMuc()
         {
             return PartialView(database.DANHMUCs.ToList());
@@ -92,6 +96,24 @@ namespace LTWNC.Controllers
         {
             var sp = database.SANPHAMs.Where(s => s.IDSP == id).FirstOrDefault();
             return PartialView(sp);
+        }
+        public ActionResult ProductDetail(int id = 2)
+        {
+            return View(database.SANPHAMs.Where(s => s.IDSP == id).FirstOrDefault());
+        }
+        private List<SANPHAM> ListSP(string id, int soluong)
+        {
+            return database.SANPHAMs.Where(s => s.IDDANHMUC == id).Take(soluong).ToList();
+        }
+        public ActionResult LaySPTT(string id)
+        {
+            var dsSanpham = ListSP(id, 3);
+            return PartialView(dsSanpham);
+        }
+        public ActionResult LaySPTTqt()
+        {
+            var listProducts = database.SANPHAMs.OrderByDescending(sp => sp.TENSP).ToList();
+            return PartialView(listProducts);
         }
     }
 }
