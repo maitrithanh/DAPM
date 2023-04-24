@@ -1,0 +1,37 @@
+﻿@using LTWNC.Models
+@model IEnumerable<SANPHAM>
+<style>
+    .title {
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .sp1 {
+        border-radius: 8px;
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        padding: 5px;
+    }
+
+        .sp1:hover {
+            border-color: rgb(238, 187, 92);
+            box-shadow: 2px 5px gray;
+        }
+</style>
+<div class="title">Sách cùng thể loại</div>
+<ul class="list-group">
+    @foreach (var nxb in Model)
+    {
+        <div class="row sp1">
+            <div class="col-4" style="padding-left:0;">
+                <a href="@Url.Action("ProductDetai", "Product", new { id=nxb.IDSP})"><img src="@Url.Content(nxb.HINHSP)" width="100px"></a>
+            </div>
+            <div class="col-8 p-2">
+                <div style=" font-weight:600;">@nxb.TENSP </div>
+                <div style="color:#ee4d2d;">@Convert.ToDecimal(nxb.DONGIA).ToString("N0")đ</div>
+            </div>
+        </div>
+    }
+</ul>

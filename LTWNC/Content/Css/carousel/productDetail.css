@@ -1,0 +1,180 @@
+﻿.tlai a {
+    color: #007bff;
+}
+
+.sale {
+    padding: 20px 200px 20px 200px;
+}
+
+.btn {
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+
+    .btn.active1 {
+        background-color: #4285f4;
+        color: white;
+    }
+
+.wrapper {
+    width: 10px;
+    height: 50px;
+    min-width: 120px;
+    display: flex;
+    align-items: center;
+    background: #f7f7f7;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+    .wrapper span {
+        width: 40px;
+        text-align: center;
+        font-weight: 600;
+    }
+
+        .wrapper span.num {
+            border-right: 2px solid rgba(0,0,0,0.2);
+            border-left: 2px solid rgba(0,0,0,0.2);
+            pointer-events: none;
+        }
+
+.star {
+    border-bottom: 1px solid gray;
+}
+
+    .star .fas {
+        color: #ffcd00;
+    }
+
+.dobong {
+    border-radius: 8px;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
+}
+
+.price {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px 17px;
+    background: #fafafa;
+}
+
+.gia {
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: #ee4d2d;
+}
+
+.re, .price i {
+    color: #ee4d2d;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.luachon {
+    margin-top: 20px;
+}
+
+.sp {
+    display: flex;
+    align-items: center;
+}
+
+.mua {
+    margin-top: 20px;
+}
+
+    .mua button {
+        border: hidden;
+        width: 170px;
+        height: 40px;
+        text-align: center;
+        margin-bottom: 5px;
+        border-radius: 5px;
+    }
+
+#shop {
+    color: #1895ff;
+    background-color: rgb(212, 237, 245);
+}
+
+.registration {
+    background-color: #1895ff;
+    color: white;
+    width: 500;
+}
+
+#shop:hover {
+    color: #fff;
+    background-color: rgb(0, 132, 255);
+    box-shadow: 2px 4px gray;
+}
+
+.registration:hover {
+    background-color: rgb(0, 132, 255);
+    box-shadow: 2px 4px gray;
+}
+
+.cancle {
+    border: none;
+    box-shadow: none;
+    flex-wrap: wrap;
+    padding: 3px 1rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    background-color: #e9ecef;
+    border-radius: 0.25rem;
+}
+
+.cuahang {
+    margin: 40px 100px;
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.chat {
+    border: none;
+    width: 116px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.dg {
+    color: rgba(0,0,0,.54);
+}
+
+.sluong {
+    color: red;
+    font-weight: 600;
+}
+
+.baohanh {
+    border-radius: 8px;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15) !important;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.chitiet {
+    border-radius: 8px;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15) !important;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.nd {
+    color: rgba(0,0,0,.4);
+    padding-left: 25px;
+}
+
+.chitiet h2 {
+    margin-top: 20px;
+    background: rgba(0,0,0,.02);
+    padding: 10px;
+    border-radius: 8px;
+}
