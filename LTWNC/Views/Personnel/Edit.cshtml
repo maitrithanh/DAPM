@@ -1,0 +1,85 @@
+﻿
+
+
+@model LTWNC.Models.NHANVIEN
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+}
+
+<link href="~/Content/management-form.css" rel="stylesheet" />
+<script src="~/Scripts/main.js" language="JavaScript" type="text/javascript"></script>
+<div class="box-form">
+    @using (Html.BeginForm("Edit", "Personnel", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <h4 class="title-form">CHỈNH SỬA NHÂN VIÊN - @Model.HOTENNV</h4>
+            <div style="display:none;" class="form-group row p-0">
+                <span class="col label-name">ID Nhân Viên</span>
+                @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "input-form col-10" } })
+                @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+            </div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group row p-0">
+                <span class="col label-name">ID Nhân Viên</span>
+                @Html.EditorFor(model => model.IDNV, new { htmlAttributes = new { @class = "input-form col-10" } })
+                @Html.ValidationMessageFor(model => model.IDNV, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group row p-0">
+                <span class="col label-name">Họ Và Tên</span>
+                @Html.EditorFor(model => model.HOTENNV, new { htmlAttributes = new { @class = "input-form col-10" } })
+                @Html.ValidationMessageFor(model => model.HOTENNV, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group row p-0">
+                <span class="col label-name">Email</span>
+                @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "input-form col-10" } })
+                @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group row p-0">
+                <span class="col label-name">Địa Chỉ</span>
+                @Html.EditorFor(model => model.DIACHI, new { htmlAttributes = new { @class = "input-form col-10" } })
+                @Html.ValidationMessageFor(model => model.DIACHI, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group row p-0">
+                <span class="col label-name">Số Điện Thoại</span>
+                @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "input-form col-10" } })
+                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group row p-0">
+                <span class="col label-name">Hình Ảnh</span>
+                <div class="input-form col-10">
+                    @if (Model.AVATARNV == null)
+                    {
+                        <img src="~/Content/Images/No_Image_Available.jpg" class="img-create" alt="Thêm Sản Phẩm" id="previewImg" />
+                    }
+                    else
+                    {
+                        <img src="@Url.Content(Model.AVATARNV)" class="img-create" alt="Thêm Sản Phẩm" id="previewImg" />
+                    }
+                    <input type="file" style="display: inline; width: 60%;" name="UploadImage" onchange="ChangeImage(this, document.getElementById('previewImg'))" />
+                </div>
+                @Html.ValidationMessageFor(model => model.AVATARNV, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group row p-0">
+                <span class="col label-name">Chức Vụ</span>
+                @Html.DropDownList("IDCV", null, htmlAttributes: new { @class = "input-form col-10" })
+                @Html.ValidationMessageFor(model => model.IDCV, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="d-flex justify-content-center form-btn">
+                <input type="submit" value="Lưu" class="btn btn-warning" style="width: 100%" />
+            </div>
+        </div>
+    }
+</div>
+<div>
+    @Html.ActionLink("Trở lại", "Index")
+</div>
+@Scripts.Render("~/bundles/jquery")

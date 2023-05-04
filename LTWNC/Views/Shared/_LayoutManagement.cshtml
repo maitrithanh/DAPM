@@ -41,6 +41,12 @@
                     </a>
                 </li>
 
+                <li class="@(ViewBag.Current == "QuanLyNhanVien" ? "active" : "")">
+                    <a href="@Url.Action("Index", "Personnel")">
+                        <i class="fa-solid fa-clipboard-user"></i> Quản Lý Nhân Viên
+                    </a>
+                </li>
+
                 <li>
                     <i class="fa-solid fa-power-off"></i> @Html.ActionLink("Đăng xuất", "Logout", "Home")
                 </li>

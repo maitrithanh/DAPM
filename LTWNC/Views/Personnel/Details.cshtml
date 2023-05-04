@@ -1,0 +1,65 @@
+﻿@model LTWNC.Models.NHANVIEN
+
+@{
+    ViewBag.Title = "Chi tiết nhân viên";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+}
+
+<link href="~/Content/management-form.css" rel="stylesheet" />
+<script src="~/Scripts/main.js" language="JavaScript" type="text/javascript"></script>
+
+<div class="box-form">
+    <h4 class="title-form">CHI TIẾT NHÂN VIÊN - @Model.HOTENNV</h4>
+    <div class="form-horizontal">
+        <div style="display:none;" class="form-group row p-0">
+            <span class="col label-name">Họ Và Tên</span>
+            <span class="input-form col-10" style="background-color:#fff;">@Html.DisplayFor(model => model.ID)</span>
+        </div>
+        <div class="form-group row p-0">
+            <span class="col label-name">ID Nhân Viên</span>
+            <span class="input-form col-10" style="background-color:#fff;">@Html.DisplayFor(model => model.IDNV)</span>
+        </div>
+        <div class="form-group row p-0">
+            <span class="col label-name">Họ Và Tên</span>
+            <span class="input-form col-10" style="background-color:#fff;">@Html.DisplayFor(model => model.HOTENNV)</span>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Email</span>
+            <span class="input-form col-10" style="background-color:#fff;">@Html.DisplayFor(model => model.EMAIL)</span>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Địa Chỉ</span>
+            <span class="input-form col-10" style="background-color:#fff;">@Html.DisplayFor(model => model.DIACHI)</span>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Số Điện Thoại</span>
+            <span class="input-form col-10" style="background-color:#fff;">@Html.DisplayFor(model => model.SDT)</span>
+        </div>
+        <div class="form-group row p-0">
+            <span class="col label-name">Hình Ảnh</span>
+            <div class="input-form col-10" style="background-color:#fff;">
+                @if (Model.AVATARNV == null)
+                {
+                    <img src="~/Content/Images/No_Image_Available.jpg" class="img-create" alt="Thêm Sản Phẩm" id="previewImg" />
+                }
+                else
+                {
+                    <img src="@Url.Content(Model.AVATARNV)" class="img-create" alt="Thêm Sản Phẩm" id="previewImg" />
+                }
+            </div>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Chức Vụ</span>
+            <span class="input-form col-10" style="background-color:#fff;">@Html.DisplayFor(model => model.CHUCVU.TENCV)</span>
+        </div>
+
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Trở lại", "Index")
+</p>

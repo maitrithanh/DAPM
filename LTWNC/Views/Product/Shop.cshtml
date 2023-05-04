@@ -125,10 +125,10 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row" style="margin-left:20px;">
                     @foreach (var item in Model)
                     {
-                        <div class="card product-item border-0 mb-4" style="width:350px; height:501px">
+                        <div class="card product-item border-0 mb-4" style="width:350px; height:501px;margin-right:45px;">
                             <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                                 <img class="img-fluid w-100" src="@Url.Content(item.HINHSP)" alt="@Html.DisplayFor(modelItem => item.TENSP)" />
                             </div>
@@ -169,7 +169,10 @@
     .matvien, .danhmuc {
         color: #6F6F6F;
     }
-
+    .MenuTrang .pagination-container .pagination .active a {
+        background-color: #D19C97;
+        border-color: #D19C97;
+    }
     .danhmuc, .danhmuc:hover {
         text-decoration: none;
     }

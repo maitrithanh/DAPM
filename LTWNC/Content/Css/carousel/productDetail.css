@@ -10,13 +10,13 @@
     border: none;
     outline: none;
     padding: 12px 16px;
-    background-color: #f1f1f1;
+    
     cursor: pointer;
 }
 
 
     .btn.active1 {
-        background-color: #4285f4;
+        background-color: #D19C97;
         color: white;
     }
 
@@ -98,24 +98,24 @@
     }
 
 #shop {
-    color: #1895ff;
-    background-color: rgb(212, 237, 245);
+    color: white;
+    background-color: #d8b0ac;
 }
 
 .registration {
-    background-color: #1895ff;
+    background-color: #D19C97 !important;
     color: white;
     width: 500;
 }
 
 #shop:hover {
-    color: #fff;
-    background-color: rgb(0, 132, 255);
+    color: white;
+    background-color: #D19C97;
     box-shadow: 2px 4px gray;
 }
 
 .registration:hover {
-    background-color: rgb(0, 132, 255);
+    background-color: #d8b0ac;
     box-shadow: 2px 4px gray;
 }
 
@@ -177,4 +177,15 @@
     background: rgba(0,0,0,.02);
     padding: 10px;
     border-radius: 8px;
+}
+.text-primary {
+    color: #D19C97 !important;
+}
+
+.bg-secondary {
+    background-color: #EDF1FF !important;
+}
+
+.text-white {
+    background-color: #D19C97 !important;
 }

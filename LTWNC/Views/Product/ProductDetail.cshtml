@@ -1,7 +1,7 @@
 ﻿@model LTWNC.Models.SANPHAM
 @{
     ViewBag.Title = "ProductDetail";
-    Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+    Layout = "~/Views/Shared/_LayoutBase.cshtml";
 }
 
 <link rel="stylesheet" href="~/Content/css/carousel/productDetail.css" />
@@ -19,20 +19,20 @@
         font-size: 17px;
     }
 </style>
-<div style="margin:0px 20px">
+@*<div style="margin:0px 20px">
     <div class="container-fluid mt-2" style="background:#e9ecef; border: 0 solid;border-radius: 8px;">
         <nav aria-label="breadcrumb" class="cancle" style="background:#e9ecef;">
             <ol class="breadcrumb tlai" style="padding-top: 14px;">
                 <li class="breadcrumb-item" style="display: flex">
                     <img src="~/Content/Images/home.png" class="img-icon" alt="" width="20" height="20" style="margin-right: 2px" />
-                    <a href="/TrangChu/TrangChu"> Trang chủ</a>
+                    <a href="/TrangChu/TrangChu" style="color:#D19C97;"> Trang chủ</a>
                 </li>
-                <li class="breadcrumb-item"><a href="/Product/DSProduct">Sản phẩm</a></li>
+                <li class="breadcrumb-item"><a href="/Product/DSProduct" style="color:#D19C97;">Sản phẩm</a></li>
                 <li class="breadcrumb-item active" aria-current="page"> @Html.DisplayFor(model => model.TENSP)</li>
             </ol>
         </nav>
     </div>
-</div>
+</div>*@
 <div class="row sale">
     <div class="col-5" style="padding:15px;">
         <img src="@Url.Content(Model.HINHSP)" style="width:400px; height:400px" />
@@ -170,8 +170,8 @@
         <div class="chitiet">
             <h2>Chi tiết sản phẩm</h2>
             <div class="row">
-                <div class="nd col-2" style="padding-left:25px">Danh mục</div>
-                <div class="ht  col-9"><a href="/TrangChu/TrangChu">Trang chủ</a> / <a href="/Product/DSProduct">Sản phẩm</a></div>
+                <div class="nd col-2" style="padding-left:25px">Đường dẫn</div>
+                <div class="ht  col-9"><a href="/TrangChu/TrangChu" style="color:#D19C97;">Trang chủ</a> / <a href="/Product/DSProduct" style="color:#D19C97;">Sản phẩm</a> / <span style="color: var(--bs-breadcrumb-item-active-color);">@Model.TENSP</span></div>
             </div>
             <div class="row">
                 <div class="nd col-2" style="padding-left:25px">Loại bảo hành</div>
@@ -182,8 +182,8 @@
                 <div class="ht  col-9">12 tháng</div>
             </div>
             <div class="row">
-                <div class="nd col-2" style="padding-left:25px">Loại điện thoại</div>
-                <div class="ht  col-9">Điện thoại thông minh</div>
+                <div class="nd col-2" style="padding-left:25px">Thể loại sách</div>
+                <div class="ht  col-9">@Model.DANHMUC.TENDANHMUC</div>
             </div>
             <div class="row">
                 <div class="nd col-2" style="padding-left:25px">Tình trạng</div>
@@ -235,4 +235,4 @@
             num.innerText = a;
         }
     })
-
+ </script>

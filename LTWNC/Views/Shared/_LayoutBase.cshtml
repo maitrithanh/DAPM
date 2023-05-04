@@ -52,7 +52,7 @@
         <div class="row align-items-center py-3 px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
                 <a href="/Home/Index" class="text-decoration-none">
-                    <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Book</h1>
+                    <h1 class="m-0 display-5 font-weight-semi-bold" style="font-weight: 600;"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Book</h1>
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
@@ -72,7 +72,7 @@
                 <a href="/Cart/ShoppingCart" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
                     @*Số lượng sản phẩm trong giỏ hàng*@
-                    <span class="badge" @Html.Action("CartPartial", "Cart")</span>
+                    <span class="badge"> @*@Html.Action("CartPartial", "Cart")*@</span>
                 </a>
             </div>
 
@@ -149,7 +149,7 @@
         <div class="row px-xl-5 pt-5">
             <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
                 <a href="" class="text-decoration-none">
-                    <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border border-white px-3 mr-1">E</span>Book</h1>
+                    <h1 class="mb-4 display-5 font-weight-semi-bold" style="font-weight: 600;"><span class="text-primary font-weight-bold border border-white px-3 mr-1">E</span>Book</h1>
                 </a>
                 <p>Sứ mệnh của Công ty EBook: “MANG TRI THỨC ĐẾN VỚI MỌI NHÀ”!</p>
                 <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>828 Sư Vạn Hạnh, P13, Q10, TPHCM, Việt Nam</p>
@@ -193,7 +193,7 @@
                                        required="required" />
                             </div>
                             <div>
-                                <button class="btn btn-primary btn-block border-0 py-3" type="submit">Đăng ký ngay</button>
+                                <button class="btn btn-primary btn-block border-0 py-3" type="submit" style=" background-color: #D19C97 !important;">Đăng ký ngay</button>
                             </div>
                         </form>
                     </div>
@@ -203,9 +203,9 @@
         <div class="row border-top border-light mx-xl-5 py-4">
             <div class="col-md-6 px-xl-0">
                 <p class="mb-md-0 text-center text-md-left text-dark">
-                    &copy; <a class="text-dark font-weight-semi-bold" href="#">EBook</a>. All Rights Reserved. Designed
+                    &copy; <a class="text-dark font-weight-semi-bold" href="#" style="font-weight: 600;">EBook</a>. All Rights Reserved. Designed
                     by
-                    <a class="text-dark font-weight-semi-bold" href="https://htmlcodex.com">Nhóm 5 Lập trình web nâng cao</a><br>
+                    <a class="text-dark font-weight-semi-bold" href="https://htmlcodex.com" style="font-weight: 600;">Nhóm 5 Lập trình web nâng cao</a><br>
                 </p>
             </div>
             <div class="col-md-6 px-xl-0 text-center text-md-right">
@@ -215,7 +215,7 @@
     </div>
     <!-- Footer End -->
     <!-- Back to Top -->
-    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+    <a href="#" class="btn btn-primary back-to-top" style=" background-color: #D19C97 !important; border:none;"><i class="fa fa-angle-double-up"></i></a>
 
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
@@ -231,10 +231,10 @@
     </script>
     <!--End of Tawk.to Script-->
     @*footer*@
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    @*<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="~/Scripts/JavaScript/easing/easing.min.js"></script>
-    <script src="~/Scripts/JavaScript/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/Scripts/JavaScript/owlcarousel/owl.carousel.min.js"></script>*@
 
     <!-- Contact Javascript File -->
     @*<script src="mail/jqBootstrapValidation.min.js"></script>
@@ -242,5 +242,21 @@
 
     <!-- Template Javascript -->
     <script src="~/Scripts/JavaScript//Home.js"></script>
+     <style>
+         .container-fluid{
+             display: block;
+         }
+         .text-primary {
+             color: #D19C97 !important;
+         }
+
+         .bg-secondary {
+             background-color: #EDF1FF !important;
+         }
+
+         .text-white {
+             background-color: #D19C97 !important;
+         }
+     </style>
 </body>
 </html>
