@@ -12,7 +12,7 @@
 <body>
     <div class="p-0 m-0">
         <div class="nav-left bg-dark" style=" position: fixed;">
-            <a href="@Url.Action("TrangChu", "TrangChu")">
+            <a href="@Url.Action("Index", "Home")">
                 <img src="~/Content/Images/LOGO.png" alt="logo" width="100" style="display: flex; margin: 0 auto;" />
             </a>
             <ul class="list-menu">
@@ -40,7 +40,11 @@
                         <i class="fa-solid fa-box"></i> Quản Lý Danh Mục
                     </a>
                 </li>
-
+                <li class="@(ViewBag.Current == "QuanLyKhaoSat" ? "active" : "")">
+                    <a href="@Url.Action("KhaoSat", "Management")">
+                        <i class="fa-solid fa-box"></i> Quản Lý Khảo Sát
+                    </a>
+                </li>
                 <li>
                     <i class="fa-solid fa-power-off"></i> @Html.ActionLink("Đăng xuất", "Logout", "Home")
                 </li>

@@ -1,0 +1,115 @@
+﻿@using LTWNC.Models;
+@model IEnumerable<LTWNC.Models.KHAOSAT>
+
+@{ ViewBag.Title = "Quản Lý Khảo Sát";
+    ViewBag.Current = "QuanLyKhaoSat";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+    TAIKHOAN user = Session["User"] as TAIKHOAN; 
+}
+<link href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap5.min.js"></script>
+
+<p class="btn btn-success">
+    @Html.ActionLink("Thêm Khảo Sát", "CreateKS", "Management")
+</p>
+
+<style>
+    .product-meta {
+        max-width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+        .product-meta:hover {
+            width: 300px;
+            white-space: normal;
+            overflow: hidden;
+            cursor: pointer;
+        }
+</style>
+
+<div class="box-section-content">
+    <table id="example" class="table table-striped" style="width:100%;">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Tên Khảo Sát
+                </th>
+                <th>
+                    Nội Dung
+                </th>
+                <th>
+                    Trả Lời
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IDKHAOSAT)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TENKHAOSAT)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NOIDUNG)
+                    </td>
+                    <td class="product-meta">
+                        @Html.DisplayFor(modelItem => item.TRALOI)
+                    </td>
+                    <td style="text-align: center;">
+                        <span class="btn btn-warning">
+                            <a href="@Url.Action("EditKS", "Management", new { id = item.IDKHAOSAT })" class="">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                        </span>
+
+                        <span class="btn btn-primary">
+                            <a href="@Url.Action("DetailsKS", "Management", new { id = item.IDKHAOSAT })" class="">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </a>
+                        </span>
+
+                        <span class="btn btn-danger">
+                            <a href="@Url.Action("DeleteKS", "Management", new { id = item.IDKHAOSAT })" class="">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Tên Khảo Sát
+                </th>
+                <th>
+                    Nội Dung
+                </th>
+                <th>
+                    Trả Lời
+                </th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<script>
+$(document).ready(function () {
+        $('#example').DataTable();
+    });</script>
+

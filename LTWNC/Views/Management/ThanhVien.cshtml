@@ -1,0 +1,147 @@
+﻿@model IEnumerable<LTWNC.Models.KHACHHANG>
+@{
+    ViewBag.Title = "ThanhVien";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+}
+
+@{
+    ViewBag.Title = "Quản Lý Thành Viên";
+    ViewBag.Icon = "add-user.png";
+    ViewBag.Current = "QuanLyThanhVien";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+}
+<link href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap5.min.js"></script>
+
+<p class="btn btn-success">
+    @Html.ActionLink("Thêm Thành Viên", "Register", "User")
+</p>
+
+<style>
+    .product-meta {
+        max-width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+        .product-meta:hover {
+            width: 300px;
+            white-space: normal;
+            overflow: hidden;
+            cursor: pointer;
+        }
+</style>
+
+<div class="box-section-content">
+    <table id="example" class="table table-striped" style="width:100%;">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Mã Khách Hàng
+                </th>
+                <th>
+                    Họ Tên
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Số Điện Thoại
+                </th>
+                <th>
+                    Địa Chỉ
+                </th>
+                <th>
+                    Loại Khách Hàng
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IDKH)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MAKH)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HOTENKH)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EMAIL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SDT)
+                    </td>
+                    <td class="product-meta">
+                        @Html.DisplayFor(modelItem => item.DIACHI)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LOAIKHACHHANG.TENLOAI)
+                    </td>
+                    <td style="text-align: center;">
+                        <span class="btn btn-warning">
+                            <a href="@Url.Action("EditUser", "User", new { id = item.IDKH })" class="">
+                                <i class="fa-solid fa-user-pen"></i>
+                            </a>
+                        </span>
+
+                        <span class="btn btn-primary">
+                            <a href="@Url.Action("DetailUser", "User", new { id = item.IDKH })" class="">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </a>
+                        </span>
+
+                        <span class="btn btn-danger">
+                            <a href="@Url.Action("DeleteUser", "User", new { id = item.IDKH })" class="">
+                                <i class="fa-solid fa-user-slash"></i>
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Mã Khách Hàng
+                </th>
+                <th>
+                    Họ Tên
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Số Điện Thoại
+                </th>
+                <th>
+                    Địa Chỉ
+                </th>
+                <th>
+                    Loại Khách Hàng
+                </th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+

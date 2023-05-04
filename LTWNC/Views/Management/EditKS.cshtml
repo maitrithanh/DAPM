@@ -1,0 +1,41 @@
+﻿@model LTWNC.Models.KHAOSAT
+@{
+    ViewBag.Title = "CHỈNH SỬA KHẢO SÁT";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+}
+
+<link href="~/Content/management-form.css" rel="stylesheet" />
+<script src="~/Scripts/main.js" language="JavaScript" type="text/javascript"></script>
+
+<div class="box-form">
+    @using (Html.BeginForm("Edit", "Management", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <h4 class="title-form">CHỈNH SỬA KHẢO SÁT - @Model.TENKHAOSAT</h4>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.HiddenFor(model => model.IDKHAOSAT)
+            <div class="form-group row p-0">
+                <span class="col label-name">Tên Khảo Sát</span>
+                @Html.EditorFor(model => model.TENKHAOSAT, new { htmlAttributes = new { @class = "input-form col-10" } })
+                @Html.ValidationMessageFor(model => model.TENKHAOSAT, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group row p-0">
+                <span class="col label-name">Nội Dung</span>
+                @Html.TextAreaFor(model => model.NOIDUNG, new { htmlAttributes = new { @class = "input-form col-10" } })
+                @Html.ValidationMessageFor(model => model.NOIDUNG, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="d-flex justify-content-center form-btn">
+                <input type="submit" value="Lưu" class="btn btn-warning" style="width: 100%; color: white;" />
+            </div>
+        </div>}
+</div>
+<div>
+    @Html.ActionLink("Trở Lại", "KhaoSat", "Management")
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+

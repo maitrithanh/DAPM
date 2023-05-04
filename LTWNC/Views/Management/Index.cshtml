@@ -1,11 +1,13 @@
 ﻿@model IEnumerable<LTWNC.Models.DONHANG>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Thống Kê";
+    ViewBag.Icon = "growth.png";
     ViewBag.Current = "ThongKe";
     Layout = "~/Views/Shared/_LayoutManagement.cshtml";
 }
-
+<link href="~/Content/lineicons.css" rel="stylesheet" />
+<link href="~/Content/main.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
 
@@ -35,7 +37,7 @@
     <div class="col-lg-3 col-sm-6">
         <div class="icon-card mb-30">
             <div class="icon purple">
-                <i class="glyphicon glyphicon-shopping-cart	"></i>
+                <i class="fa-solid fa-boxes-stacked"></i>
             </div>
             <div class="content">
                 <h6 class="mb-10">Đơn Hàng</h6>
@@ -52,7 +54,7 @@
     <div class="col-lg-3 col-sm-6">
         <div class="icon-card mb-30">
             <div class="icon success">
-                <i class="glyphicon glyphicon-credit-card"></i>
+                <i class="fa-solid fa-money-bill-trend-up"></i>
             </div>
             <div class="content">
                 <h6 class="mb-10">Doanh Thu</h6>
@@ -71,7 +73,7 @@
     <div class="col-lg-3 col-sm-6">
         <div class="icon-card mb-30">
             <div class="icon primary">
-                <i class="glyphicon glyphicon-user"></i>
+                <i class="fa-solid fa-users"></i>
             </div>
             <div class="content">
                 <h6 class="mb-10">Khách Hàng</h6>
@@ -90,7 +92,7 @@
     <div class="col-lg-3 col-sm-6">
         <div class="icon-card mb-30">
             <div class="icon orange">
-                <i class="glyphicon glyphicon-signal"></i>
+                <i class="fa-solid fa-signal"></i>
             </div>
             <div class="content">
                 <h6 class="mb-10">Số Tài Khoản</h6>
@@ -110,7 +112,7 @@
     <canvas id="myChart" style="width:100%;max-width:100%"></canvas>
 </div>
 
-<div style="margin-bottom: 15px; display: block;" class="icon-card">
+<div style="margin-bottom: 15px; display: block;" class="icon-card p-2">
     <table class="table table-striped" id="example" style="width: 100%; max-width: 100%">
         <thead>
             <tr class="text-green">
@@ -194,27 +196,29 @@
     </table>
 
 </div>
-<script>
-    var xValues = ["Đơn Hàng", "Khách Hàng", "Tài Khoản"];
-    var yValues = [@Convert.ToInt32(Session["SoDonHang"]), @Convert.ToInt32(Session["SoKhachHang"]), @Convert.ToInt32(Session["SoAccount"])];
-    var barColors = ["#9b51e0", "#4a6cf7", "#f2994a"];
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    new Chart("myChart", {
-        type: "bar",
+<script>
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'bar',
         data: {
-            labels: xValues,
+            labels: ['Số Đơn Hàng', 'Số Khách Hàng', 'Số Tài Khoản Thành Viên'],
             datasets: [{
-                backgroundColor: barColors,
-                data: yValues
+                label: 'Thống kê',
+                data: [@Convert.ToInt32(Session["SoDonHang"]), @Convert.ToInt32(Session["SoKhachHang"]), @Convert.ToInt32(Session["SoAccount"])],
+                borderWidth: 1
             }]
         },
         options: {
-            legend: { display: false },
-            title: {
-                display: true,
-                text: "Thống Kê"
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
             }
         }
     });
 </script>
+
 

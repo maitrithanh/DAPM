@@ -31,7 +31,123 @@ namespace LTWNC.Controllers
             }
 
         }
-       
+
+        public ActionResult Create()
+        {
+            ViewBag.IDDANHMUC = new SelectList(database.DANHMUCs, "IDDANHMUC", "TENDANHMUC");
+            ViewBag.IDNV = new SelectList(database.NHANVIENs, "IDNV", "HOTENNV");
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "IDSP,TENSP,SOLUONG,DONGIA,MOTA,HINHSP,IDDANHMUC,IDNV")] SANPHAM sp, HttpPostedFileBase UploadImage)
+        {
+            if (ModelState.IsValid)
+            {
+                if (string.IsNullOrEmpty(sp.TENSP))
+                    ModelState.AddModelError(string.Empty, "Tên sản phẩm không được để trống");
+                if (string.IsNullOrEmpty(Convert.ToString(sp.SOLUONG)))
+                    ModelState.AddModelError(string.Empty, "Số lượng không được để trống");
+                if (string.IsNullOrEmpty(Convert.ToString(sp.DONGIA)))
+                    ModelState.AddModelError(string.Empty, "Đơn giá không được để trống");
+                if (string.IsNullOrEmpty(sp.MOTA))
+                    ModelState.AddModelError(string.Empty, "Mô tả không được để trống");
+
+                if (string.IsNullOrEmpty(sp.IDDANHMUC))
+                    ModelState.AddModelError(string.Empty, "Danh mục không được để trống");
+                if (ModelState.IsValid)
+                {
+                    if (UploadImage != null)
+                    {
+                        string filename = Path.GetFileNameWithoutExtension(UploadImage.FileName);
+                        string extent = Path.GetExtension(UploadImage.FileName);
+                        filename = filename + extent;
+                        sp.HINHSP = "~/Content/Images/" + filename;
+                        UploadImage.SaveAs(Path.Combine(Server.MapPath("~/Content/Images/"), filename));
+                    }
+                    database.SANPHAMs.Add(sp);
+                    database.SaveChanges();
+                    return Redirect("/Management/ProductsManagement");
+                }
+            }
+            ViewBag.IDDANHMUC = new SelectList(database.DANHMUCs, "IDDANHMUC", "TENDANHMUC", sp.IDDANHMUC);
+            ViewBag.IDNV = new SelectList(database.NHANVIENs, "IDNV", "HOTENNV", sp.IDNV);
+            return View();
+        }
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var sp = database.SANPHAMs.Find(id);
+            if (sp == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.IDDANHMUC = new SelectList(database.DANHMUCs, "IDDANHMUC", "TENDANHMUC", sp.IDDANHMUC);
+            ViewBag.IDNV = new SelectList(database.NHANVIENs, "IDNV", "HOTENNV", sp.IDNV);
+            return View(sp);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "IDSP,TENSP,SOLUONG,DONGIA,MOTA,HINHSP,IDDANHMUC,IDNV")] SANPHAM sp, HttpPostedFileBase UploadImage)
+        {
+            if (ModelState.IsValid)
+            {
+                var sanPhamDB = database.SANPHAMs.FirstOrDefault(kh => kh.IDSP == sp.IDSP);
+                if (sanPhamDB != null)
+                {
+                    sanPhamDB.TENSP = sp.TENSP;
+                    sanPhamDB.SOLUONG = sp.SOLUONG;
+                    sanPhamDB.DONGIA = sp.DONGIA;
+                    sanPhamDB.MOTA = sp.MOTA;
+                    if (UploadImage != null)
+                    {
+                        string filename = Path.GetFileNameWithoutExtension(UploadImage.FileName);
+                        string extent = Path.GetExtension(UploadImage.FileName);
+                        filename = filename + extent;
+                        sanPhamDB.HINHSP = "~/Content/Images/" + filename;
+                        UploadImage.SaveAs(Path.Combine(Server.MapPath("~/Content/Images/"), filename));
+                    }
+                    sanPhamDB.IDDANHMUC = sp.IDDANHMUC;
+                    sanPhamDB.IDNV = sp.IDNV;
+                }
+                database.SaveChanges();
+                return Redirect("/Management/ProductsManagement");
+            }
+            ViewBag.IDDANHMUC = new SelectList(database.DANHMUCs, "IDDANHMUC", "TENDANHMUC", sp.IDDANHMUC);
+            ViewBag.IDNV = new SelectList(database.NHANVIENs, "IDNV", "HOTENNV", sp.IDNV);
+            return View(sp);
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var sp = database.SANPHAMs.Find(id);
+            if (sp == null)
+            {
+                return HttpNotFound();
+            }
+            return View(sp);
+        }
+
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            SANPHAM sp = database.SANPHAMs.Find(id);
+            database.SANPHAMs.Remove(sp);
+            database.SaveChanges();
+            return Redirect("/Management/ProductsManagement");
+        }
+
         public ActionResult LayDanhMuc()
         {
             return PartialView(database.DANHMUCs.ToList());
@@ -97,6 +213,11 @@ namespace LTWNC.Controllers
             var sp = database.SANPHAMs.Where(s => s.IDSP == id).FirstOrDefault();
             return PartialView(sp);
         }
+        public ActionResult LayHinh()
+        {
+            var hinh = database.SANPHAMs.ToList();
+            return PartialView(hinh);
+        }
         public ActionResult ProductDetail(int id = 2)
         {
             return View(database.SANPHAMs.Where(s => s.IDSP == id).FirstOrDefault());
@@ -105,12 +226,12 @@ namespace LTWNC.Controllers
         {
             return database.SANPHAMs.Where(s => s.IDDANHMUC == id).Take(soluong).ToList();
         }
-        public ActionResult LaySPTT(string id)
+        public ActionResult SanPhamCungLoai(string id)
         {
             var dsSanpham = ListSP(id, 3);
             return PartialView(dsSanpham);
         }
-        public ActionResult LaySPTTqt()
+        public ActionResult SanPhamCoTheThich()
         {
             var listProducts = database.SANPHAMs.OrderByDescending(sp => sp.TENSP).ToList();
             return PartialView(listProducts);

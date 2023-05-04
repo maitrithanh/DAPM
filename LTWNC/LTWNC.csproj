@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LTWNC</RootNamespace>
     <AssemblyName>LTWNC</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -62,6 +62,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -71,6 +72,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -114,6 +116,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -229,6 +232,7 @@
     <Content Include="Content\Css\carousel\productDetail.css" />
     <Content Include="Content\Css\feedback.css" />
     <Content Include="Content\Css\Home.css" />
+    <Content Include="Content\Css\productDetail.css" />
     <Content Include="Content\Css\profile.css" />
     <Content Include="Content\Css\purchaseOrder.css" />
     <Content Include="Content\Css\style.min.css" />
@@ -369,9 +373,22 @@
     <Content Include="Views\Management\Index.cshtml" />
     <Content Include="Views\Noti\NotificationPartial.cshtml" />
     <Content Include="Views\Product\ProductDetail.cshtml" />
-    <Content Include="Views\Product\LaySPTT.cshtml" />
-    <Content Include="Views\Product\LaySPTTqt.cshtml" />
     <Content Include="Views\Shared\_LayoutBase.cshtml" />
+    <Content Include="Views\Product\LayHinh.cshtml" />
+    <Content Include="Views\Product\SanPhamCungLoai.cshtml" />
+    <Content Include="Views\Product\SanPhamCoTheThich.cshtml" />
+    <Content Include="Views\Profile\Layanh.cshtml" />
+    <Content Include="Views\Management\ProductsManagement.cshtml" />
+    <Content Include="Views\Management\ThanhVien.cshtml" />
+    <Content Include="Views\Management\Tracking.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Product\Delete.cshtml" />
+    <Content Include="Views\Management\KhaoSat.cshtml" />
+    <Content Include="Views\Management\CreateKS.cshtml" />
+    <Content Include="Views\Management\DeleteKS.cshtml" />
+    <Content Include="Views\Management\DetailsKS.cshtml" />
+    <Content Include="Views\Management\EditKS.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
