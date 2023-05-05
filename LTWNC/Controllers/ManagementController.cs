@@ -38,7 +38,7 @@ namespace CNPMNC.Controllers
             TAIKHOAN user = Session["User"] as TAIKHOAN;
             if (user == null || user.VAITRO != "ADMIN")
             {
-                return RedirectToAction("Login", "User");
+                return RedirectToAction("Login", "Home");
             }
             var listProductsManagement = database.SANPHAMs.OrderByDescending(sp => sp.TENSP).ToList();
             return View(listProductsManagement);
@@ -54,7 +54,7 @@ namespace CNPMNC.Controllers
             TAIKHOAN user = Session["User"] as TAIKHOAN;
             if (user == null || user.VAITRO != "ADMIN")
             {
-                return RedirectToAction("Login", "User");
+                return RedirectToAction("Login", "Home");
             }
             var thanhvien = database.KHACHHANGs.OrderByDescending(tv => tv.IDKH).ToList();
             return View(thanhvien);
@@ -94,7 +94,7 @@ namespace CNPMNC.Controllers
             TAIKHOAN user = Session["User"] as TAIKHOAN;
             if (user == null || user.VAITRO != "ADMIN")
             {
-                return RedirectToAction("Login", "User");
+                return RedirectToAction("Login", "Home");
             }
             var listTs = database.KHAOSATs.OrderByDescending(sp => sp.IDKHAOSAT).ToList();
             return View(listTs);

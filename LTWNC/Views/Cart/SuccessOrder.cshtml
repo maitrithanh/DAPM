@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Thanh toán thành công";
+    Layout = "~/Views/Shared/_LayoutBase.cshtml";
+}
+
+<style>
+    body {
+        text-align: center;
+    }
+
+    .title-alert {
+        color: #88B04B;
+        font-weight: 900;
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+
+    .alert {
+        color: #404F5E;
+        font-size: 20px;
+        margin: 0;
+    }
+
+    .checkmark {
+        color: #9ABC66;
+        font-size: 100px;
+        line-height: 200px;
+        margin-left: -15px;
+    }
+
+    .card {
+        background: white;
+        padding: 60px;
+        border-radius: 8px;
+        box-shadow: 0 2px 3px #C8D0D8;
+        display: inline-block;
+        margin: 45px;
+        --bs-card-border-color: none !important;
+    }
+</style>
+<div class="card">
+    <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+        <i class="checkmark">✓</i>
+    </div>
+    <h1 class="title-alert">ĐẶT HÀNG THÀNH CÔNG</h1>
+    <p class="alert">Chúc mừng bạn đã đặt hàng thành công<br /> bạn có thể xem lại đơn hàng trong lịch sử đơn hàng.</p>
+    <a href="@Url.Action("Shop", "Product")" class="btn btn-primary">Tiếp Tục Mua Hàng</a>
+</div>

@@ -1,0 +1,103 @@
+﻿@using LTWNC.Models;
+@{
+    ViewBag.Title = "Đăng Ký Thành Viên";
+    ViewBag.Current = "QuanLyThanhVien";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+    KHACHHANG taikhoan = Session["TaiKhoan"] as KHACHHANG;
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<link rel="stylesheet" href="~/Content/css/user.css" />
+
+<style>
+    .input-form {
+        background: rgba(128,128,128,0.1);
+        border: none !important;
+    }
+
+    .input-box {
+        display: flex;
+    }
+
+    .img-icon {
+        position: absolute;
+        left: 0;
+        top: 8px;
+        padding: 24px 8px;
+        text-align: center;
+    }
+
+    .formRegister {
+        background-color: #EDF1FF;
+    }
+
+        .formRegister .box input {
+            padding: 35px;
+        }
+</style>
+<a href="/Management/ThanhVien">Trở Lại</a>
+
+<div class="formRegister" style="background-color: transparent !important; padding:2px !important;">
+
+    @using (Html.BeginForm("Register", "User"))
+    {
+        @Html.ValidationSummary(true)
+        if (@taikhoan != null && @taikhoan.IDKH == 0)
+        {
+            <div class="box input-box">
+                <input type="text" class="form-control input-form" value="@taikhoan.HOTENKH" id="hoten" name="HOTENKH" required placeholder="Họ Tên">
+                <img src="~/Content/Images/id-card.png" class="img-icon" alt="" width="46" />
+            </div>
+            <div class="box input-box">
+                <input type="text" class="form-control input-form" value="@taikhoan.SDT" id="sdt" name="SDT" required placeholder="Số Điện Thoại">
+                <img src="~/Content/Images/phone-call.png" class="img-icon" alt="" width="46" />
+            </div>
+            <div class="box input-box">
+                <input type="text" class="form-control input-form" id="username" name="USERNAME" required placeholder="Tên Tài Khoản">
+                <img src="~/Content/Images/user.png" class="img-icon" alt="" width="46" />
+            </div>
+            <div class="box input-box">
+                <input type="password" class="form-control input-form" id="pwd" name="MATKHAU" required placeholder="Mật Khẩu">
+                <img src="~/Content/Images/key.png" class="img-icon" alt="" width="46" />
+            </div>
+            <div class="box input-box">
+                <input type="email" class="form-control input-form" id="username" name="EMAIL" required placeholder="Email">
+                <img src="~/Content/Images/email.png" class="img-icon" alt="" width="46" />
+            </div>
+            <div class="box input-box">
+                <input type="text" class="form-control input-form" value="@taikhoan.DIACHI" id="" name="DIACHI" required placeholder="Địa Chỉ">
+                <img src="~/Content/Images/placeholder.png" class="img-icon" alt="" width="46" />
+            </div>
+        }
+        else
+        {
+            <div class="box input-box">
+                <input type="text" class="form-control input-form" id="hoten" name="HOTENKH" required placeholder="Họ Tên">
+                <img src="~/Content/Images/id-card.png" class="img-icon" alt="" width="46" />
+            </div>
+            <div class="box input-box">
+                <input type="text" class="form-control input-form" id="sdt" name="SDT" required placeholder="Số Điện Thoại">
+                <img src="~/Content/Images/phone-call.png" class="img-icon" alt="" width="46" />
+            </div>
+            <div class="box input-box">
+                <input type="text" class="form-control input-form" id="username" name="USERNAME" required placeholder="Tên Tài Khoản">
+                <img src="~/Content/Images/user.png" class="img-icon" alt="" width="46" />
+            </div>
+            <div class="box input-box">
+                <input type="password" class="form-control input-form" id="pwd" name="MATKHAU" required placeholder="Mật Khẩu">
+                <img src="~/Content/Images/key.png" class="img-icon" alt="" width="46" />
+            </div>
+            <div class="box input-box">
+                <input type="email" class="form-control input-form" id="username" name="EMAIL" required placeholder="Email">
+                <img src="~/Content/Images/email.png" class="img-icon" alt="" width="46" />
+            </div>
+            <div class="box input-box">
+                <input type="text" class="form-control input-form" id="" name="DIACHI" required placeholder="Địa Chỉ">
+                <img src="~/Content/Images/placeholder.png" class="img-icon" alt="" width="46" />
+            </div>
+        }
+
+        <button type="submit" class="btn btn-success" style="margin-top: 1rem; display: inline-block; padding: .9rem 3rem;">THÊM THÀNH VIÊN</button>
+    }
+</div>
+
