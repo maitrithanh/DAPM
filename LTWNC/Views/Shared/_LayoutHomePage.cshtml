@@ -57,12 +57,24 @@
             <div class="col-lg-6 col-6 text-left">
                 <form action="">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Tìm kiếm...">
-                        <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div>
+                        @*<input type="text" class="form-control" placeholder="Tìm kiếm...">
+        <div class="input-group-append">
+            <span class="input-group-text bg-transparent text-primary">
+                <i class="fa fa-search"></i>
+            </span>
+        </div>*@
+                        @using (Html.BeginForm("Search", "Product", FormMethod.Get))
+                        {
+                            <input type="text" class="form-control" id="SearchString" name="SearchString" placeholder="Tìm theo tên">
+                            <div class="input-group-append">
+                                <button type="submit" style="border:none">
+                                    <span class="input-group-text bg-transparent text-primary">
+                                        <i class="fa fa-search"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        }
+
                     </div>
                 </form>
             </div>

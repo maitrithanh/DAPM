@@ -236,5 +236,10 @@ namespace LTWNC.Controllers
             var listProducts = database.SANPHAMs.OrderByDescending(sp => sp.TENSP).ToList();
             return PartialView(listProducts);
         }
+       public ActionResult Search(string SearchString = "")
+        {
+            var list = database.SANPHAMs.Where(s => s.TENSP.Contains(SearchString)).ToList();
+            return RedirectToAction("Shop", list);
+        }
     }
 }

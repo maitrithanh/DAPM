@@ -112,7 +112,7 @@ form .binhluan {
         border: none;
         border-radius: 8px;
         outline: none;
-        background: #4285f4;
+        background: #D19C97;
         color: white;
         font-size: 17px;
         font-weight: 500;
@@ -123,17 +123,17 @@ form .binhluan {
 
 
         form .binhluan button:hover {
-            background: #0057c7;
+            background: #cd9994;
             box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
         }
 
     form .binhluan input {
         margin-top: -3px;
-        color: #1895ff;
-        background-color: rgb(212, 237, 245);
+        color: white;
+        background-color: #d8b0ac;
     }
 
         form .binhluan input:hover {
-            background-color: rgb(67 207 252);
+            background-color: #D19C97;
             color: white;
         }
