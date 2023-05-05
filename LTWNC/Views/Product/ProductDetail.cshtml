@@ -1,11 +1,12 @@
 ﻿@model LTWNC.Models.SANPHAM
+
 @{
-    ViewBag.Title = "ProductDetail";
-    Layout = "~/Views/Shared/_LayoutBase.cshtml";
+    ViewBag.Title = @Html.DisplayFor(model => model.TENSP);
+    Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
 }
 
-<link rel="stylesheet" href="~/Content/css/carousel/productDetail.css" />
-<link rel="stylesheet" href="~/Content/bootstrap.min.css">
+<link rel="stylesheet" href="~/Content/css/productDetail.css" />
+<link rel="stylesheet" href="~/Content/Css/style.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <style>
@@ -33,6 +34,10 @@
         </nav>
     </div>
 </div>*@
+
+<div class="text-center mb-4">
+    <h2 class="section-title px-5"><span class="px-2">Chi tiết sản phẩm</span></h2>
+</div>
 <div class="row sale">
     <div class="col-5" style="padding:15px;">
         <img src="@Url.Content(Model.HINHSP)" style="width:400px; height:400px" />
@@ -54,21 +59,18 @@
                 <div class="col-1"><img src="~/Content/Images/LOGO.png" style="width:50px; height:50px" /></div>
                 <div class="col-11" style="padding-left:20px">
                     <span class="re">Gì cũng rẽ </span><i class="ti-help-alt"></i> </br>
-                    <span style="font-size:14px;">Giá tốt nhất so với cái sản phẩm cũng loại trên KTDN</span>
+                    <span style="font-size:14px;">Giá tốt nhất trên thị trường hiện tại</span>
                 </div>
             </div>
         </div>
+
         <div class="luachon row" style="margin-top:20px;">
-            <div class="col-2 sp">Bìa trắng:</div>
-            <div id="btnContainer" class="col-10">
-                <div class="grid">
-                    <button class="btn active1" onclick="listView()">
-                        Cứng
-                    </button>
-                    <button class="btn" onclick="gridView()"> Mềm</button>
-                </div>
+            <div class="col-2 sp">Còn hàng:</div>
+            <div class="col-10">
+                @Html.DisplayFor(model => model.SOLUONG)
             </div>
         </div>
+
         <div class="luachon row" style="margin-top:20px;">
             <div class="col-2 sp">Số lượng:</div>
             <div class="col-10">
@@ -80,21 +82,23 @@
             </div>
         </div>
         <div class="mua">
-            <button class="" id="shop" style="padding:0px;"><i class="fas fa-shopping-cart"></i> Thêm vào giỏ</button>
+
+            <a href="@Url.Action("AddToCart", "Cart", new {id = Model.IDSP })" style="margin-left:5px"><button class="registration" style="padding:0px;">Thêm vào giỏ hàng</button></a>
             <a href="@Url.Action("AddToCart", "Cart", new {id = Model.IDSP })" style="margin-left:5px"><button class="registration" style="padding:0px;">Đặt hàng</button></a>
         </div>
     </div>
 </div>
+
 <div class="cuahang dobong row" style="margin:40px 100px">
     <div class="col-3">
         <div class="row">
             <div class="col-2">
-                <img src="~/Content/Images/LOGO.png" width="50px" height="50px" />
+                <img src="~/Content/Images/LOGO.png" width="90px" height="70px" />
             </div>
-            <div class="col-10" style="padding-left:20px;">
-                <div style="font-size:20px; color: red;font-weight:600;">KTND</div>
-                <div style="font-size:15px; color: rgba(0,0,0,.54);margin-top:-9px; margin-bottom:10px">Online 10 phút trước</div>
-                <button class="chat" id="shop" style="border-radius:4px; padding:6px;"><i class="ti-comment-alt"></i> Chat ngay</button>
+            <div class="col-10" style="padding-left:40px;">
+                <div style="font-size:20px; color: red;font-weight:600;">EBook</div>
+                <div style="font-size:15px; color: rgba(0,0,0,.54);margin-top:-9px; margin-bottom:10px">Online</div>
+                <a href="/Home/Contact"><button class="chat" id="shop" style="border-radius:4px; padding:6px;"><i class="ti-comment-alt"></i> Liên hệ</button></a>
             </div>
         </div>
     </div>
@@ -129,6 +133,8 @@
         </div>
     </div>
 </div>
+
+
 <div class="row" style="margin:20px 100px">
     <div class="col-9 info" style="padding-left:0">
         <div class="baohanh">
@@ -136,20 +142,20 @@
                 <div class="col-6">
                     <div class="row">
                         <div class="col-1">
-                            <i class='bx bx-refresh' style="font-size:42px"></i>
+                            <i class='bx bx-refresh' style="font-size: 42px; color: #D7202C;"></i>
                         </div>
                         <div class="col-11" style="padding: 0 20px">
-                            1 đổi 1 trong 30 ngày đối với sản phẩm lỗi tại 3385 siêu thị toàn quốc
+                            1 đổi 1 trong 30 ngày đối với sản phẩm lỗi tại các cửa hàng trên toàn quốc
                         </div>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="row">
                         <div class="col-1">
-                            <i class='bx bxs-check-shield' style="font-size:42px"></i>
+                            <i class='bx bxs-check-shield' style="font-size: 42px; color: #0D8DFF; "></i>
                         </div>
                         <div class="col-11" style="padding: 0 20px">
-                            Bảo hành chính hãng điện thoại 1 năm tại các trung tâm bảo hành hãng
+                            Bảo hành 1 đổi 1 năm tại các cửa hàng trên toàn quốc
                         </div>
                     </div>
                 </div>
@@ -158,10 +164,10 @@
                 <div class="col-6">
                     <div class="row">
                         <div class="col-1">
-                            <i class='bx bx-package' style="font-size:42px"></i>
+                            <i class='bx bx-package' style="font-size: 42px; color: #A4907C; "></i>
                         </div>
                         <div class="col-11" style="padding: 0 20px">
-                            Bộ sản phẩm gồm: Hộp, Sách hướng dẫn, Cây lấy sim, Ốp lưng, Cáp Type C, Củ sạc nhanh Type C
+                            Bộ sản phẩm gồm: @Html.DisplayFor(model => model.TENSP)
                         </div>
                     </div>
                 </div>
@@ -172,6 +178,8 @@
             <div class="row">
                 <div class="nd col-2" style="padding-left:25px">Đường dẫn</div>
                 <div class="ht  col-9"><a href="/TrangChu/TrangChu" style="color:#D19C97;">Trang chủ</a> / <a href="/Product/DSProduct" style="color:#D19C97;">Sản phẩm</a> / <span style="color: var(--bs-breadcrumb-item-active-color);">@Model.TENSP</span></div>
+                <div class="nd col-2" style="padding-left:25px">Danh mục</div>
+                <div class="ht  col-9">@Html.DisplayFor(model => model.IDDANHMUC)</div>
             </div>
             <div class="row">
                 <div class="nd col-2" style="padding-left:25px">Loại bảo hành</div>
@@ -187,23 +195,25 @@
             </div>
             <div class="row">
                 <div class="nd col-2" style="padding-left:25px">Tình trạng</div>
-                <div class="ht  col-9">MỚI</div>
+                <div class="ht  col-9">Mới</div>
             </div>
             <div class="row">
                 <div class="nd col-2" style="padding-left:25px">Gửi từ</div>
                 <div class="ht  col-9">10 QL22, Tân Xuân, Hóc Môn, Thành phố Hồ Chí Minh, Việt Nam</div>
             </div>
             <h2>Mô tả sản phẩm</h2>
-            <span style="padding-left:10px; text-align:justify">@Html.DisplayFor(model => model.MOTA)</span>
+            <span style="padding-left:10px; text-align:justify;">@Html.DisplayFor(model => model.MOTA)</span>
         </div>
     </div>
     <div class="col-3">
-        @Html.Action("LaySPTT", "Product", new { id = Model.IDDANHMUC })
+        @Html.Action("SanPhamCungLoai", "Product", new { id = Model.IDDANHMUC })
     </div>
 </div>
+
 <div style="margin-left:100px;margin-right:100px; margin-bottom:100px;">
-    @Html.Action("LaySPTTqt", "Product")
+    @Html.Action("SanPhamCoTheThich", "Product")
 </div>
+
 <script>
     var i;
     var container = document.getElementById("btnContainer");

@@ -1,0 +1,127 @@
+﻿
+@using LTWNC.Models
+@model IEnumerable<SANPHAM>
+
+
+<link rel="stylesheet" href="~/Content/css/carousel/css-carousel/owl.carousel.min.css">
+<link rel="stylesheet" href="~/Content/css/carousel/css-carousel/owl.theme.default.min.css">
+<link rel="stylesheet" href="~/Content/Css/style.min.css">
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<style>
+    .teacher {
+        color: rgb(39, 43, 61);
+        background: white;
+        width: 350px;
+        height: 550px;
+        border-radius: 10px;
+        margin: 20px 15px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        border: 1px solid #EDF1FF;
+    }
+
+        .teacher:hover {
+            box-shadow: #D19C97 0px 5px 19px 0px;
+            transition: 0.5s all ease-out;
+            cursor: pointer;
+        }
+
+        .teacher h4 {
+            font-size: 18px;
+            margin-top: 15px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 1;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            border-bottom: 2px solid #D19C97;
+            color: black;
+        }
+
+        .teacher img {
+            height: 320px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .teacher p, .teacher button, .teacher h4 {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .teacher button {
+            width: 150px;
+            height: 40px;
+            border: none;
+            background: #1895FF;
+            color: white;
+            margin: auto;
+            text-align: center;
+            border-radius: 20px;
+            transition: 0.5s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .teacher button:hover {
+                color: white;
+                background-color: #0084FF;
+                box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+                text-decoration: underline;
+            }
+
+    .mota {
+        width: 90%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 22px;
+        -webkit-line-clamp: 2;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        margin-bottom: 10px;
+        color: #4a4a4a;
+    }
+
+    .owl-item {
+        width: 320px;
+    }
+</style>
+<div style="font-size: 22px; padding-bottom: 20px; color: rgba(0,0,0,.54);">Có thể bạn thích</div>
+
+
+<div class="owl-carousel owl-theme" id="carouselplgin">
+    @foreach (var nxb in Model)
+    {
+
+        <div class="teacher">
+            <a href="@Url.Action("ProductDetail", "Product", new { id=nxb.IDSP})"><img src="@Url.Content(nxb.HINHSP)" style="width:350px;  padding:10px"></a>
+            <h4>@nxb.TENSP</h4>
+            <p style="font-size:20px; color:orangered;">@Convert.ToDecimal(nxb.DONGIA).ToString("N0")đ</p>
+            <p class="mota" style="margin-bottom: 20px;">@Html.DisplayFor(modelItem => nxb.MOTA)</p>
+            <a href="@Url.Action("ProductDetail", "Product", new { id=nxb.IDSP})" style="font-size:15px;"><button class="mua">Xem chi tiết</button></a>
+        </div>
+    }
+</div>
+
+<script type="text/javascript" src="~/Content/css/carousel/jq-carousef/owl.carousel.min.js"></script>
+<script type="text/javascript">
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsive: {
+                360: {
+                    items: 1
+                },
+                647: {
+                    items: 2
+                },
+                1001: {
+                    items: 3
+                },
+                1215: {
+                    items: 4
+                }
+            }
+        })
+</script>
+

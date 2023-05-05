@@ -1,7 +1,7 @@
 ﻿@model LTWNC.Models.KHACHHANG
 @{
     ViewBag.Title = @Html.DisplayFor(model => model.HOTENKH);
-    Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+    Layout = "~/Views/Shared/_LayoutBase.cshtml";
 }
 <link rel="stylesheet" href="~/Content/css/profile.css" />
 
@@ -53,7 +53,7 @@
             </div>
             <i class="ti-info-alt" style="color:#007bff; margin-right:5px;"></i>Tài khoản của tôi
 
-            <div class="tk"><a href="/Profile/EditProfile" style="color:gray;">Hồ sơ</a></div>
+            <div class="tk"><a href="/Profile/Edit" style="color:gray;">Hồ sơ</a></div>
 
             <div class="tk" style="margin-top:-21px;margin-right:5px;"><a href="#" style="color:gray;">Đổi mật khẩu</a> </div>
 
@@ -67,8 +67,19 @@
         </div>
     </div>
     <div class="info col-sm-9" style="background-color:white; padding:20px;box-shadow: 10px 8px 50px #aaa;border-radius:8px;">
-        <h3>Hồ sơ của bạn</h3>
-        <h7>Quản lý thông tin hồ sơ để bảo mật tài khoản</h7>
+        <div class="row">
+            <div class="col-md-6">
+                <h3 style="font-weight:bold">Hồ sơ của bạn</h3>
+                <h7>Quản lý thông tin hồ sơ để bảo mật tài khoản</h7>
+            </div>
+
+            <div style="padding-left:250px;" class="col-md-6">
+                <h3 style="font-weight:bold">Khách hàng thân thiết</h3>
+                <h4>
+                    <i class="fa-sharp fa-regular fa-gem" style="color: #EBB02D"></i> Vip @Html.DisplayFor(model => model.IDLKH)
+                </h4>
+            </div>
+        </div>
 
         @using (Html.BeginForm("Edit", "Profile", FormMethod.Post, new { @enctype = "multipart/form-data" }))
         {

@@ -1,0 +1,40 @@
+﻿@model LTWNC.Models.KHAOSAT
+@{
+    ViewBag.Title = "CHI TIẾT KHẢO SÁT";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+}
+
+<link href="~/Content/management-form.css" rel="stylesheet" />
+<script src="~/Scripts/main.js" language="JavaScript" type="text/javascript"></script>
+
+<div class="box-form">
+    <h4 class="title-form">CHI TIẾT KHẢO SÁT - @Model.TENKHAOSAT</h4>
+    <div class="form-horizontal">
+        <div class="form-group row p-0">
+            <span class="col label-name">ID Khảo Sát</span>
+            <p class="delete-form col-10 m-0">
+                @Html.DisplayFor(model => model.IDKHAOSAT)
+            </p>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Tên Khảo Sát</span>
+            <p class="delete-form col-10 m-0">
+                @Html.DisplayFor(model => model.TENKHAOSAT)
+            </p>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Nội Dung</span>
+            <p class="delete-form col-10 m-0 textArea">
+                @Html.DisplayFor(model => model.NOIDUNG)
+            </p>
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Trở Lại", "KhaoSat", "Management")
+</p>
+
+
+

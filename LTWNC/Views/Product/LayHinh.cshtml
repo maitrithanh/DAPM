@@ -1,0 +1,47 @@
+﻿
+@using LTWNC.Models
+
+@model IEnumerable<SANPHAM>
+
+<link rel="stylesheet" href="~/Content/css/product.css" />
+<div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+        @foreach (var hinh in Model)
+        {
+            <div class="swiper-slide">
+                <img src="@Url.Content(hinh.HINHSP)" alt="@Html.DisplayFor(modelItem => hinh.TENSP)" />
+            </div>
+        }
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
+
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+    });
+</script>
+
+
+

@@ -20,6 +20,7 @@
     width: 100%;
     position: absolute;
 }
+
 a {
     text-decoration: none;
     color: white
@@ -69,6 +70,7 @@ a {
     font-size: 20px;
     font-weight: bold;
 }
+
 .text-primary {
     color: #D19C97 !important;
 }
@@ -76,6 +78,7 @@ a {
 .bg-secondary {
     background-color: #EDF1FF !important;
 }
+
 .text-white {
     background-color: #D19C97 !important;
 }

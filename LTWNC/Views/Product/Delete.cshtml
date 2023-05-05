@@ -1,0 +1,127 @@
+﻿@model LTWNC.Models.SANPHAM
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+}
+
+<link href="~/Content/management-form.css" rel="stylesheet" />
+<script src="~/Scripts/main.js" language="JavaScript" type="text/javascript"></script>
+
+<div class="box-form">
+    <div class="form-horizontal">
+        <h4 class="title-form">XOÁ SẢN PHẨM - @Model.TENSP</h4>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group row p-0">
+            <span class="col label-name">ID Sản Phẩm</span>
+            <p class="delete-form col-10 m-0">
+                @Html.DisplayFor(model => model.IDSP)
+            </p>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Tên Sản Phẩm</span>
+            <p class="delete-form col-10 m-0">
+                @Html.DisplayFor(model => model.TENSP)
+            </p>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Số Lượng</span>
+            <p class="delete-form col-10 m-0">
+                @Html.DisplayFor(model => model.SOLUONG)
+            </p>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Giá Bán</span>
+            <p class="delete-form col-10 m-0">
+                @Html.DisplayFor(model => model.DONGIA)
+            </p>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Mô Tả</span>
+            <p class="delete-form col-10 m-0 textArea">
+                @Html.DisplayFor(model => model.MOTA)
+            </p>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Hình Sản Phẩm</span>
+            <div class="input-form col-10" style="background-color:#fff;">
+                @if (Model.HINHSP == null)
+                {
+                    <img src="~/Content/Images/No_Image_Available.jpg" class="img-create" alt="Thêm Sản Phẩm" id="previewImg" />
+                }
+                else
+                {
+                    <img src="@Url.Content(Model.HINHSP)" class="img-create" alt="Thêm Sản Phẩm" id="previewImg" />
+                }
+            </div>
+            @Html.ValidationMessageFor(model => model.HINHSP, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Danh Mục</span>
+            <p class="delete-form col-10 m-0">
+                @Html.DisplayFor(model => model.DANHMUC.TENDANHMUC)
+            </p>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">ID Nhân Viên</span>
+            <p class="delete-form col-10 m-0">
+                @Html.DisplayFor(model => model.NHANVIEN.HOTENNV)
+            </p>
+
+        </div>
+
+        <div class="d-flex justify-content-center form-btn">
+            <input id="btn-delete" value="Xoá" class="btn btn-danger" style="width: 100%" />
+        </div>
+    </div>
+</div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div style="background: #000">
+        <div class="box-confirm box-shadow shadow">
+            <h4>Bạn Có Chắc Chắn Xoá?</h4>
+            <hr />
+            <h3 style="color: red;">@Model.TENSP</h3>
+            <div class="row mt-4">
+                <input type="submit" value="Xác Nhận Xoá" class="btn btn-danger col-10" style="width: 80%" />
+                <input value="Huỷ" id="btn-cancel" class="btn btn-default col" style="width: 20%" />
+            </div>
+        </div>
+    </div>
+}
+
+@Html.ActionLink("Trở Lại", "ProductsManagement", "Management")
+
+<script>
+    var btnDelete = document.querySelector('#btn-delete');
+    var modelBox = document.querySelector('.box-confirm');
+    var btnCancel = document.querySelector('#btn-cancel');
+
+
+    btnDelete.onclick = function () {
+        modelBox.style.display = "block";
+    }
+
+    btnCancel.onclick = function () {
+        modelBox.style.display = "none";
+    }
+
+</script>
+
+<style>
+    .delete-form {
+        background-color: #fff;
+    }
+</style>
