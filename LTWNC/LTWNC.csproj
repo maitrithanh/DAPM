@@ -389,6 +389,9 @@
     <Content Include="Views\Management\DeleteKS.cshtml" />
     <Content Include="Views\Management\DetailsKS.cshtml" />
     <Content Include="Views\Management\EditKS.cshtml" />
+    <Content Include="Views\Home\KhaoSat.cshtml" />
+    <Content Include="Views\Product\SoLuongSP.cshtml" />
+    <Content Include="Views\Home\DanhMuc.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

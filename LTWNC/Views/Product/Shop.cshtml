@@ -92,7 +92,7 @@
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" checked id="color-all">
                         <label class="custom-control-label" for="price-all">Tất cả</label>
-                        <span class="badge border font-weight-normal">1000</span>
+                        <span class="badge border font-weight-normal"> @Html.Action("SoLuongSP", "Product")</span>
                     </div>
                     @Html.Action("LayDanhMuc", "Product")
                 </form>
@@ -125,10 +125,10 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row" style="gap: 1em 3em; padding-left: 50px;">
                     @foreach (var item in Model)
                     {
-                        <div class="card col-md-4 product-item border-0 mb-4" style="width:350px; height:501px">
+                        <div class="card  product-item border-0 mb-4" style="width:350px; height:501px">
                             <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                                 <img class="img-fluid w-100" src="@Url.Content(item.HINHSP)" alt="@Html.DisplayFor(modelItem => item.TENSP)" />
                             </div>
@@ -184,9 +184,9 @@
         float: right;
         color: white;
     }
-        .loc:hover {
-            background-color: #f4bbb5;
-        }
+    .loc:hover {
+        background-color: #f4bbb5;
+    }
 </style>
 <script>
         function setDomain(){

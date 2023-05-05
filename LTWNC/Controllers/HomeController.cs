@@ -27,8 +27,29 @@ namespace LTWNC.Controllers
             database.SaveChanges();
             return View();
         }
+        [HttpGet]
+        public ActionResult KhaoSat()
+        {
+            var ks = database.KHAOSATs.OrderByDescending(x => x.IDKHAOSAT).ToList();
+            ViewBag.KhaoSat = ks.First();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult KhaoSat(KHAOSAT ct)
+        {
+            var ks = database.KHAOSATs.Find(ct.IDKHAOSAT);
+            ks.TRALOI = ct.TRALOI;
+            database.SaveChanges();
+            var ksat = database.KHAOSATs.OrderByDescending(x => x.IDKHAOSAT).ToList();
+            ViewBag.KhaoSat = ksat.First();
+            ViewBag.Msg = "OK";
+            return View();
+        }
 
-
+        public ActionResult DanhMuc()
+        {
+            return PartialView(database.DANHMUCs.ToList());
+        }
 
         [HttpGet]
         public ActionResult Register()

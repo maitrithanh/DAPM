@@ -89,18 +89,9 @@
                 </a>
                 <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                        <a href="" class="nav-item nav-link">Khoa học thiên văn</a>
-                        <a href="" class="nav-item nav-link">Văn học</a>
-                        <a href="" class="nav-item nav-link">Kinh tế</a>
-                        <a href="" class="nav-item nav-link">Tâm lí - kĩ năng sống</a>
-                        <a href="" class="nav-item nav-link">Sách thiếu nhi</a>
-                        <a href="" class="nav-item nav-link">Tiểu sử hồi ký</a>
-                        <a href="" class="nav-item nav-link">Sách giáo khoa</a>
-                        <a href="" class="nav-item nav-link">Ngoại ngữ</a>
-                        <a href="" class="nav-item nav-link">Sách tham khảo</a>
-                        <a href="" class="nav-item nav-link">Luyện thi</a>
+                        @Html.Action("DanhMuc", "Home")
                     </div>
-                </nav>
+                </nav>                   
             </div>
 
             @*Slide*@
@@ -118,6 +109,7 @@
                             @*Danh sách sản phẩm*@
                             <a href="/Product/Shop" class="nav-item nav-link">Shop</a>
                             <a href="/Cart/ShoppingCart" class="nav-item nav-link">Giỏ hàng</a>
+                            <a href="/Home/KhaoSat" class="nav-item nav-link">Khảo sát</a>
                             <a href="/Home/Contact" class="nav-item nav-link">Liên hệ</a>
                         </div>
 
