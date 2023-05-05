@@ -60,11 +60,22 @@
             </form>
             <div class="card border-secondary mb-5">
                 <div class="card-header bg-secondary border-0">
+                    <h4 class="font-weight-semi-bold m-0">Phương thức thanh toán</h4>
+                </div>
+                <select class="auth-form__input m-0 test card-body" style="border:0px" name="PHUONGTHUCTHANHTOAN">
+                    <option>Tiền mặt</option>
+                    <option>Thanh toán bằng thẻ</option>
+                    <option>Momo</option>
+                    <option>VNPay</option>
+                </select>
+            </div>
+            <div class="card border-secondary mb-5">
+                <div class="card-header bg-secondary border-0">
                     <h4 class="font-weight-semi-bold m-0">Tổng tiền</h4>
                 </div>
                 <div class="card-body">
                     <div class="d-flex justify-content-between mb-3 pt-1">
-                        @*Tiền sách tổng*@ 
+                        @*Tiền sách tổng*@
                         <h6 class="font-weight-medium">Tiền sách</h6>
                         <h6 class="font-weight-medium">100.000VND</h6>
                     </div>
@@ -83,3 +94,8 @@
     </div>
 </div>
 <!-- Cart End -->
+<style>
+    .test option:hover {
+        background-color: #D19C97;
+    }
+</style>

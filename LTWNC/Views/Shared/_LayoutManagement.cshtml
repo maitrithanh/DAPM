@@ -40,6 +40,11 @@
                         <i class="fa-solid fa-box"></i> Quản Lý Danh Mục
                     </a>
                 </li>
+                <li class="@(ViewBag.Current == "QuanLyNhanVien" ? "active" : "")">
+                    <a href="@Url.Action("Index", "Personnel")">
+                        <i class="fa-solid fa-clipboard-user"></i> Quản Lý Nhân Viên
+                    </a>
+                </li>
                 <li class="@(ViewBag.Current == "QuanLyKhaoSat" ? "active" : "")">
                     <a href="@Url.Action("KhaoSat", "Management")">
                         <i class="fa-solid fa-box"></i> Quản Lý Khảo Sát

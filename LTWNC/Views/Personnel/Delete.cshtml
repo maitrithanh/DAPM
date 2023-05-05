@@ -1,0 +1,96 @@
+﻿@model LTWNC.Models.NHANVIEN
+@{
+    ViewBag.Title = "Chi tiết nhân viên";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+}
+
+<link href="~/Content/management-form.css" rel="stylesheet" />
+<script src="~/Scripts/main.js" language="JavaScript" type="text/javascript"></script>
+<div class="box-form">
+    <h4 class="title-form">CHI TIẾT NHÂN VIÊN - @Model.HOTENNV</h4>
+    <div class="form-horizontal">
+        <div style="display:none;" class="form-group row p-0">
+            <span class="col label-name">Họ Và Tên</span>
+            <span class="input-form col-10" style="background-color:#fff;">@Html.DisplayFor(model => model.ID)</span>
+        </div>
+        <div class="form-group row p-0">
+            <span class="col label-name">ID Nhân Viên</span>
+            <span class="input-form col-10" style="background-color:#fff;">@Html.DisplayFor(model => model.IDNV)</span>
+        </div>
+        <div class="form-group row p-0">
+            <span class="col label-name">Họ Và Tên</span>
+            <span class="input-form col-10" style="background-color:#fff;">@Html.DisplayFor(model => model.HOTENNV)</span>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Email</span>
+            <span class="input-form col-10" style="background-color:#fff;">@Html.DisplayFor(model => model.EMAIL)</span>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Địa Chỉ</span>
+            <span class="input-form col-10" style="background-color:#fff;">@Html.DisplayFor(model => model.DIACHI)</span>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Số Điện Thoại</span>
+            <span class="input-form col-10" style="background-color:#fff;">@Html.DisplayFor(model => model.SDT)</span>
+        </div>
+        <div class="form-group row p-0">
+            <span class="col label-name">Hình Ảnh</span>
+            <div class="input-form col-10" style="background-color:#fff;">
+                @if (Model.AVATARNV == null)
+                {
+                    <img src="~/Content/Images/No_Image_Available.jpg" class="img-create" alt="Thêm Sản Phẩm" id="previewImg" />
+                }
+                else
+                {
+                    <img src="@Url.Content(Model.AVATARNV)" class="img-create" alt="Thêm Sản Phẩm" id="previewImg" />
+                }
+            </div>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Chức Vụ</span>
+            <span class="input-form col-10" style="background-color:#fff;">@Html.DisplayFor(model => model.CHUCVU.TENCV)</span>
+        </div>
+        <div class="d-flex justify-content-center form-btn">
+            <input id="btn-delete" value="Xoá" class="btn btn-danger" style="width: 100%" />
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div style="background: #000">
+        <div class="box-confirm box-shadow shadow">
+            <h4>Bạn Có Chắc Chắn Xoá?</h4>
+            <hr />
+            <h3 style="color: red;">@Model.HOTENNV</h3>
+            <div class="row mt-4">
+                <input type="submit" value="Xác Nhận Xoá" class="btn btn-danger col-10" style="width: 80%" />
+                <input value="Huỷ" id="btn-cancel" class="btn btn-default col" style="width: 20%" />
+            </div>
+        </div>
+    </div>
+}
+@Html.ActionLink("Trở Lại", "ProductsManagement", "Management")
+
+<script>
+    var btnDelete = document.querySelector('#btn-delete');
+    var modelBox = document.querySelector('.box-confirm');
+    var btnCancel = document.querySelector('#btn-cancel');
+
+
+    btnDelete.onclick = function () {
+        modelBox.style.display = "block";
+    }
+
+    btnCancel.onclick = function () {
+        modelBox.style.display = "none";
+    }
+
+</script>
+

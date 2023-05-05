@@ -139,6 +139,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManagementController.cs" />
     <Compile Include="Controllers\NotiController.cs" />
+    <Compile Include="Controllers\PersonnelController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
@@ -243,6 +244,7 @@
     <Content Include="Content\Images\email.png" />
     <Content Include="Content\Images\gian.jpg" />
     <Content Include="Content\Images\gio-nam-tham-thi.jpg" />
+    <Content Include="Content\Images\home.png" />
     <Content Include="Content\Images\id-card.png" />
     <Content Include="Content\Images\key.png" />
     <Content Include="Content\Images\LOGO.png" />
@@ -374,6 +376,13 @@
     <Content Include="Views\Noti\NotificationPartial.cshtml" />
     <Content Include="Views\Product\ProductDetail.cshtml" />
     <Content Include="Views\Shared\_LayoutBase.cshtml" />
+    <Content Include="Views\Profile\Tracking.cshtml" />
+    <Content Include="Views\Personnel\Index.cshtml" />
+    <Content Include="Views\Personnel\Create.cshtml" />
+    <Content Include="Views\Personnel\Edit.cshtml" />
+    <Content Include="Views\Personnel\Details.cshtml" />
+    <Content Include="Views\Personnel\Delete.cshtml" />
+    <Content Include="Views\Product\Search.cshtml" />
     <Content Include="Views\Product\LayHinh.cshtml" />
     <Content Include="Views\Product\SanPhamCungLoai.cshtml" />
     <Content Include="Views\Product\SanPhamCoTheThich.cshtml" />
