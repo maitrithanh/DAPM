@@ -1,0 +1,14 @@
+﻿
+@model LTWNC.Models.CTDH
+<td>
+    @Html.Action("InfoSPFeeback", "Product", new { id = Model.IDSP })
+</td>
+<td style="padding-top: 58px;">
+    @Model.SOLUONG
+</td>
+<td style="padding-top: 58px; color: #FF0000;">
+    @Convert.ToDecimal(Model.THANHTIEN).ToString("N0")đ
+</td>
+
+
+

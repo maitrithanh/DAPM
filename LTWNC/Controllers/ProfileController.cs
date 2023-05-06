@@ -102,5 +102,28 @@ namespace LTWNC.Controllers
             var trackingOrder = database.CTGIAOHANGs.Where(s => s.IDDH == id).ToList();
             return View(trackingOrder);
         }
+
+        [HttpGet]
+        public ActionResult XacNhanDonHang(int? id)
+        {
+            return PartialView(database.DONHANGs.Where(s => s.IDDH == id).FirstOrDefault());
+        }
+        [HttpPost]
+        public ActionResult XacNhanDonHang(DONHANG dh)
+        {
+
+            database.Configuration.ValidateOnSaveEnabled = false;
+            database.Entry(dh).State = System.Data.Entity.EntityState.Modified;
+            database.SaveChanges();
+            return RedirectToAction("QuanLyDonHang", "Management");
+        }
+
+        public ActionResult DuyetDon(int id)
+        {
+            var sp = database.CTDHs.Where(s => s.IDDH == id).FirstOrDefault();
+            Session["IDSP"] = sp.IDSP;
+            return PartialView(sp);
+            //return PartialView(database.DONHANGs.Where(s => s.IDDH == id).FirstOrDefault());
+        }
     }
 }
