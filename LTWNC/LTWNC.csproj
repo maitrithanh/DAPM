@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LTWNC</RootNamespace>
     <AssemblyName>LTWNC</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -398,6 +398,9 @@
     <Content Include="Views\Management\DeleteKS.cshtml" />
     <Content Include="Views\Management\DetailsKS.cshtml" />
     <Content Include="Views\Management\EditKS.cshtml" />
+    <Content Include="Views\Profile\TrackingChitiet.cshtml" />
+    <Content Include="Views\Profile\ChitietDonHang.cshtml" />
+    <Content Include="Views\Profile\LaySPFB.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

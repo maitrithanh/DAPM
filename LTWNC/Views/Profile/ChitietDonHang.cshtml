@@ -1,0 +1,213 @@
+﻿@model LTWNC.Models.DONHANG
+@{
+    ViewBag.Title = "ChitietDonHang";
+    Layout = "~/Views/Shared/_LayoutBase.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
+<div class="row donhang">
+    <div class="col-8 tt">
+        <h4 class="title-form" style="margin:0 -12px;">CHI TIẾT ĐƠN HÀNG</h4>
+        @Html.Action("LaySPFB", "Profile", new { id = Model.IDDH })
+        <div style="" class="form-group row p-0">
+            <span class="col label-name">Số lượng</span>
+            <span class="input-form col-10" style="background-color:#fff;">@Html.DisplayFor(model => model.PHUONGTHUCTHANHTOAN)</span>
+        </div>
+        <div style="" class="form-group row p-0">
+            <span class="col label-name">Tên người nhận</span>
+            <span class="input-form col-10" style="background-color:#fff;">@Html.DisplayFor(model => model.TENNGUOINHAN)</span>
+        </div>
+        <div style="" class="form-group row p-0">
+            <span class="col label-name">Địa chi nhận</span>
+            <span class="input-form col-10" style="background-color:#fff;">@Html.DisplayFor(model => model.DIACHINHANHANG)</span>
+        </div>
+        <div>
+            <span class="dgsp">
+
+                <button name="name" id="btn-order" value="Đặt Hàng" class="feedback">
+                    <i class='bx bx-comment-detail'></i>
+                    Đánh giá
+                </button>
+            </span>
+        </div>
+    </div>
+    <div class="col-4">
+        <h4 class="quatrinh"><img src="https://cdn-icons-png.flaticon.com/512/1942/1942728.png" class="avatar-sm rounded-circle" alt=""><span style="margin-top:5px;margin-left:3px;">Quá trình giao hàng</span></h4>
+        <div class="row" style="padding:0 20px;">
+            <div class="col-6 a">
+                <div style="" class="form-group row p-0">
+                    <span class="ngay col label-name">@Html.DisplayFor(model => model.NGAYDAT)</span>
+                </div>
+            </div>
+            <div class="col-6 a">
+                <div style="" class="form-group row p-0">
+                    <span class="ngay col label-name">@Html.DisplayFor(model => model.NGAYGIAOHANG)</span>
+                </div>
+            </div>
+        </div>
+        @Html.Action("TrackingChitiet", "Profile", new { id = Model.IDDH })
+    </div>
+</div>
+<div class="parent-box-confirm">
+    <div class="box-confirm box-shadow shadow" style="z-index: 100; height: 250px; width: 500px;margin-top:100px;">
+        @Html.Action("Feadback", "Product")
+    </div>
+</div>
+<style>
+    .dgsp {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+    .feedback {
+        color: #1895ff;
+        background-color: rgb(212, 237, 245);
+        border-radius: 8px;
+    }
+
+        .feedback:hover {
+            color: #fff;
+            background-color: rgb(0, 132, 255);
+        }
+
+    .infoProduct {
+        margin: 15px 0px;
+    }
+
+    .breadcrumb-item a {
+        color: black;
+        text-decoration: none;
+    }
+
+    .donhang {
+        margin: 30px 100px 30px 100px;
+    }
+
+    .infoProduct .info img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .form-group {
+        margin: 5px;
+        /*border:none;*/
+    }
+
+    .ngay {
+        justify-content: center;
+        border: none;
+        font-size: 18px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+
+    .a {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .card-body {
+        justify-content: center;
+        display: flex;
+    }
+
+    .tt {
+        box-shadow: -6px 13px 23px #aaa;
+        border-radius: 8px;
+        padding-bottom: 25px;
+    }
+
+    .box-confirm {
+        position: absolute;
+        top: 151px;
+        right: 500px;
+        height: 200px;
+        width: 400px;
+        align-items: end;
+        display: flex;
+        padding: 20px;
+        border-radius: 8px;
+        display: none;
+    }
+
+    .parent-box-confirm {
+        display: none;
+        background: rgba(0,0,0,0.5);
+        z-index: 100;
+        top: 0;
+        height: 168%;
+        width: 100%;
+        position: absolute;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: white;
+            text-decoration: none;
+        }
+
+    .choose a {
+        color: var(--bs-link-color);
+        font-size: 17px;
+    }
+
+    .product-meta {
+        max-width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+        .product-meta:hover {
+            width: 300px;
+            white-space: normal;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+    .tong .container1 {
+        margin-top: -20px;
+    }
+
+    .feedback {
+        border: none;
+        padding: 10px 40px;
+        font-size: 18px;
+    }
+
+    .ten {
+        font-size: 22px;
+    }
+
+    .quatrinh {
+        display: flex;
+        justify-content: center;
+    }
+</style>
+<script>
+    var btnDelete = document.querySelector('#btn-order');
+    var modelBox = document.querySelector('.box-confirm');
+    var parentModelBox = document.querySelector('.parent-box-confirm');
+    var btnCancel = document.querySelector('#btn-cancel');
+
+
+    btnDelete.onclick = function () {
+        modelBox.style.display = "block";
+        parentModelBox.style.display = "block";
+    }
+
+    btnCancel.onclick = function () {
+        modelBox.style.display = "none";
+        parentModelBox.style.display = "none";
+    }
+
+</script>

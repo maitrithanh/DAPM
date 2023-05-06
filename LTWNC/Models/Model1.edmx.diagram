@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a21a30ae3e8b4cb784ba72087ef7a0d5" Name="Diagram1">
+      <Diagram DiagramId="c3dcf956411543c6a2a55bbbf3c825d7" Name="Diagram1">
         <EntityTypeShape EntityType="LTWNCModel.CHUCVU" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="LTWNCModel.CONTACT" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LTWNCModel.CTDH" Width="1.5" PointX="7.5" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="LTWNCModel.CTGIAOHANG" Width="1.5" PointX="7.5" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="LTWNCModel.CTGIAOHANG" Width="1.5" PointX="7.5" PointY="11.875" IsExpanded="true" />
         <EntityTypeShape EntityType="LTWNCModel.DANHMUC" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="LTWNCModel.DONHANG" Width="1.5" PointX="5.25" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LTWNCModel.FEEDBACK" Width="1.5" PointX="10.5" PointY="2.625" IsExpanded="true" />
