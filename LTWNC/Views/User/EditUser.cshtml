@@ -1,0 +1,78 @@
+﻿@model LTWNC.Models.KHACHHANG
+
+@{
+    ViewBag.Title = "Chỉnh Sửa Thành Viên";
+    ViewBag.Current = "QuanLyThanhVien";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+}
+
+
+<link href="~/Content/management-form.css" rel="stylesheet" />
+<script src="~/Scripts/main.js" language="JavaScript" type="text/javascript"></script>
+
+<div class="box-form">
+    @using (Html.BeginForm("EditUser", "User", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <h4 class="title-form">CHỈNH SỬA THÀNH VIÊN - @Model.HOTENKH</h4>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.HiddenFor(model => model.IDKH);
+            <div class="form-group row p-0">
+                <span class="col label-name">Họ Tên</span>
+                @Html.EditorFor(model => model.HOTENKH, new { htmlAttributes = new { @class = "input-form col-10" } })
+                @Html.ValidationMessageFor(model => model.HOTENKH, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group row p-0">
+                <span class="col label-name">Email</span>
+                @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "input-form col-10" } })
+                @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group row p-0">
+                <span class="col label-name">Giá Bán</span>
+                @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "input-form col-10" } })
+                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group row p-0">
+                <span class="col label-name">Mô Tả</span>
+                @Html.EditorFor(model => model.DIACHI, new { htmlAttributes = new { @class = "input-form col-10" } })
+                @Html.ValidationMessageFor(model => model.DIACHI, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group row p-0">
+                <span class="col label-name">Hình Sản Phẩm</span>
+                <div class="input-form col-10">
+                    @if (Model.AVATARKH == null)
+                    {
+                        <img src="~/Content/Images/No_Image_Available.jpg" class="img-create" alt="Chỉnh sửa thành viên" id="previewImg" />
+                    }
+                    else
+                    {
+                        <img src="@Url.Content(Model.AVATARKH)" class="img-create" alt="Chỉnh sửa thành viên" id="previewImg" />
+                    }
+                    <input type="file" style="display: inline; width: 60%;" name="UploadImage" onchange="ChangeImage(this, document.getElementById('previewImg'))" />
+                </div>
+                @Html.ValidationMessageFor(model => model.AVATARKH, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group row p-0">
+                <span class="col label-name">Loại Khách Hàng</span>
+                @Html.DropDownList("IDLKH", null, htmlAttributes: new { @class = "input-form col-10" })
+                @Html.ValidationMessageFor(model => model.IDLKH, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="d-flex justify-content-center form-btn">
+                <input type="submit" value="Lưu" class="btn btn-warning" style="width: 100%" />
+            </div>
+        </div>
+    }
+</div>
+<div>
+    @Html.ActionLink("Trở Lại", "ThanhVien", "Management")
+</div>
+
+@Scripts.Render("~/bundles/jquery")

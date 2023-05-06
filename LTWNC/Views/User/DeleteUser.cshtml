@@ -1,0 +1,118 @@
+﻿@model LTWNC.Models.KHACHHANG
+
+@{
+    ViewBag.Title = "DeleteUser";
+    ViewBag.Current = "QuanLyThanhVien";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+}
+
+<link href="~/Content/management-form.css" rel="stylesheet" />
+<script src="~/Scripts/main.js" language="JavaScript" type="text/javascript"></script>
+
+<div class="box-form">
+    @if (ViewBag.ErrorDelete != null)
+    {
+        <p style="color: red; text-align: center; font-size: 18px; margin: 4px; text-transform: uppercase;">@ViewBag.ErrorDelete</p>
+    }
+    <div class="form-horizontal">
+        <h4 class="title-form">XOÁ THÀNH VIÊN - @Model.HOTENKH</h4>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IDKH)
+        <div class="form-group row p-0">
+            <span class="col label-name">Mã Khách Hàng</span>
+            <p class="delete-form col-10 m-0">
+                @Html.DisplayFor(model => model.MAKH)
+            </p>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Họ Tên</span>
+            <p class="delete-form col-10 m-0">
+                @Html.DisplayFor(model => model.HOTENKH)
+            </p>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Email</span>
+            <p class="delete-form col-10 m-0">
+                @Html.DisplayFor(model => model.EMAIL)
+            </p>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Số Điện Thoại</span>
+            <p class="delete-form col-10 m-0">
+                @Html.DisplayFor(model => model.SDT)
+            </p>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Địa Chỉ</span>
+            <p class="delete-form col-10 m-0 textArea">
+                @Html.DisplayFor(model => model.DIACHI)
+            </p>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Hình Đại Diện</span>
+            <div class="input-form col-10">
+                @if (Model.AVATARKH == null)
+                {
+                    <img src="~/Content/Images/No_Image_Available.jpg" class="img-create" alt="Xoá thành viên" id="previewImg" />
+                }
+                else
+                {
+                    <img src="@Url.Content(Model.AVATARKH)" class="img-create" alt="Xoá thành viên" id="previewImg" />
+                }
+            </div>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Loại Khách Hàng</span>
+            <p class="delete-form col-10 m-0">
+                @Html.DisplayFor(model => model.LOAIKHACHHANG.TENLOAI)
+            </p>
+
+        </div>
+
+        <div class="d-flex justify-content-center form-btn">
+            <input id="btn-delete" value="Xoá" class="btn btn-danger" style="width: 100%" />
+        </div>
+    </div>
+</div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div style="background: #000">
+        <div class="box-confirm box-shadow shadow">
+            <h4>Bạn Có Chắc Chắn Xoá?</h4>
+            <hr />
+            <h3 style="color: red;">@Model.HOTENKH</h3>
+            <div class="row mt-4">
+                <input type="submit" value="Xác Nhận Xoá" class="btn btn-danger col-10" style="width: 80%" />
+                <input value="Huỷ" id="btn-cancel" class="btn btn-default col" style="width: 20%" />
+            </div>
+        </div>
+    </div>
+}
+
+@Html.ActionLink("Trở Lại", "ThanhVien", "Management")
+
+<script>
+    var btnDelete = document.querySelector('#btn-delete');
+    var modelBox = document.querySelector('.box-confirm');
+    var btnCancel = document.querySelector('#btn-cancel');
+
+
+    btnDelete.onclick = function () {
+        modelBox.style.display = "block";
+    }
+
+    btnCancel.onclick = function () {
+        modelBox.style.display = "none";
+    }
+
+</script>
