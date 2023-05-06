@@ -241,8 +241,10 @@
     <Content Include="Content\Css\style.min.css" />
     <Content Include="Content\Css\user.css" />
     <Content Include="Content\globalStyles.css" />
+    <Content Include="Content\Images\analysis.png" />
     <Content Include="Content\Images\avatar.jpg" />
     <Content Include="Content\Images\avatar.png" />
+    <Content Include="Content\Images\checklist.png" />
     <Content Include="Content\Images\email.png" />
     <Content Include="Content\Images\gian.jpg" />
     <Content Include="Content\Images\gio-nam-tham-thi.jpg" />

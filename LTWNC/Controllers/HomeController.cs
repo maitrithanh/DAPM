@@ -51,6 +51,7 @@ namespace LTWNC.Controllers
             return PartialView(database.DANHMUCs.ToList());
         }
 
+
         [HttpGet]
         public ActionResult Register()
         {
