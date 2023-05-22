@@ -425,6 +425,11 @@
     <Content Include="Views\Categories\Details.cshtml" />
     <Content Include="Views\Categories\Delete.cshtml" />
     <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Profile\DetailSPHuy.cshtml" />
+    <Content Include="Views\Profile\TrackingChitiet.cshtml" />
+    <Content Include="Views\Profile\ChitietDonHang.cshtml" />
+    <Content Include="Views\Profile\LaySPFB.cshtml" />
+    <Content Include="Views\Profile\HienDHFeedback.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

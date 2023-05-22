@@ -24,14 +24,32 @@ namespace LTWNC.Controllers
         }
         public ActionResult ListProductstatus(int id)
         {
-            var sp = database.CTDHs.Where(s => s.IDDH == id).FirstOrDefault();
-            return PartialView(sp);
+            var dem = database.CTDHs.Where(s => s.IDDH == id).ToList();
+            if (dem.Count < 1)
+            {
+                var sp = database.CTDHs.Where(s => s.IDDH == id).FirstOrDefault();
+                return PartialView(sp);
+            }
+            else
+            {
+                var dh = database.CTDHs.Where(s => s.IDDH == id).ToList();
+                return PartialView(dh);
+            }
+
         }
         public ActionResult datatable(int id)
         {
-            var sp = database.CTDHs.Where(s => s.IDDH == id).FirstOrDefault();
-            Session["IDSP"] = sp.IDSP;
-            return PartialView(sp);
+            var dem = database.CTDHs.Where(s => s.IDDH == id).ToList();
+            if (dem.Count < 1)
+            {
+                var sp = database.CTDHs.Where(s => s.IDDH == id).FirstOrDefault();
+                return PartialView(sp);
+            }
+            else
+            {
+                var dh = database.CTDHs.Where(s => s.IDDH == id).ToList();
+                return PartialView(dh);
+            }
         }
         public ActionResult Layanh(int id)
         {
@@ -41,13 +59,27 @@ namespace LTWNC.Controllers
         [HttpGet]
         public ActionResult TrangThaiCB(int id)
         {
-            var sp = database.CTDHs.Where(s => s.IDDH == id).FirstOrDefault();
-            Session["IDSP"] = sp.IDSP;
+            var dem = database.CTDHs.Where(s => s.IDDH == id).ToList();
+            if (dem.Count < 1)
+            {
+                var sp = database.CTDHs.Where(s => s.IDDH == id).FirstOrDefault();
+
+                return PartialView(sp);
+            }
+            else
+            {
+                var dh = database.CTDHs.Where(s => s.IDDH == id).ToList();
+                return PartialView(dh);
+            }
+        }
+        public ActionResult DetailSPHuy(int id)
+        {
+            var sp = database.CTDHs.Where(s => s.IDDH == id).ToList();
             return PartialView(sp);
         }
         public ActionResult CancelOrder(int id)
         {
-            return PartialView(database.DONHANGs.Where(s => s.IDDH == id).FirstOrDefault());
+            return View(database.DONHANGs.Where(s => s.IDDH == id).FirstOrDefault());
         }
         [HttpPost]
         public ActionResult CancelOrder(int id, DONHANG dh)
@@ -64,7 +96,29 @@ namespace LTWNC.Controllers
                 return Content(Convert.ToString(e));
             }
         }
-
+        public ActionResult TrackingChitiet(int? id)
+        {
+            var trackingOrder = database.CTGIAOHANGs.Where(s => s.IDDH == id).ToList();
+            return PartialView(trackingOrder);
+        }
+        public ActionResult ChitietDonHang(int id, int idsp)
+        {
+            var donhang = database.DONHANGs.Where(s => s.IDDH == id).FirstOrDefault();
+            var sp = database.CTDHs.Where(s => s.IDDH == donhang.IDDH && s.IDSP == idsp).FirstOrDefault();
+            Session["IDSP"] = sp.IDSP;
+            return View(donhang);
+        }
+        public ActionResult HienDHFeedback(int id, int idsp)
+        {
+            var sp = database.CTDHs.Where(s => s.IDDH == id && s.IDSP == idsp).FirstOrDefault();
+            Session["IDSP"] = sp.IDSP;
+            return PartialView(sp);
+        }
+        public ActionResult LaySPFB(int id, int idsp)
+        {
+            var sp = database.CTDHs.Where(s => s.IDDH == id && s.IDSP == idsp).FirstOrDefault();
+            return PartialView(sp);
+        }
 
         [HttpGet]
         public ActionResult Edit()

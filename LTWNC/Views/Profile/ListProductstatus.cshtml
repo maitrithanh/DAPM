@@ -1,34 +1,67 @@
-﻿@model LTWNC.Models.CTDH
+﻿@model  IEnumerable<LTWNC.Models.CTDH>
 <style>
 </style>
-
+@{
+    int i = 0, j = 0, q = 0;
+}
 
 <tr>
-    <td style="padding-top: 58px;">
-        @Model.IDDH
-
+    <td style="display:table-cell; vertical-align:middle; ">
+        @foreach (var item in Model)
+        {
+            @item.IDDH
+            break;
+        }
     </td>
     <td>
-        @Html.Action("InfoSPFeeback", "Product", new { id = Model.IDSP })
+        @foreach (var item in Model)
+        {
+            @Html.Action("InfoSPFeeback", "Product", new { id = item.IDSP })
+        }
 
     </td>
 
-    <td style="padding-top: 58px;">
-        @Model.SOLUONG
+    <td style="display:table-cell; vertical-align:middle;">
+        @foreach (var item in Model)
+        {
+            if (i == 0)
+            {
+                <div>@item.SOLUONG</div>
+            }
+            else
+            {
+                <div style="margin-top:115px;">@item.SOLUONG</div>
+            }
+            i++;
+        }
     </td>
-    <td style="padding-top: 58px;">
+    <td style="display:table-cell; vertical-align:middle;">
+        @foreach (var item in Model)
+        {
+            if (j == 0)
+            {
+                <div>@Convert.ToDecimal(item.THANHTIEN).ToString("N0")đ</div>
+            }
+            else
+            {
+                <div style="margin-top:115px;">@Convert.ToDecimal(item.THANHTIEN).ToString("N0")đ</div>
+            }
+            j++;
+        }
 
-        @Convert.ToDecimal(Model.THANHTIEN).ToString("N0")đ
     </td>
-    <td style="padding-top: 51px;">
+    <td style="display:table-cell; vertical-align:middle;">
 
+        @foreach (var item in Model)
+        {
+            <span class="btn btn-primary">
+                <a href="@Url.Action("ProductDetai", "Product", new { id = item.IDSP })" class="">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    Mua lại
+                </a>
+            </span>
+            break;
+        }
 
-        <span class="btn btn-primary">
-            <a href="@Url.Action("ProductDetail", "Product", new { id = Model.IDSP })" class="">
-                <i class="fa-solid fa-pen-to-square"></i>
-                Mua lại
-            </a>
-        </span>
     </td>
 </tr>
-
