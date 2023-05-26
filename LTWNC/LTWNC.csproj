@@ -406,6 +406,9 @@
     <Content Include="Views\Management\DeleteKS.cshtml" />
     <Content Include="Views\Management\DetailsKS.cshtml" />
     <Content Include="Views\Management\EditKS.cshtml" />
+    <Content Include="Views\Profile\TrackingChitiet.cshtml" />
+    <Content Include="Views\Profile\ChitietDonHang.cshtml" />
+    <Content Include="Views\Profile\LaySPFB.cshtml" />
     <Content Include="Views\Home\KhaoSat.cshtml" />
     <Content Include="Views\Product\SoLuongSP.cshtml" />
     <Content Include="Views\Home\DanhMuc.cshtml" />

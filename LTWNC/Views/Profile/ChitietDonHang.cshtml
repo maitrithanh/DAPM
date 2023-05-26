@@ -8,6 +8,10 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
+<div class="row donhang">
+    <div class="col-8 tt">
+        <h4 class="title-form" style="margin:0 -12px;">CHI TIẾT ĐƠN HÀNG</h4>
+        @Html.Action("LaySPFB", "Profile", new { id = Model.IDDH })
 @*<div style="margin:0px 20px">
     <div class="container-fluid mt-2" style="background:#e9ecef; border: 0 solid;border-radius: 8px;">
         <nav aria-label="breadcrumb" class="cancle" style="background:#e9ecef;">
@@ -23,10 +27,6 @@
         </nav>
     </div>
 </div>*@
-<div class="row donhang">
-    <div class="col-8 tt">
-        <h4 class="title-form" style="margin:0 -12px;">CHI TIẾT ĐƠN HÀNG</h4>
-        @Html.Action("LaySPFB", "Profile", new { id = Model.IDDH, idsp = Session["IDSP"] })
         <div style="" class="form-group row p-0">
             <span class="col label-name">Số lượng</span>
             <span class="input-form col-10" style="background-color:#fff;">@Html.DisplayFor(model => model.PHUONGTHUCTHANHTOAN)</span>
@@ -41,8 +41,7 @@
         </div>
         <div>
             <span class="dgsp">
-
-                <button name="name" id="btn-order" value="Đặt Hàng" class="btn btn-primary">
+                <button name="name" id="btn-order" value="Đặt Hàng" class="feedback">
                     <i class='bx bx-comment-detail'></i>
                     Đánh giá
                 </button>
@@ -50,7 +49,8 @@
         </div>
     </div>
     <div class="col-4">
-        <div class="row">
+        <h4 class="quatrinh"><img src="https://cdn-icons-png.flaticon.com/512/1942/1942728.png" class="avatar-sm rounded-circle" alt=""><span style="margin-top:5px;margin-left:3px;">Quá trình giao hàng</span></h4>
+        <div class="row" style="padding:0 20px;">
             <div class="col-6 a">
                 <div style="" class="form-group row p-0">
                     <span class="ngay col label-name">@Html.DisplayFor(model => model.NGAYDAT)</span>
@@ -98,7 +98,7 @@
     }
 
     .donhang {
-        margin: 30px 100px 100px 100px;
+        margin: 30px 100px 30px 100px;
     }
 
     .infoProduct .info img {
@@ -190,6 +190,20 @@
     .tong .container1 {
         margin-top: -20px;
     }
+    .feedback {
+        border: none;
+        padding: 10px 40px;
+        font-size: 18px;
+    }
+
+    .ten {
+        font-size: 22px;
+    }
+
+    .quatrinh {
+        display: flex;
+        justify-content: center;
+    }
 </style>
 <script>
     var btnDelete = document.querySelector('#btn-order');
@@ -209,4 +223,3 @@
     }
 
 </script>
-

@@ -156,7 +156,23 @@ namespace LTWNC.Controllers
             var trackingOrder = database.CTGIAOHANGs.Where(s => s.IDDH == id).ToList();
             return View(trackingOrder);
         }
-
+        public ActionResult TrackingChitiet(int id)
+        {
+            var trackingOrder = database.CTGIAOHANGs.Where(s => s.IDDH == id).ToList();
+            return PartialView(trackingOrder);
+        }
+        public ActionResult ChitietDonHang(int id = 2)
+        {
+            var donhang = database.DONHANGs.Where(s => s.IDDH == id).FirstOrDefault();
+            var sp = database.CTDHs.Where(s => s.IDDH == donhang.IDDH).FirstOrDefault();
+            Session["IDSP"] = sp.IDSP;
+            return View(donhang);
+        }
+        public ActionResult LaySPFB(int id = 1)
+        {
+            var sp = database.CTDHs.Where(s => s.IDDH == id).FirstOrDefault();
+            return PartialView(sp);
+        }
         [HttpGet]
         public ActionResult XacNhanDonHang(int? id)
         {

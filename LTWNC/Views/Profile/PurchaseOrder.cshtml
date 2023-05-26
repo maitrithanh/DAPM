@@ -25,15 +25,15 @@
     }
 </style>
 
-<div class="row sum" style="margin:100px">
+<div class="row sum" style="margin:50px">
     <div class="ds col-sm-3 lc">
 
         <div class="choose">
-            @if (Session["TaiKhoan"] != null)
+            @*@if (Session["TaiKhoan"] != null)
                 {
-                    LTWNC.Models.KHACHHANG taikhoan = Session["TaiKhoan"] as LTWNC.Models.KHACHHANG;
+                    CNPMNC.Models.KHACHHANG taikhoan = Session["TaiKhoan"] as CNPMNC.Models.KHACHHANG;
                     @Html.Action("Layanh", "Profile", new { id = taikhoan.IDKH });
-                }
+                }*@
 
             <i class="ti-info-alt" style="color:#007bff; margin-right:5px;"></i>Tài khoản của tôi
 
@@ -291,4 +291,8 @@
 
 <link rel="stylesheet" href="~/Content/Css/purchaseOrder.css" />
 
-
+<style>
+    .bnt:hover{
+        color:white;
+    }
+</style>
