@@ -150,7 +150,7 @@
           <Property Name="MATKHAU" Type="nvarchar(max)" Nullable="false" />
           <Property Name="VAITRO" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK__CTDH__IDDH__4D94879B">
+        <Association Name="FK__CTDH__IDDH__628FA481">
           <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
           <End Role="CTDH" Type="Self.CTDH" Multiplicity="*" />
           <ReferentialConstraint>
@@ -162,7 +162,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CTDH__IDSP__4E88ABD4">
+        <Association Name="FK__CTDH__IDSP__6383C8BA">
           <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
           <End Role="CTDH" Type="Self.CTDH" Multiplicity="*" />
           <ReferentialConstraint>
@@ -174,7 +174,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DONHANG__IDKH__5070F446">
+        <Association Name="FK__DONHANG__IDKH__656C112C">
           <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
           <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
           <ReferentialConstraint>
@@ -285,15 +285,15 @@
           <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__CTDH__IDDH__4D94879B" Association="Self.FK__CTDH__IDDH__4D94879B">
+          <AssociationSet Name="FK__CTDH__IDDH__628FA481" Association="Self.FK__CTDH__IDDH__628FA481">
             <End Role="DONHANG" EntitySet="DONHANG" />
             <End Role="CTDH" EntitySet="CTDH" />
           </AssociationSet>
-          <AssociationSet Name="FK__CTDH__IDSP__4E88ABD4" Association="Self.FK__CTDH__IDSP__4E88ABD4">
+          <AssociationSet Name="FK__CTDH__IDSP__6383C8BA" Association="Self.FK__CTDH__IDSP__6383C8BA">
             <End Role="SANPHAM" EntitySet="SANPHAM" />
             <End Role="CTDH" EntitySet="CTDH" />
           </AssociationSet>
-          <AssociationSet Name="FK__DONHANG__IDKH__5070F446" Association="Self.FK__DONHANG__IDKH__5070F446">
+          <AssociationSet Name="FK__DONHANG__IDKH__656C112C" Association="Self.FK__DONHANG__IDKH__656C112C">
             <End Role="KHACHHANG" EntitySet="KHACHHANG" />
             <End Role="DONHANG" EntitySet="DONHANG" />
           </AssociationSet>
@@ -359,8 +359,8 @@
           <Property Name="SOLUONG" Type="Int32" />
           <Property Name="DONGIA" Type="Decimal" Precision="9" Scale="2" />
           <Property Name="THANHTIEN" Type="Decimal" Precision="20" Scale="2" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="DONHANG" Relationship="Self.FK__CTDH__IDDH__4D94879B" FromRole="CTDH" ToRole="DONHANG" />
-          <NavigationProperty Name="SANPHAM" Relationship="Self.FK__CTDH__IDSP__4E88ABD4" FromRole="CTDH" ToRole="SANPHAM" />
+          <NavigationProperty Name="DONHANG" Relationship="Self.FK__CTDH__IDDH__628FA481" FromRole="CTDH" ToRole="DONHANG" />
+          <NavigationProperty Name="SANPHAM" Relationship="Self.FK__CTDH__IDSP__6383C8BA" FromRole="CTDH" ToRole="SANPHAM" />
         </EntityType>
         <EntityType Name="CTGIAOHANG">
           <Key>
@@ -394,9 +394,9 @@
           <Property Name="TRANGTHAIGH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TENNGUOINHAN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NGAYGIAOHANG" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="CTDHs" Relationship="Self.FK__CTDH__IDDH__4D94879B" FromRole="DONHANG" ToRole="CTDH" />
+          <NavigationProperty Name="CTDHs" Relationship="Self.FK__CTDH__IDDH__628FA481" FromRole="DONHANG" ToRole="CTDH" />
           <NavigationProperty Name="CTGIAOHANGs" Relationship="Self.FK_CTGIAOHANG_DONHANG" FromRole="DONHANG" ToRole="CTGIAOHANG" />
-          <NavigationProperty Name="KHACHHANG" Relationship="Self.FK__DONHANG__IDKH__5070F446" FromRole="DONHANG" ToRole="KHACHHANG" />
+          <NavigationProperty Name="KHACHHANG" Relationship="Self.FK__DONHANG__IDKH__656C112C" FromRole="DONHANG" ToRole="KHACHHANG" />
         </EntityType>
         <EntityType Name="FEEDBACK">
           <Key>
@@ -422,7 +422,7 @@
           <Property Name="DIACHI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="AVATARKH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IDLKH" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="DONHANGs" Relationship="Self.FK__DONHANG__IDKH__5070F446" FromRole="KHACHHANG" ToRole="DONHANG" />
+          <NavigationProperty Name="DONHANGs" Relationship="Self.FK__DONHANG__IDKH__656C112C" FromRole="KHACHHANG" ToRole="DONHANG" />
           <NavigationProperty Name="FEEDBACKs" Relationship="Self.FK_FEEDBACK_KHACHHANG" FromRole="KHACHHANG" ToRole="FEEDBACK" />
           <NavigationProperty Name="LOAIKHACHHANG" Relationship="Self.FK_KHACHHANG_LOAIKHACHHANG" FromRole="KHACHHANG" ToRole="LOAIKHACHHANG" />
         </EntityType>
@@ -482,7 +482,7 @@
           <Property Name="HINHSP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IDDANHMUC" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="IDNV" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="CTDHs" Relationship="Self.FK__CTDH__IDSP__4E88ABD4" FromRole="SANPHAM" ToRole="CTDH" />
+          <NavigationProperty Name="CTDHs" Relationship="Self.FK__CTDH__IDSP__6383C8BA" FromRole="SANPHAM" ToRole="CTDH" />
           <NavigationProperty Name="DANHMUC" Relationship="Self.FK_SANPHAM_DANHMUC" FromRole="SANPHAM" ToRole="DANHMUC" />
           <NavigationProperty Name="FEEDBACKs" Relationship="Self.FK_FEEDBACK_SANPHAM" FromRole="SANPHAM" ToRole="FEEDBACK" />
           <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_SANPHAM_NHANVIEN" FromRole="SANPHAM" ToRole="NHANVIEN" />
@@ -508,7 +508,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CTDH__IDDH__4D94879B">
+        <Association Name="FK__CTDH__IDDH__628FA481">
           <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
           <End Role="CTDH" Type="Self.CTDH" Multiplicity="*" />
           <ReferentialConstraint>
@@ -520,7 +520,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CTDH__IDSP__4E88ABD4">
+        <Association Name="FK__CTDH__IDSP__6383C8BA">
           <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
           <End Role="CTDH" Type="Self.CTDH" Multiplicity="*" />
           <ReferentialConstraint>
@@ -556,7 +556,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DONHANG__IDKH__5070F446">
+        <Association Name="FK__DONHANG__IDKH__656C112C">
           <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
           <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
           <ReferentialConstraint>
@@ -635,11 +635,11 @@
             <End Role="CHUCVU" EntitySet="CHUCVUs" />
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
           </AssociationSet>
-          <AssociationSet Name="FK__CTDH__IDDH__4D94879B" Association="Self.FK__CTDH__IDDH__4D94879B">
+          <AssociationSet Name="FK__CTDH__IDDH__628FA481" Association="Self.FK__CTDH__IDDH__628FA481">
             <End Role="DONHANG" EntitySet="DONHANGs" />
             <End Role="CTDH" EntitySet="CTDHs" />
           </AssociationSet>
-          <AssociationSet Name="FK__CTDH__IDSP__4E88ABD4" Association="Self.FK__CTDH__IDSP__4E88ABD4">
+          <AssociationSet Name="FK__CTDH__IDSP__6383C8BA" Association="Self.FK__CTDH__IDSP__6383C8BA">
             <End Role="SANPHAM" EntitySet="SANPHAMs" />
             <End Role="CTDH" EntitySet="CTDHs" />
           </AssociationSet>
@@ -651,7 +651,7 @@
             <End Role="DANHMUC" EntitySet="DANHMUCs" />
             <End Role="SANPHAM" EntitySet="SANPHAMs" />
           </AssociationSet>
-          <AssociationSet Name="FK__DONHANG__IDKH__5070F446" Association="Self.FK__DONHANG__IDKH__5070F446">
+          <AssociationSet Name="FK__DONHANG__IDKH__656C112C" Association="Self.FK__DONHANG__IDKH__656C112C">
             <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
             <End Role="DONHANG" EntitySet="DONHANGs" />
           </AssociationSet>

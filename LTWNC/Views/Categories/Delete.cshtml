@@ -1,0 +1,38 @@
+﻿@model LTWNC.Models.DANHMUC
+
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+}
+
+<div style="margin: 10px auto; width: 70%;">
+    <h3 style="text-align:center">
+        BẠN CÓ CHẮC CHẮN MUỐN XÓA DANH MỤC NÀY?
+    </h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                MÃ DANH MỤC
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.IDDANHMUC)
+            </dd>
+            <dt>
+                TÊN DANH MỤC
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TENDANHMUC)
+            </dd>
+        </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.ID)
+            <div class="form-actions no-color">
+                <input type="submit" value="XÓA" class="btn btn-danger" /> |
+                @Html.ActionLink("TRỞ LẠI", "Index")
+            </div>
+        }
+    </div>
+</div>

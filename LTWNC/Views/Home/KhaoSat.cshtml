@@ -1,0 +1,50 @@
+﻿@{ ViewBag.Title = "Khảo Sát";
+    Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+}
+
+<!-- Contact Start -->
+<div class="container-fluid pt-5">
+    <div class="text-center mb-4">
+        <h2 class="section-title px-5"><span class="px-2">Trả lời khảo sát của chúng tôi</span></h2>
+        @if (ViewBag.Msg != null)
+        {
+            <div class="green">
+                <p><strong style="color : green">Trả lời khảo sát thành công</strong></p>
+            </div>
+        }
+
+    </div>
+    <div class="row px-xl-5">
+        <div class="col-lg-3 mb-5">
+        </div>
+        <div class="col-lg-6 mb-5">
+            @using (Html.BeginForm("KhaoSat", "Home"))
+            {
+                @Html.ValidationSummary(true)
+                <div class="contact-form">
+                    <div id="success"></div>
+                    <div class="control-group">
+                        <p>Tên khảo sát : @ViewBag.KhaoSat.TENKHAOSAT</p>
+                    </div>
+                    <div class="control-group">
+                        <p>Nội dung : @ViewBag.KhaoSat.NOIDUNG</p>
+                    </div>
+                    <input type="hidden" name="IDKHAOSAT" value=" @ViewBag.KhaoSat.IDKHAOSAT" />
+                    <div class="control-group">
+                        <textarea class="form-control" rows="6" id="message" name="TRALOI" placeholder="Nhập câu trả lời của bạn"
+                                  required></textarea>
+                        <p class="help-block text-danger"></p>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton">
+                            Gửi trả lời
+                        </button>
+                    </div>
+                </div>}
+
+        </div>
+        <div class="col-lg-3 mb-5">
+        </div>
+    </div>
+</div>
+<!-- Contact End -->

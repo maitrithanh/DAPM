@@ -1,0 +1,84 @@
+﻿@using LTWNC.Models
+@model List<CartItem>
+@{
+    ViewBag.Title = "Thông tin đơn hàng";
+    Layout = "~/Views/Shared/_LayoutBase.cshtml";
+    KHACHHANG customer = Session["TaiKhoan"] as KHACHHANG;
+}
+<link href="~/Content/management-form.css" rel="stylesheet" />
+
+<style>
+    .box-confirmed {
+        padding: 16px;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        grid-template-columns: 50%;
+    }
+</style>
+
+<div class="box-white box-confirmed">
+    @if (customer.IDKH == 0)
+    {
+        <div class="box-form" style="padding: 8px;">
+            <p style="color: red; text-align: center; font-size: 26px;">Bạn Chưa Có tài Khoản Bạn Có Muốn Đăng Ký Tài Khoản Bằng Thông Tin Bạn Đã Nhập Không?</p>
+            <p><span style="color: red;">*</span>Nếu bạn không muốn đăng ký tài khoản, bạn nhấn xác nhận đơn hàng phía dưới để hoàn tất.</p>
+            @Html.ActionLink("Đăng Ký Tài Khoản", "Register", "Home", null, new { @class = "btn btn-primary fullWidth" })
+        </div>
+    }
+    <h2 style="text-align:center">Thông Tin Đơn Hàng</h2>
+    <table class="table table-bordered">
+        <tr>
+            <td>Họ tên khách hàng: </td>
+            <td>@customer.HOTENKH</td>
+        </tr>
+        <tr>
+            <td>Số điện thoại: </td>
+            <td>@customer.SDT</td>
+        </tr>
+        <tr>
+            <td>Ngày đặt: </td>
+            <td>@DateTime.Now.ToShortDateString()</td>
+        </tr>
+        <tr>
+            <td>Địa chỉ giao hàng: </td>
+            <td>@customer.DIACHI</td>
+        </tr>
+    </table>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>MÃ SẢN PHẨM</th>
+                <th>TÊN SẢN PHẨM</th>
+                <th>ẢNH</th>
+                <th>SỐ LƯỢNG</th>
+                <th>ĐƠN GIÁ</th>
+                <th>THÀNH TIỀN</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.IDSP</td>
+                    <td>@product.TENSP</td>
+                    <td><img src="@Url.Content(product.HINHANHSP)" style="width:100px" /></td>
+                    <td>@product.SOLUONG</td>
+                    <td>@Convert.ToDecimal(product.DONGIA).ToString("N0")đ</td>
+                    <td>@Convert.ToDecimal(product.THANHTIEN()).ToString("N0")đ</td>
+                </tr>
+            }
+            <tr style="font-weight:bold; text-align:right; color:red;">
+                <td colspan="4">Tổng số lượng: @ViewBag.TotalNumber</td>
+                <td colspan="5">Tổng tiền: @Convert.ToDecimal(ViewBag.TotalPrice).ToString("N0")đ</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="">
+        <tr>
+            <td colspan="2" style="text-align: center;">
+                @Html.ActionLink("Xác Nhận Đơn Hàng", "AgreeCart", null, new { @class = "btn btn-success fullWidth" })
+            </td>
+        </tr>
+    </table>
+</div>

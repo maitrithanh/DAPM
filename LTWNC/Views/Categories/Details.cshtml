@@ -1,0 +1,35 @@
+﻿@model LTWNC.Models.DANHMUC
+
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+}
+
+<div style="margin: 10px auto; width: 70%;" />
+<h2 style="text-align: center">CHI TIẾT DANH MỤC</h2>
+<div>
+    <h4>THÔNG TIN CHI TIẾT</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            MÃ DANH MỤC
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IDDANHMUC)
+        </dd>
+        <dt>
+            TÊN DANH MỤC
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TENDANHMUC)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new
+    {
+    @class = "btn btn-success"
+    }) |
+    @Html.ActionLink("TRỞ LẠI", "Index")
+</p>
+

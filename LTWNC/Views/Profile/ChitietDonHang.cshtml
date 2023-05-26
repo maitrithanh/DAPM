@@ -8,11 +8,25 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-
 <div class="row donhang">
     <div class="col-8 tt">
         <h4 class="title-form" style="margin:0 -12px;">CHI TIẾT ĐƠN HÀNG</h4>
         @Html.Action("LaySPFB", "Profile", new { id = Model.IDDH })
+@*<div style="margin:0px 20px">
+    <div class="container-fluid mt-2" style="background:#e9ecef; border: 0 solid;border-radius: 8px;">
+        <nav aria-label="breadcrumb" class="cancle" style="background:#e9ecef;">
+            <ol class="breadcrumb tlai" style="padding-top: 14px;">
+                <li class="breadcrumb-item" style="display: flex">
+                    <img src="~/Content/Images/home.png" class="img-icon" alt="" width="20" height="20" style="margin-right: 2px" />
+                    <a href="/TrangChu/TrangChu"> Trang chủ</a>
+                </li>
+                <li class="breadcrumb-item"><a href="/Profile/Edit">Tài khoản của tôi</a></li>
+                <li class="breadcrumb-item"><a href="/Profile/PurchaseOrder">Đơn hàng</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> @Model.IDDH</li>
+            </ol>
+        </nav>
+    </div>
+</div>*@
         <div style="" class="form-group row p-0">
             <span class="col label-name">Số lượng</span>
             <span class="input-form col-10" style="background-color:#fff;">@Html.DisplayFor(model => model.PHUONGTHUCTHANHTOAN)</span>
@@ -27,7 +41,6 @@
         </div>
         <div>
             <span class="dgsp">
-
                 <button name="name" id="btn-order" value="Đặt Hàng" class="feedback">
                     <i class='bx bx-comment-detail'></i>
                     Đánh giá
@@ -177,7 +190,6 @@
     .tong .container1 {
         margin-top: -20px;
     }
-
     .feedback {
         border: none;
         padding: 10px 40px;

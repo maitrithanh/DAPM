@@ -1,38 +1,71 @@
-﻿@model LTWNC.Models.CTDH
+﻿
+@model  IEnumerable<LTWNC.Models.CTDH>
 <style>
 </style>
+@{
+    int i = 0, j = 0, q = 0;
+}
+
 <tr>
-    <td style="padding-top: 58px;">
-        @Model.IDDH
+    <td style="display:table-cell; vertical-align:middle; ">
+        @foreach (var item in Model)
+        {
+            @item.IDDH
+            break;
+        }
     </td>
     <td>
-        @Html.Action("InfoSPFeeback", "Product", new { id = Model.IDSP })
-    </td>
-    <td style="padding-top: 58px;">
-        @Model.SOLUONG
-    </td>
-    <td style="padding-top: 58px;">
-        @Convert.ToDecimal(Model.THANHTIEN).ToString("N0")đ
-    </td>
-    <td style="padding-top: 51px;">
-        <button type="button" class="btn  btn-primary" data-toggle="modal" data-target="#myModal">Hủy đơn</button>
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" style="float:left;">Hủy đơn</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Bạn muốn hủy đơn hàng này?</p>
+        @foreach (var item in Model)
+        {
+            @Html.Action("InfoSPFeeback", "Product", new { id = item.IDSP })
+        }
 
-                    </div>
-                    <div class="modal-footer">
-                        @Html.Action("CancelOrder", "Profile", new { id = Model.IDDH })
-                    </div>
-                </div>
-            </div>
-        </div>
+    </td>
+
+    <td style="display:table-cell; vertical-align:middle;">
+        @foreach (var item in Model)
+        {
+            if (i == 0)
+            {
+                <div>@item.SOLUONG</div>
+            }
+            else
+            {
+                <div style="margin-top:115px;">@item.SOLUONG</div>
+            }
+            i++;
+        }
+    </td>
+    <td style="display:table-cell; vertical-align:middle;">
+        @foreach (var item in Model)
+        {
+            if (j == 0)
+            {
+                <div>@Convert.ToDecimal(item.THANHTIEN).ToString("N0")đ</div>
+            }
+            else
+            {
+                <div style="margin-top:115px;">@Convert.ToDecimal(item.THANHTIEN).ToString("N0")đ</div>
+            }
+            j++;
+        }
+
+    </td>
+    <td style="display:table-cell; vertical-align:middle;">
+
+        @foreach (var item in Model)
+        {
+
+            <span class="btn btn-danger">
+                <a href="@Url.Action("CancelOrder", "Profile", new { id = item.IDDH})" class="">
+                    <i class='bx bx-message-square-x'></i>
+                    Hủy đơn
+                </a>
+
+            </span>
+            break;
+        }
+
     </td>
 </tr>
-
 

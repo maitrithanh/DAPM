@@ -26,9 +26,11 @@
                         <i class="fa-solid fa-boxes-stacked"></i> Quản Lý Sản Phẩm
                     </a>
                 </li>
-
-                <li>
-                    <a href="/Management/QuanLyDonHang"><i class="fa-solid fa-box"></i> Quản Lý Đơn Hàng</a>
+                <li class="@(ViewBag.Current == "QuanLyDonHang" ? "active" : "")">
+                    <a href="@Url.Action("QuanLyDonHang", "Management")">
+                        <i class="fa-solid fa-boxes-stacked"></i> Quản Lý Đơn Hàng
+                    </a>
+                </li>
                 <li class="@(ViewBag.Current == "QuanLyThanhVien" ? "active" : "")">
                     <a href="@Url.Action("ThanhVien", "Management")">
                         <i class="fa-solid fa-user"></i> Quản Lý Thành Viên
@@ -76,19 +78,14 @@
 
                         <div class="p-2 bd-highlight">
                             <div style="background: rgb(128, 128, 128, 0.2);border-radius: 14px; display: flex;">
-                                @{LTWNC.Models.KHACHHANG user = Session["TaiKhoan"] as LTWNC.Models.KHACHHANG;}
                                 @{ LTWNC.Models.NHANVIEN nv = Session["NhanVien"] as LTWNC.Models.NHANVIEN;}
-                                @if (user == null || nv == null)
+                                @if (nv == null)
                                 {
                                     <img src="~/Content/Images/avatar.jpg" alt="avatar" style="border-radius: 9999px; width: 45px; padding: 5px;" />
                                 }
                                 else
                                 {
-                                    if (user.AVATARKH != null)
-                                    {
-                                        <img src="@Url.Content(user.AVATARKH)" alt="avatar" style="border-radius: 9999px; width: 45px; padding: 5px;" />
-                                    }
-                                    else if (nv.AVATARNV != null)
+                                    if (nv.AVATARNV != null)
                                     {
                                         <img src="@Url.Content(nv.AVATARNV)" alt="avatar" style="border-radius: 9999px; width: 45px; padding: 5px;" />
                                     }
@@ -98,13 +95,9 @@
                                     }
                                 }
                                 <p style="margin: 0; padding-right: 6px">
-                                    @if (user == null)
+                                    @if (nv != null)
                                     {
                                         @nv.HOTENNV
-                                    }
-                                    else
-                                    {
-                                        @user.HOTENKH
                                     }
                                 </p>
                             </div>

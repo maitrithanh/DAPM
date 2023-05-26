@@ -208,6 +208,12 @@ namespace LTWNC.Controllers
             }
             return PartialView();
         }
+        public ActionResult SoLuongSP()
+        {
+            var sp = database.SANPHAMs.ToList();
+            return PartialView(sp);
+        }
+
         public ActionResult InfoSPFeeback(int id)
         {
             var sp = database.SANPHAMs.Where(s => s.IDSP == id).FirstOrDefault();
