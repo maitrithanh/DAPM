@@ -58,7 +58,7 @@ namespace CNPMNC.Controllers
             }
             return RedirectToAction("Login");
         }
-        
+
         [HttpGet]
         public ActionResult EditUser(int? id)
         {
@@ -141,6 +141,12 @@ namespace CNPMNC.Controllers
         public ActionResult DetailUser(int id)
         {
             return View(database.KHACHHANGs.Where(kh => kh.IDKH == id).FirstOrDefault());
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            return Redirect("Home/Index");
         }
     }
 }
