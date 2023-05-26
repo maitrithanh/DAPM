@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -189,6 +189,11 @@ namespace CNPMNC.Controllers
 
             var nv = database.KHAOSATs.Where(s => s.IDKHAOSAT == id).FirstOrDefault();
             return View(nv);
+        }
+
+        public ActionResult test()
+        {
+            return View();
         }
     }
 }
