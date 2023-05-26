@@ -7,10 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using LTWNC.Models;
 
-
 namespace CNPMNC.Controllers
 {
-
     public class ManagementController : Controller
     {
         LTWNCEntities database = new LTWNCEntities();
@@ -305,6 +303,7 @@ namespace CNPMNC.Controllers
             var sp = database.CTDHs.Where(s => s.IDDH == id).ToList();
             //Session["IDSP"] = sp.IDSP;
             return PartialView(sp);
+        }
         public ActionResult test()
         {
             return View();
