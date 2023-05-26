@@ -30,6 +30,7 @@ namespace LTWNC.Models
         public string TRANGTHAIGH { get; set; }
         public string TENNGUOINHAN { get; set; }
         public Nullable<System.DateTime> NGAYGIAOHANG { get; set; }
+        public Nullable<bool> ViewStatus { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTDH> CTDHs { get; set; }

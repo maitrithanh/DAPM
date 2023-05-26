@@ -51,6 +51,10 @@ namespace LTWNC.Controllers
             return PartialView(database.DANHMUCs.ToList());
         }
 
+        public ActionResult DanhMucFooter()
+        {
+            return PartialView(database.DANHMUCs.ToList());
+        }
 
         [HttpGet]
         public ActionResult Register()

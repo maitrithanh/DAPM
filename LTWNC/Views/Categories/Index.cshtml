@@ -7,42 +7,85 @@
     Layout = "~/Views/Shared/_LayoutManagement.cshtml";
 }
 
-<div style="margin: 10px auto; width: 70%;">
-    <h2 style="text-align: center">THÔNG TIN DANH MỤC</h2>
-    <p>
-        @Html.ActionLink("TẠO MỚI", "Create", null, new
-        {
-            @class = "btn btn-primary"
-        })
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                MÃ DANH MỤC
-            </th>
-            <th>
-                TÊN DANH MỤC
-            </th>
-            <th>
-                LỆNH
-            </th>
-        </tr>
-        @foreach (var item in Model)
-        {
+<p class="btn btn-success">
+    @Html.ActionLink("Tạo mới", "Create", "Categories")
+</p>
+
+<div class="box-section-content">
+    <table id="example" class="table table-striped" style="width:100%;">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IDDANHMUC)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TENDANHMUC)
-                </td>
-                <td>
-                    @Html.ActionLink("Sửa", "Edit", new { id = item.ID }, new { @class = "btn btn-success" }) |
-                    @Html.ActionLink("Chi tiết", "Details", new { id = item.ID }, new { @class = "btn btn-primary" }) |
-                    @Html.ActionLink("Xóa", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
-                </td>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Mã Danh Mục
+                </th>
+                <th>
+                    Tên Danh Mục
+                </th>
+
+                <th></th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IDDANHMUC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TENDANHMUC)
+                    </td>
+                    <td>
+                        <span class="btn btn-warning">
+                            <a href="@Url.Action("Edit", "Categories", new { id = item.ID })" class="">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                Chỉnh Sửa
+                            </a>
+                        </span>
+
+                        <span class="btn btn-primary">
+                            <a href="@Url.Action("Details", "Categories", new { id = item.ID })" class="">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                Chi Tiết
+                            </a>
+                        </span>
+
+                        <span class="btn btn-danger">
+                            <a href="@Url.Action("Delete", "Categories", new { id = item.ID })" class="">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                Xoá
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Mã Danh Mục
+                </th>
+                <th>
+                    Tên Danh Mục
+                </th>
+                <th></th>
+            </tr>
+        </tfoot>
     </table>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
 
