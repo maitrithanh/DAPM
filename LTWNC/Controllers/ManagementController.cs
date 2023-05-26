@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -192,8 +192,6 @@ namespace CNPMNC.Controllers
             return View(nv);
         }
 
-
-
         //Quản lý đơn hàng (admin)
         public ActionResult QuanLyDonHang()
         {
@@ -307,6 +305,9 @@ namespace CNPMNC.Controllers
             var sp = database.CTDHs.Where(s => s.IDDH == id).ToList();
             //Session["IDSP"] = sp.IDSP;
             return PartialView(sp);
+        public ActionResult test()
+        {
+            return View();
         }
     }
 }

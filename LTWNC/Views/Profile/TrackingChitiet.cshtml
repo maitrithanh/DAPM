@@ -130,7 +130,7 @@
 
 
 <div class=" mx-auto">
-    <div class="card">
+    <div class="card" style="border:none;">
         <div class="card-body">
             <h4 class="header-title mb-4"></h4>
             <ul class="list-unstyled activity-wid mb-0" style="margin-left:100px;">
@@ -161,6 +161,7 @@
                                 <h5 class="font-size-15 mb-1">@item.VITRIGIAO</h5>
                                 <p class="text-muted font-size-14 mb-0">
                                     <i class="fa fa-calendar font-size-15 text-primary"></i>
+                                    @*@Html.DisplayFor(modelItem => item.NGAYCAPNHAT)*@
                                     @Html.DisplayFor(modelItem => item.NGAYCAPNHAT)
                                 </p>
                             </div>
