@@ -172,7 +172,7 @@ namespace LTWNC.Controllers
             DonHang.TRANGTHAIDH = 1;
             DonHang.PHUONGTHUCTHANHTOAN = Convert.ToString(Session["Pttt"]);
             DonHang.DIACHINHANHANG = khach.DIACHI;
-            DonHang.TRANGTHAIGH = "1";
+            DonHang.TRANGTHAIGH = "0";
             DonHang.TENNGUOINHAN = khach.HOTENKH;
             database.DONHANGs.Add(DonHang);
             database.SaveChanges();

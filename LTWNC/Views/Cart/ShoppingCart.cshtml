@@ -126,6 +126,8 @@
                             <h5 class="font-weight-bold">@Convert.ToDecimal(ViewBag.TotalPrice).ToString("N0")đ</h5>
                         </div>
                         @*Bấm thanh toán chuyển sang trang Thanh Toán*@
+                        @using (Html.BeginForm("ConfirmCart", "Cart", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
                         <div class="card border-secondary mb-5">
                             <div class="card-header bg-secondary border-0">
                                 <h4 class="font-weight-semi-bold m-0">Phương thức thanh toán</h4>
@@ -137,7 +139,9 @@
                                 <option>VNPay</option>
                             </select>
                         </div>
+                        
                         @Html.ActionLink("Tiến hành thanh toán", "ConfirmCart", null, new { @class = "btn btn-block btn-primary my-3 py-3" })
+                         }
                     </div>
                 </div>
             }

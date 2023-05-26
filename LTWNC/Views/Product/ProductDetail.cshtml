@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = @Html.DisplayFor(model => model.TENSP);
-    Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+    Layout = "~/Views/Shared/_LayoutBase.cshtml";
 }
 
 <link rel="stylesheet" href="~/Content/css/productDetail.css" />
@@ -18,6 +18,12 @@
     .chitiet a {
         color: var(--bs-link-color);
         font-size: 17px;
+    }
+    .dobong {
+        border-radius: 8px;
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15) !important;
+        /* padding: 10px; */
+        margin-bottom: 20px;
     }
 </style>
 @*<div style="margin:0px 20px">
