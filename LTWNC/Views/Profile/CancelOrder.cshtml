@@ -1,86 +1,193 @@
 ﻿@model LTWNC.Models.DONHANG
 
-@using (Html.BeginForm("CancelOrder", "Profile", FormMethod.Post, new { @enctype = "multipart/form-data" }))
-{
-    <div style="display:none;">
+@{
+    ViewBag.Title = "Hủy Đơn";
+    Layout = "~/Views/Shared/_LayoutBase.cshtml";
+}
 
-        @Html.AntiForgeryToken()
+<link rel="stylesheet" href="~/Content/Css/profile.css" />
+<link rel="stylesheet" href="~/Content/bootstrap.min.css">
+<link href="~/Content/management-form.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/Scripts/main.js" language="JavaScript" type="text/javascript"></script>
+<style>
+    .can {
+        width: 100%;
+    }
 
-        <div class="form-horizontal">
-            <h4>DONHANG</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.IDDH)
+    .thongtinNH {
+    }
+</style>
+<div class="row sum" style="margin:100px">
+    <div class="ds col-sm-3 lc">
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.IDKH, "IDKH", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.IDKH, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.IDKH, "", new { @class = "text-danger" })
-                </div>
+        <div class="choose">
+            <div style="margin-top:22px;">
+                @if (Model.KHACHHANG.AVATARKH == null)
+                {
+                    <i class="ti-user" style="border:1px solid gray; border-radius:50%;padding: 20px;margin-right: 5px;"></i>
+                }
+                else
+                {
+                    <img src="@Url.Content(Model.KHACHHANG.AVATARKH)" style="border-radius:50%;margin-right: 5px;width:60px;height:60px;margin-top:-15px" />
+                }
+                <span>@Html.DisplayFor(model => model.KHACHHANG.HOTENKH)</span> <br />
+
             </div>
+            <i class="ti-info-alt" style="color:#007bff; margin-right:5px;"></i>Tài khoản của tôi
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.NGAYDAT, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.NGAYDAT, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.NGAYDAT, "", new { @class = "text-danger" })
-                </div>
+            <div class="tk"><a href="/Profile/EditProfile" style="color:gray;text-decoration:none;">Hồ sơ</a></div>
+            <div class="tk" style="margin-top:-21px;margin-right:5px;"><a href="#" style="color:gray;text-decoration:none;">Đổi mật khẩu</a> </div>
+            <div>
+                <i class="ti-clipboard" style="color:#007bff;margin-right:5px;"></i><a href="/Profile/PurchaseOrder" style="color:black;text-decoration:none;">Đơn hàng</a>
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.TRANGTHAIDH, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TRANGTHAIDH, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TRANGTHAIDH, "", new { @class = "text-danger" })
-                </div>
+            <div>
+                <i class="ti-clipboard" style="color:#007bff;margin-right:5px;"></i><a href="/Profile/Tracking" style="color:black;text-decoration:none;">Theo dõi đơn hàng</a>
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PHUONGTHUCTHANHTOAN, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PHUONGTHUCTHANHTOAN, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PHUONGTHUCTHANHTOAN, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.DIACHINHANHANG, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.DIACHINHANHANG, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DIACHINHANHANG, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.TRANGTHAIGH, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <input class="form-control text-box single-line" id="TRANGTHAIGH" name="TRANGTHAIGH" type="text" value="4">
-                    @Html.ValidationMessageFor(model => model.TRANGTHAIGH, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.TENNGUOINHAN, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TENNGUOINHAN, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TENNGUOINHAN, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.NGAYGIAOHANG, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.NGAYGIAOHANG, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.NGAYGIAOHANG, "", new { @class = "text-danger" })
-                </div>
+            <div>
+                <i class="ti-bell" style="color: #ee4d2d;margin-right:5px;"></i><a href="#" style="color:black;text-decoration:none;">Thông báo</a>
             </div>
         </div>
-
     </div>
+    <div class="info col-sm-9" style="background-color:white; padding:20px;box-shadow: 10px 8px 50px #aaa;border-radius:8px;">
 
-    <div class="">
-        <input type="submit" value="Hủy đơn" class="btn btn-primary" />
-        <button type="button" class="btn btn-default" data-dismiss="modal">Trở lại</button>
+
+        @using (Html.BeginForm("CancelOrder", "Profile", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "can" }))
+        {
+            <div style="display:none;">
+
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>DONHANG</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.IDDH)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IDKH, "IDKH", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.IDKH, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.IDKH, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NGAYDAT, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NGAYDAT, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.NGAYDAT, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TRANGTHAIDH, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.TRANGTHAIDH, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TRANGTHAIDH, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PHUONGTHUCTHANHTOAN, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.PHUONGTHUCTHANHTOAN, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PHUONGTHUCTHANHTOAN, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DIACHINHANHANG, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DIACHINHANHANG, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DIACHINHANHANG, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    @*shfsdhf*@
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TRANGTHAIGH, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" id="TRANGTHAIGH" name="TRANGTHAIGH" type="text" value="4">
+                            @Html.ValidationMessageFor(model => model.TRANGTHAIGH, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TENNGUOINHAN, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.TENNGUOINHAN, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TENNGUOINHAN, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NGAYGIAOHANG, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NGAYGIAOHANG, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.NGAYGIAOHANG, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <h4 class="title-form" style="margin: -20px -20px 0 -20px;">HỦY ĐƠN HÀNG</h4>
+            @Html.Action("DetailSPHuy", "Profile", new { id = Model.IDDH })
+            <div style="border:1px #e3ebf6 solid"></div>
+            <h4 style="color:#4285f4; margin:20px; display:flex; justify-content:center;">CHI TIẾT NHẬN HÀNG</h4>
+
+            <div style="" class="form-group row p-0">
+                <span class="col label-name">Họ tên</span>
+                <span class="input-form col-10" style="background-color:#fff;">@Model.KHACHHANG.HOTENKH</span>
+            </div>
+            <div style="" class="form-group row p-0">
+                <span class="col label-name">Số Điện Thoại</span>
+                <span class="input-form col-10" style="background-color:#fff;">@Model.KHACHHANG.SDT</span>
+            </div>
+            <div style="" class="form-group row p-0">
+                <span class="col label-name">Địa chỉ nhận</span>
+                <span class="input-form col-10" style="background-color:#fff;">@Model.DIACHINHANHANG</span>
+            </div>
+            <div style="" class="form-group row p-0">
+                <span class="col label-name">Thanh toán</span>
+                <span class="input-form col-10" style="background-color:#fff;">@Model.PHUONGTHUCTHANHTOAN</span>
+            </div>
+
+            <div class="" style="display:flex;justify-content:center;">
+
+
+                <button type="button" class="btn btn-primary" style="padding: 10px 25px;" data-bs-toggle="modal" data-bs-target="#myModal">
+                    Hủy Đơn
+                </button>
+                <div class="modal" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">HỦY ĐƠN</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                Bạn muốn hủy đơn này?
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Trở lại</button>
+                                <input type="submit" value="Hủy đơn" class="btn btn-primary" />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
     </div>
-}
+</div>

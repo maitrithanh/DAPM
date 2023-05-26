@@ -1,0 +1,35 @@
+﻿
+@model IEnumerable<LTWNC.Models.CTDH>
+@*@model CNPMNC.Models.CTDH*@
+@{
+    int i = Model.Count();
+    int j = 1;
+    double tongtien = 0;
+}
+
+
+@foreach (var item in Model)
+{
+
+    double a;
+    double.TryParse(Convert.ToString(item.THANHTIEN), out a);
+    tongtien += a;
+    <div class="mat">
+        <tr class="bottom_order">
+            <td>@Html.Action("InfoSPFeeback", "Product", new { id = item.IDSP })</td>
+            <td class="product_order_title"><a target="_blank" href="/Product/ProductDetai/item.IDSP"></a></td>
+            <td style="padding-left:100px" class="product_price_order">@string.Format("{0:0,0đ}", item.DONGIA) <span class="xxx_quan"> x </span> <span class="quanlity_order">@item.SOLUONG = </span></td>
+            <td style="color:red" class="total_price"> @string.Format("{0:0,0đ}", item.DONGIA * item.SOLUONG)</td>
+        </tr>
+    </div>
+    if (j == i)
+    {
+        <tr>
+            <td style="padding-top: 20px;padding-bottom: 10px; font-weight: bold" class="total_money_price">Tổng tiền thanh toán: <span style="color:red; font-weight:bold; font-size: 20px;">@string.Format("{0:0,0đ}", tongtien)</span></td>
+        </tr>
+    }
+    j++;
+}
+
+
+

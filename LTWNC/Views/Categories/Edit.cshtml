@@ -1,0 +1,42 @@
+﻿@model LTWNC.Models.DANHMUC
+
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+}
+
+<link href="~/Content/management-form.css" rel="stylesheet" />
+<script src="~/Scripts/main.js" language="JavaScript" type="text/javascript"></script>
+
+<div class="box-form">
+    @using (Html.BeginForm("Edit", "Categories", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <h4 class="title-form">CHỈNH SỬA DANH MỤC - @Model.TENDANHMUC</h4>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+            <div class="form-group row p-0">
+                <span class="col label-name">Mã Danh Mục</span>
+                @Html.EditorFor(model => model.IDDANHMUC, new { htmlAttributes = new { @class = "input-form col-10" } })
+                @Html.ValidationMessageFor(model => model.IDDANHMUC, "", new { @class = "text-danger" })
+            </div>
+
+
+            <div class="form-group row p-0">
+                <span class="col label-name">Tên Danh Mục</span>
+                @Html.EditorFor(model => model.TENDANHMUC, new { htmlAttributes = new { @class = "input-form col-10" } })
+                @Html.ValidationMessageFor(model => model.TENDANHMUC, "", new { @class = "text-danger" })
+            </div>
+            <div class="d-flex justify-content-center form-btn">
+                <input type="submit" value="Lưu" class="btn btn-warning" style="width: 100%" />
+            </div>
+        </div>
+    }
+</div>
+<div>
+    @Html.ActionLink("Trở Lại", "Index")
+</div>
+
+@Scripts.Render("~/bundles/jquery")

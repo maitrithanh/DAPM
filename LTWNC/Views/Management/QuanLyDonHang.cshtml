@@ -1,0 +1,100 @@
+﻿@using LTWNC.Models;
+@model IEnumerable<LTWNC.Models.DONHANG>
+@{
+    ViewBag.Title = "Quản Lý Đơn Hàng";
+    ViewBag.Icon = "checklist.png";
+    ViewBag.Current = "QuanLyDonHang";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+    TAIKHOAN user = Session["User"] as TAIKHOAN;
+}
+<link href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap5.min.js"></script>
+
+
+<div class="box-section-content">
+    <table id="example" class="table table-striped" style="width:100%;">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Tên Khách Hàng
+                </th>
+                <th>
+                    Ngày Đặt
+                </th>
+                <th>
+                    Phương Thức Thanh Toán
+                </th>
+                <th>
+                    Địa Chỉ
+                </th>
+                <th style="text-align: center;">
+                    Xem Chi Tiết
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IDDH)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TENNGUOINHAN)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NGAYDAT)
+                    </td>
+                    <td class="product-meta">
+                        @Html.DisplayFor(modelItem => item.PHUONGTHUCTHANHTOAN)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DIACHINHANHANG)
+                    </td>
+                    <td style="text-align: center;">
+                        <span class="btn btn-warning">
+                            <a href="@Url.Action("DetailsDonHang", "Management", new { id = item.IDDH })" class="">
+                                <i class="fa-regular fa-eye"></i>
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Tên Khách Hàng
+                </th>
+                <th>
+                    Ngày Đặt
+                </th>
+                <th>
+                    Phương Thức Thanh Toán
+                </th>
+                <th>
+                    Địa Chỉ
+                </th>
+                <th style="text-align: center;">
+                    Xem Chi Tiết
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+
+

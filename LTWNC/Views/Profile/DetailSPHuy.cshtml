@@ -1,0 +1,20 @@
+﻿@model IEnumerable<LTWNC.Models.CTDH>
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="col-9">
+            @Html.Action("InfoSPFeeback", "Product", new { id = item.IDSP })
+        </div>
+        <div class="col-1 giua">x @item.SOLUONG</div>
+        <div class="col-2 giua" style="padding-right:48px;">@Convert.ToDecimal(item.THANHTIEN).ToString("N0")đ</div>
+
+    </div>
+}
+<style>
+    .giua {
+        display: flex;
+        align-items: center;
+        justify-content: right;
+    }
+</style>
+

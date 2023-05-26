@@ -1,0 +1,12 @@
+﻿@using PagedList.Mvc
+@*@using LTWNC.Models
+    @model PagedList.PagedList<DANHMUC>*@
+@model IEnumerable<LTWNC.Models.DANHMUC>
+@foreach (var item in Model)
+{
+    string a = Convert.ToString(item.IDDANHMUC);
+    a = a.Replace(" ", "");
+    <a class="text-dark mb-2" href="@Url.Action("SPTheoDanhMuc", "Product", new { id=a})"><i class="fa fa-angle-right mr-2"></i>@item.TENDANHMUC</a>
+
+    
+}

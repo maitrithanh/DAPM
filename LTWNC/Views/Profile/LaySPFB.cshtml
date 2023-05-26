@@ -1,0 +1,26 @@
+﻿@model LTWNC.Models.CTDH
+<link href="~/Content/management-form.css" rel="stylesheet" />
+
+<div class="infoProduct">
+    @Html.Action("InfoSPFeeback", "Product", new { id = Model.IDSP })
+</div>
+<div style="" class="form-group row p-0">
+    <span class="col label-name">Số lượng</span>
+    <span class="input-form col-10" style="background-color:#fff;">@Html.DisplayFor(model => model.SOLUONG)</span>
+</div>
+<div style="" class="form-group row p-0">
+    <span class="col label-name">Thành Tiền</span>
+    <span class="input-form col-10" style="background-color:#fff;">@Convert.ToDecimal(Model.THANHTIEN).ToString("N0")đ</span>
+</div>
+
+<style>
+    .infoProduct .info {
+        display: flex;
+        justify-content: center;
+    }
+
+        .infoProduct .info img {
+            width: 200px;
+            height: 200px;
+        }
+</style>

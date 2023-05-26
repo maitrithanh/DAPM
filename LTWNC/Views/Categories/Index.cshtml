@@ -1,0 +1,91 @@
+﻿@model IEnumerable<LTWNC.Models.DANHMUC>
+
+@{
+    ViewBag.Title = "Quản Lý Danh Mục";
+    ViewBag.Icon = "categories.png";
+    ViewBag.Current = "QuanLyDanhMuc";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+}
+
+<p class="btn btn-success">
+    @Html.ActionLink("Tạo mới", "Create", "Categories")
+</p>
+
+<div class="box-section-content">
+    <table id="example" class="table table-striped" style="width:100%;">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Mã Danh Mục
+                </th>
+                <th>
+                    Tên Danh Mục
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IDDANHMUC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TENDANHMUC)
+                    </td>
+                    <td>
+                        <span class="btn btn-warning">
+                            <a href="@Url.Action("Edit", "Categories", new { id = item.ID })" class="">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                Chỉnh Sửa
+                            </a>
+                        </span>
+
+                        <span class="btn btn-primary">
+                            <a href="@Url.Action("Details", "Categories", new { id = item.ID })" class="">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                Chi Tiết
+                            </a>
+                        </span>
+
+                        <span class="btn btn-danger">
+                            <a href="@Url.Action("Delete", "Categories", new { id = item.ID })" class="">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                Xoá
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Mã Danh Mục
+                </th>
+                <th>
+                    Tên Danh Mục
+                </th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+

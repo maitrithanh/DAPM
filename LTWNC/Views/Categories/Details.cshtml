@@ -1,0 +1,35 @@
+﻿@model LTWNC.Models.DANHMUC
+
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+}
+
+<link href="~/Content/management-form.css" rel="stylesheet" />
+<script src="~/Scripts/main.js" language="JavaScript" type="text/javascript"></script>
+<div class="box-form">
+    <div class="form-horizontal">
+        <h4 class="title-form">CHI TIẾT DANH MỤC</h4>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Mã Danh Mục</span>
+            <p class="delete-form col-10 m-0">
+                @Html.DisplayFor(model => model.IDDANHMUC)
+            </p>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Tên Danh Mục</span>
+            <p class="delete-form col-10 m-0">
+                @Html.DisplayFor(model => model.TENDANHMUC)
+            </p>
+        </div>
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Trở Lại", "Index")
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+
