@@ -99,15 +99,7 @@
                         <input type="text" name="DIACHI" value="@customer.DIACHI" placeholder="Địa chỉ" style="background: white;" class="form-control p-4" readonly />
                     </div>
                 </div>
-                <form class="mb-5" action="">
-                    <div class="input-group">
-                        @*Thêm voucher*@
-                        <input type="text" class="form-control p-4" placeholder="Mã giảm giá">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary">Thêm Voucher</button>
-                        </div>
-                    </div>
-                </form>
+                
                 <div class="card border-secondary mb-5">
                     <div class="card-header bg-secondary border-0">
                         <h4 class="font-weight-semi-bold m-0">Tổng tiền</h4>
@@ -125,9 +117,12 @@
                             <h5 class="font-weight-bold">Tổng cộng</h5>
                             <h5 class="font-weight-bold">@Convert.ToDecimal(ViewBag.TotalPrice).ToString("N0")đ</h5>
                         </div>
-                        @*Bấm thanh toán chuyển sang trang Thanh Toán*@
-                        @using (Html.BeginForm("ConfirmCart", "Cart", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {
+
+                    </div>
+                    @*Bấm thanh toán chuyển sang trang Thanh Toán*@
+                    @using (Html.BeginForm("ConfirmCart", "Cart", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
                         <div class="card border-secondary mb-5">
                             <div class="card-header bg-secondary border-0">
                                 <h4 class="font-weight-semi-bold m-0">Phương thức thanh toán</h4>
@@ -139,10 +134,10 @@
                                 <option>VNPay</option>
                             </select>
                         </div>
-                        
-                        @Html.ActionLink("Tiến hành thanh toán", "ConfirmCart", null, new { @class = "btn btn-block btn-primary my-3 py-3" })
-                         }
-                    </div>
+
+                        <div style=" margin-top: 16px;">
+                            <input type="submit" value="Đặt Hàng" class="btn btn-block btn-primary my-3 py-3" />
+                        </div>                    }
                 </div>
             }
             else
@@ -163,14 +158,6 @@
                             <input type="text" name="HOTENKH" value="" placeholder="Họ tên" class="form-control p-4" required />
                             <input type="text" name="SDT" value="" placeholder="Số điện thoại" class="form-control p-4" required />
                             <input type="text" name="DIACHI" value="" placeholder="Địa chỉ" class="form-control p-4" required />
-                        </div>
-                    </div>
-
-                    <div class="input-group mb-5">
-                        @*Thêm voucher*@
-                        <input type="text" class="form-control p-4" placeholder="Mã giảm giá" value="">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary">Thêm Voucher</button>
                         </div>
                     </div>
 
