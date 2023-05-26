@@ -75,6 +75,7 @@
 
     </td>
     <td>
+
         @foreach (var item in Model)
         {
             if (w == 0)
@@ -111,11 +112,12 @@
                             Đánh giá
                         </a>
 
-        <span class="btn btn-warning">
-            <a href="@Url.Action("ChitietDonHang", "Profile", new { id = Model.IDDH})" class="">
-                <i class='bx bx-comment-detail'></i> Đánh giá
-            </a>
-        </span>
+                    </span>
+                </div>
+            }
+            w++;
+        }
+
     </td>
 </tr>
 
