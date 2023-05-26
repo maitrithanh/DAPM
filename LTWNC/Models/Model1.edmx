@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="LTWNCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="LTWNCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CHUCVU">
           <Key>
             <PropertyRef Name="IDCV" />
@@ -63,7 +63,6 @@
           <Property Name="TRANGTHAIGH" Type="nvarchar" MaxLength="50" />
           <Property Name="TENNGUOINHAN" Type="nvarchar" MaxLength="50" />
           <Property Name="NGAYGIAOHANG" Type="date" />
-          <Property Name="ViewStatus" Type="bit" />
         </EntityType>
         <EntityType Name="FEEDBACK">
           <Key>
@@ -151,7 +150,7 @@
           <Property Name="MATKHAU" Type="nvarchar(max)" Nullable="false" />
           <Property Name="VAITRO" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK__CTDH__IDDH__3D5E1FD2">
+        <Association Name="FK__CTDH__IDDH__628FA481">
           <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
           <End Role="CTDH" Type="Self.CTDH" Multiplicity="*" />
           <ReferentialConstraint>
@@ -163,7 +162,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CTDH__IDSP__3E52440B">
+        <Association Name="FK__CTDH__IDSP__6383C8BA">
           <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
           <End Role="CTDH" Type="Self.CTDH" Multiplicity="*" />
           <ReferentialConstraint>
@@ -175,7 +174,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DONHANG__IDKH__403A8C7D">
+        <Association Name="FK__DONHANG__IDKH__656C112C">
           <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
           <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
           <ReferentialConstraint>
@@ -286,15 +285,15 @@
           <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__CTDH__IDDH__3D5E1FD2" Association="Self.FK__CTDH__IDDH__3D5E1FD2">
+          <AssociationSet Name="FK__CTDH__IDDH__628FA481" Association="Self.FK__CTDH__IDDH__628FA481">
             <End Role="DONHANG" EntitySet="DONHANG" />
             <End Role="CTDH" EntitySet="CTDH" />
           </AssociationSet>
-          <AssociationSet Name="FK__CTDH__IDSP__3E52440B" Association="Self.FK__CTDH__IDSP__3E52440B">
+          <AssociationSet Name="FK__CTDH__IDSP__6383C8BA" Association="Self.FK__CTDH__IDSP__6383C8BA">
             <End Role="SANPHAM" EntitySet="SANPHAM" />
             <End Role="CTDH" EntitySet="CTDH" />
           </AssociationSet>
-          <AssociationSet Name="FK__DONHANG__IDKH__403A8C7D" Association="Self.FK__DONHANG__IDKH__403A8C7D">
+          <AssociationSet Name="FK__DONHANG__IDKH__656C112C" Association="Self.FK__DONHANG__IDKH__656C112C">
             <End Role="KHACHHANG" EntitySet="KHACHHANG" />
             <End Role="DONHANG" EntitySet="DONHANG" />
           </AssociationSet>
@@ -327,7 +326,8 @@
             <End Role="SANPHAM" EntitySet="SANPHAM" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LTWNCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -397,7 +397,6 @@
           <NavigationProperty Name="CTDHs" Relationship="Self.FK__CTDH__IDDH__628FA481" FromRole="DONHANG" ToRole="CTDH" />
           <NavigationProperty Name="CTGIAOHANGs" Relationship="Self.FK_CTGIAOHANG_DONHANG" FromRole="DONHANG" ToRole="CTGIAOHANG" />
           <NavigationProperty Name="KHACHHANG" Relationship="Self.FK__DONHANG__IDKH__656C112C" FromRole="DONHANG" ToRole="KHACHHANG" />
-          <Property Name="ViewStatus" Type="Boolean" />
         </EntityType>
         <EntityType Name="FEEDBACK">
           <Key>
@@ -731,7 +730,6 @@
           <EntitySetMapping Name="DONHANGs">
             <EntityTypeMapping TypeName="LTWNCModel.DONHANG">
               <MappingFragment StoreEntitySet="DONHANG">
-                <ScalarProperty Name="ViewStatus" ColumnName="ViewStatus" />
                 <ScalarProperty Name="IDDH" ColumnName="IDDH" />
                 <ScalarProperty Name="IDKH" ColumnName="IDKH" />
                 <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />

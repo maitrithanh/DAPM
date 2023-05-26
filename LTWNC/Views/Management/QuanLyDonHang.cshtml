@@ -1,100 +1,294 @@
-﻿@using LTWNC.Models;
-@model IEnumerable<LTWNC.Models.DONHANG>
+﻿@model IEnumerable<LTWNC.Models.DONHANG>
+
 @{
     ViewBag.Title = "Quản Lý Đơn Hàng";
     ViewBag.Icon = "checklist.png";
-    ViewBag.Current = "QuanLyDonHang";
     Layout = "~/Views/Shared/_LayoutManagement.cshtml";
-    TAIKHOAN user = Session["User"] as TAIKHOAN;
 }
+
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<script src="~/Scripts/jquery.min.js"></script>
+<link rel="stylesheet" href="~/Content/css/purchaseorder.css" />
+<link rel="stylesheet" href="~/Content/css/frofile.css" />
 <link href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="~/Scripts/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap5.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 
-<div class="box-section-content">
-    <table id="example" class="table table-striped" style="width:100%;">
-        <thead>
-            <tr>
-                <th>
-                    ID
-                </th>
-                <th>
-                    Tên Khách Hàng
-                </th>
-                <th>
-                    Ngày Đặt
-                </th>
-                <th>
-                    Phương Thức Thanh Toán
-                </th>
-                <th>
-                    Địa Chỉ
-                </th>
-                <th style="text-align: center;">
-                    Xem Chi Tiết
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IDDH)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TENNGUOINHAN)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NGAYDAT)
-                    </td>
-                    <td class="product-meta">
-                        @Html.DisplayFor(modelItem => item.PHUONGTHUCTHANHTOAN)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DIACHINHANHANG)
-                    </td>
-                    <td style="text-align: center;">
-                        <span class="btn btn-warning">
-                            <a href="@Url.Action("DetailsDonHang", "Management", new { id = item.IDDH })" class="">
-                                <i class="fa-regular fa-eye"></i>
+<div class="info col-sm-9" style="background-color:white; box-shadow: 10px 8px 50px #aaa;border-radius:8px;">
+    <section id="tabs" style="width:100%">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 p-0">
+                    <nav style="border:none;box-shadow:none;">
+                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist" style="background-color: white;">
+                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
+                               role="tab" aria-controls="nav-home" aria-selected="true">
+                                Chờ xác nhận
                             </a>
-                        </span>
-                    </td>
-                </tr>
-            }
-        </tbody>
-        <tfoot>
-            <tr>
-                <th>
-                    ID
-                </th>
-                <th>
-                    Tên Khách Hàng
-                </th>
-                <th>
-                    Ngày Đặt
-                </th>
-                <th>
-                    Phương Thức Thanh Toán
-                </th>
-                <th>
-                    Địa Chỉ
-                </th>
-                <th style="text-align: center;">
-                    Xem Chi Tiết
-                </th>
-            </tr>
-        </tfoot>
-    </table>
+                            <a class=" nav-link " id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+                               role="tab" aria-controls="nav-profile" aria-selected="false">Đang giao</a>
+                            <a class=" nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
+                               role="tab" aria-controls="nav-contact" aria-selected="false">Đã giao</a>
+                            <a class=" nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about"
+                               role="tab" aria-controls="nav-about" aria-selected="false">Hủy đơn</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                             aria-labelledby="nav-home-tab">
+                            @*Xác nhận đơn hàng*@
+                            <div class="container" style="background-color: white;">
+                                <div class="">
+                                    <table id="example" class="table table-striped" style="width:100%;">
+                                        <thead>
+                                            <tr>
+
+                                                <th>
+                                                    Sản Phẩm
+                                                </th>
+                                                <th>
+                                                    Số Lượng
+                                                </th>
+                                                <th>
+                                                    Thành Tiền
+                                                </th>
+                                                <th>
+                                                    Tiện ích
+                                                </th>
+                                            </tr>
+                                        </thead>
+
+                                        @foreach (var sp in Model)
+                                        {
+
+                                            int a;
+                                            int.TryParse(Convert.ToString(sp.TRANGTHAIGH), out a);
+                                            if (a == 1)
+                                            {
+                                                <tr>
+                                                    @Html.Action("DuyetDon", "Profile", new { id = sp.IDDH })
+                                                    <td style="padding-top: 58px;">
+                                                        @Html.Action("XacNhanDonHang", "Profile", new { id = sp.IDDH })
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            @*Đang giao*@
+                            <div class="container" style="background-color: white;">
+                                <div class="box-section-content">
+                                    <table id="example2" class="table table-striped" style="width:100%;">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Sản Phẩm
+                                                </th>
+                                                <th>
+                                                    Số Lượng
+                                                </th>
+                                                <th>
+                                                    Thành Tiền
+                                                </th>
+                                                <th>
+
+                                                    Tiện ích
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        @foreach (var sp in Model)
+                                        {
+                                            int a;
+                                            int.TryParse(Convert.ToString(sp.TRANGTHAIGH), out a);
+                                            if (a == 2)
+                                            {
+                                                @Html.Action("ListProductstatus", "Profile", new { id = sp.IDDH })
+                                            }
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            @*Đã giao*@
+                            <div class="container" style="background-color: white;">
+                                <div class="box-section-content">
+                                    <table id="example3" class="table table-striped" style="width:100%;">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Sản Phẩm
+                                                </th>
+                                                <th>
+                                                    Số Lượng
+                                                </th>
+                                                <th>
+                                                    Thành Tiền
+                                                </th>
+                                                <th style="width: 110px;">
+                                                    Tiện ích
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        @foreach (var sp in Model)
+                                        {
+                                            int a;
+                                            int.TryParse(Convert.ToString(sp.TRANGTHAIGH), out a);
+                                            if (a == 3)
+                                            {
+                                                @Html.Action("datatable", "Profile", new { id = sp.IDDH })
+                                            }
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+                            @*Hủy đơn*@
+                            <div class="container" style="background-color: white;">
+                                <div class="box-section-content">
+                                    <table id="example4" class="table table-striped" style="width:100%;">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Sản Phẩm
+                                                </th>
+                                                <th>
+                                                    Số Lượng
+                                                </th>
+                                                <th>
+                                                    Thành Tiền
+                                                </th>
+                                                <th>
+                                                    Tiện ích
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        @foreach (var sp in Model)
+                                        {
+                                            int a;
+                                            int.TryParse(Convert.ToString(sp.TRANGTHAIGH), out a);
+                                            if (a == 4)
+                                            {
+                                                @Html.Action("ListProductstatus", "Profile", new { id = sp.IDDH })
+                                            }
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="~/Scripts/Javascript/bootstrap.min.js"></script>
 </div>
 
+
+<style>
+    .box-confirm {
+        position: absolute;
+        top: 151px;
+        right: 500px;
+        height: 200px;
+        width: 400px;
+        align-items: end;
+        display: flex;
+        padding: 20px;
+        border-radius: 8px;
+        display: none;
+    }
+
+    .parent-box-confirm {
+        display: none;
+        background: rgba(0,0,0,0.5);
+        z-index: 100;
+        top: 0;
+        height: 168%;
+        width: 100%;
+        position: absolute;
+    }
+
+    .info {
+        width: 100%;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: white;
+            text-decoration: none;
+        }
+
+
+    .choose a {
+        color: var(--bs-link-color);
+        font-size: 17px;
+    }
+
+    .product-meta {
+        max-width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+        .product-meta:hover {
+            width: 300px;
+            white-space: normal;
+            overflow: hidden;
+            cursor: pointer;
+        }
+</style>
 <script>
     $(document).ready(function () {
         $('#example').DataTable();
     });
 </script>
+<script>
+    $(document).ready(function () {
+        $('#example2').DataTable();
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#example3').DataTable();
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#example4').DataTable();
+    });
+</script>
+
+<script>
+    var btnDelete = document.querySelector('#btn-order');
+    var modelBox = document.querySelector('.box-confirm');
+    var parentModelBox = document.querySelector('.parent-box-confirm');
+    var btnCancel = document.querySelector('#btn-cancel');
 
 
+    btnDelete.onclick = function () {
+        modelBox.style.display = "block";
+        parentModelBox.style.display = "block";
+    }
+
+    btnCancel.onclick = function () {
+        modelBox.style.display = "none";
+        parentModelBox.style.display = "none";
+    }
+
+</script>

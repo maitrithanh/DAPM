@@ -5,31 +5,31 @@
     Layout = "~/Views/Shared/_LayoutManagement.cshtml";
 }
 
-<link href="~/Content/management-form.css" rel="stylesheet" />
-<script src="~/Scripts/main.js" language="JavaScript" type="text/javascript"></script>
-<div class="box-form">
-    <div class="form-horizontal">
-        <h4 class="title-form">CHI TIẾT DANH MỤC</h4>
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-        <div class="form-group row p-0">
-            <span class="col label-name">Mã Danh Mục</span>
-            <p class="delete-form col-10 m-0">
-                @Html.DisplayFor(model => model.IDDANHMUC)
-            </p>
-        </div>
-
-        <div class="form-group row p-0">
-            <span class="col label-name">Tên Danh Mục</span>
-            <p class="delete-form col-10 m-0">
-                @Html.DisplayFor(model => model.TENDANHMUC)
-            </p>
-        </div>
-    </div>
-</div>
+<div style="margin: 10px auto; width: 70%;" />
+<h2 style="text-align: center">CHI TIẾT DANH MỤC</h2>
 <div>
-    @Html.ActionLink("Trở Lại", "Index")
+    <h4>THÔNG TIN CHI TIẾT</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            MÃ DANH MỤC
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IDDANHMUC)
+        </dd>
+        <dt>
+            TÊN DANH MỤC
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TENDANHMUC)
+        </dd>
+    </dl>
 </div>
-
-@Scripts.Render("~/bundles/jquery")
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new
+    {
+    @class = "btn btn-success"
+    }) |
+    @Html.ActionLink("TRỞ LẠI", "Index")
+</p>
 
